@@ -1,5 +1,6 @@
 {
+  "framework": "tanstack-start",
   "rewrites": [
-    { "source": "/favicon.ico", "destination": "/favicon.png" }
+    { "source": "/(.*)", "destination": "/" }
   ]
 }
