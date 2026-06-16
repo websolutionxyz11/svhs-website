@@ -1,0 +1,12 @@
+{
+  "name": "Sree Vidya High School",
+  "short_name": "Sree Vidya",
+  "description": "Premium K-10 school in Hyderabad. Nurturing minds, shaping futures.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9FAFB",
+  "theme_color": "#1E3A8A",
+  "icons": [
+    { "src": "/favicon.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
