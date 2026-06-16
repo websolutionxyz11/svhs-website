@@ -18,6 +18,7 @@ import topper2 from "../assets/topper-2.jpg";
 import topper3 from "../assets/topper-3.jpg";
 import eventAnnual from "../assets/event-annual.jpg";
 import eventArt from "../assets/event-art.jpg";
+import resultCard from "../assets/resultcard.jpeg";
 
 import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
@@ -87,10 +88,38 @@ const teachers = [
 ];
 
 const heroSlides = [
-  { img: heroImg, badge: "Admissions Open · 2026–27", title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers.</>, sub: "Sree Vidya High School blends rigorous academics, creative arts and competitive sports in a campus designed for joyful, lifelong learning." },
-  { img: classroomImg, badge: "Holistic Learning", title: <>Smart classrooms that <span className="bg-gold-gradient bg-clip-text text-transparent">ignite curiosity</span> every single day.</>, sub: "Concept-first teaching, low ratios and personalised mentoring help every learner discover their spark." },
-  { img: sportsImg, badge: "Sports Academy", title: <>Champions are built on <span className="bg-gold-gradient bg-clip-text text-transparent">our fields</span> and courts.</>, sub: "From cricket to athletics, our certified coaches nurture state and national level champions." },
-  { img: scienceImg, badge: "STEM & Robotics", title: <>Modern labs where <span className="bg-gold-gradient bg-clip-text text-transparent">ideas come alive.</span></>, sub: "Hands-on science, robotics and computer labs that prepare students for the world of tomorrow." },
+ 
+  {
+    img: heroImg,
+    badge: "Admissions Open · 2026–27",
+    title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers.</>,
+    sub: "Sree Vidya High School blends rigorous academics, creative arts and competitive sports in a campus designed for joyful, lifelong learning."
+  },
+  {
+    img: classroomImg,
+    badge: "Holistic Learning",
+    title: <>Shaping students through <span className="bg-gold-gradient bg-clip-text text-transparent">all-round development.</span></>,
+    sub: "We focus on academics, discipline, creativity, and values to build confident and responsible individuals."
+  },
+  {
+    img: sportsImg,
+    badge: "Sports Academy",
+    title: <>Champions are built on <span className="bg-gold-gradient bg-clip-text text-transparent">our fields</span> and courts.</>,
+    sub: "From cricket to athletics, our certified coaches nurture state and national level champions."
+  },
+  {
+    img: scienceImg,
+    badge: "STEM & Robotics",
+    title: <>Modern labs where <span className="bg-gold-gradient bg-clip-text text-transparent">ideas come alive.</span></>,
+    sub: "Hands-on science, robotics and computer labs that prepare students for the world of tomorrow."
+  },
+  {
+    img: resultCard,
+    badge: "",
+    title: <> <span className="bg-gold-gradient bg-clip-text text-transparent"></span></>,
+    sub: ""
+  }
+
 ];
 
 function HomePage() {
@@ -112,7 +141,7 @@ function HomePage() {
       <AdmissionPopup />
 
       {/* HERO — FULL IMAGE CAROUSEL */}
-      <section className="relative overflow-hidden h-[100svh] min-h-[600px] max-h-[900px]">
+      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-15">
         {/* Full-bleed background image carousel */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -132,9 +161,8 @@ function HomePage() {
         </AnimatePresence>
 
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/60 to-primary/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-primary/40" />
-
+       {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/10" />
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-primary/20" /> */}
         {/* Content */}
         <div className="container-x relative h-full flex items-center text-primary-foreground pt-24 pb-20">
           <div className="max-w-3xl">
@@ -159,16 +187,16 @@ function HomePage() {
             </AnimatePresence>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/admissions" className="group inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-bold text-secondary-foreground shadow-elevated hover:shadow-glow hover:-translate-y-0.5 transition-all">
+              {/* <Link to="/admissions" className="group inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-bold text-secondary-foreground shadow-elevated hover:shadow-glow hover:-translate-y-0.5 transition-all">
                 Apply for 2026–27 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link to="/gallery" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/20 transition">
                 Explore Campus
-              </Link>
+              </Link> */}
             </div>
 
             {/* Slide dots */}
-            <div className="mt-10 flex items-center gap-2">
+            {/* <div className="mt-10 flex items-center gap-2">
               {heroSlides.map((_, i) => (
                 <button
                   key={i}
@@ -177,7 +205,7 @@ function HomePage() {
                   className={`h-1.5 rounded-full transition-all ${i === slide ? "w-12 bg-secondary" : "w-5 bg-white/30 hover:bg-white/60"}`}
                 />
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -200,7 +228,7 @@ function HomePage() {
 
 
       {/* STATS */}
-      <section className="relative -mt-12 md:-mt-16 z-10">
+      <section className="relative -mt-12 md:mt-10 z-10">
         <div className="container-x">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 rounded-3xl bg-card shadow-elevated p-6 md:p-10 border border-border">
             {stats.map((s, i) => (
