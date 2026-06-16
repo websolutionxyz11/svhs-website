@@ -94,28 +94,42 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "EducationalOrganization",
-          name: "Sree Vidya High School",
-          url: "/",
-          logo: "/favicon.png",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "24-A Vidya Marg",
-            addressLocality: "Hyderabad",
-            addressRegion: "Telangana",
-            postalCode: "500032",
-            addressCountry: "IN",
-          },
-          telephone: "+91-98765-43210",
-          email: "hello@sreevidya.edu.in",
-        }),
+   scripts: [
+  {
+    type: "application/ld+json",
+    children: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      name: "Sree Vidya High School",
+      url: "/",
+      logo: "/favicon.png",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "24-A Vidya Marg",
+        addressLocality: "Hyderabad",
+        addressRegion: "Telangana",
+        postalCode: "500032",
+        addressCountry: "IN",
       },
-    ],
+      telephone: "+91-98765-43210",
+      email: "hello@sreevidya.edu.in",
+    }),
+  },
+
+  // ✅ ADD GOOGLE ANALYTICS HERE
+  {
+    src: "https://www.googletagmanager.com/gtag/js?id=G-K0ZQLKVGSE",
+    async: true,
+  },
+  {
+    children: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-K0ZQLKVGSE');
+    `,
+  },
+],
   }),
   shellComponent: RootShell,
   component: RootComponent,
