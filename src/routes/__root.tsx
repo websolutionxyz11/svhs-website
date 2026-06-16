@@ -82,6 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:description", content: "Sree Vidya High School offers premium K-10 education with a holistic curriculum, modern facilities, and a passionate faculty. Admissions for 2026–27 are open." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5310019-76f1-4076-9a18-b698c138125e/id-preview-84ea35bd--73ee91ef-90c0-4be5-9819-dde11d45d2a7.lovable.app-1781512216022.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5310019-76f1-4076-9a18-b698c138125e/id-preview-84ea35bd--73ee91ef-90c0-4be5-9819-dde11d45d2a7.lovable.app-1781512216022.png" },
+    
+      { name: "google-site-verification", content:"XnIPD4-dVbKrFITvXXbqURHoJ1B8k6B6dB0iqdNiV-Q" }
     ],
     links: [
       { rel: "stylesheet", href: appCss },
