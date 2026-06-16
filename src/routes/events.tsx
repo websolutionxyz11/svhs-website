@@ -5,6 +5,7 @@ import { Calendar, MapPin, Play } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
+import { EventCarousel, type CarouselSlide } from "../components/EventCarousel";
 
 import sportsImg from "../assets/sports.jpg";
 import culturalImg from "../assets/cultural.jpg";
@@ -57,6 +58,15 @@ const videos: LightboxItem[] = [
   { src: scienceImg, alt: "Science Expo Tour", type: "video", videoUrl: "https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ?rel=0" },
 ];
 
+const carouselSlides: CarouselSlide[] = [
+  { id: "1", src: eventAnnual, alt: "Annual Day Celebrations", caption: "Annual Day 2025", category: "Cultural" },
+  { id: "2", src: sportsImg, alt: "Inter-School Sports Meet", caption: "Sports Championship", category: "Sports" },
+  { id: "3", src: scienceImg, alt: "Science & Robotics Expo", caption: "Innovation & Discovery", category: "Academic" },
+  { id: "4", src: culturalImg, alt: "Cultural Festival", caption: "Cultural Showcase", category: "Cultural" },
+  { id: "5", src: eventArt, alt: "Inter-House Art Festival", caption: "Artistic Excellence", category: "Cultural" },
+  { id: "6", src: campusAerial, alt: "Campus Aerial View", caption: "Our Beautiful Campus", category: "Campus" },
+];
+
 function EventsPage() {
   const [filter, setFilter] = useState<Cat>("All");
   const [videoIdx, setVideoIdx] = useState<number | null>(null);
@@ -107,7 +117,7 @@ function EventsPage() {
       </section>
 
       {/* Timeline */}
-      <section className="section-y bg-muted/40">
+      <section className="section-y bg-blue-100">
         <div className="container-x">
           <Reveal className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Event Timeline</span>
@@ -176,6 +186,18 @@ function EventsPage() {
               </motion.article>
             ))}
           </motion.div>
+        </div>
+      </section>
+
+      {/* Event Carousel - Past Events Highlights */}
+      <section className="section-y bg-gradient-to-b from-muted/20 to-background">
+        <div className="container-x">
+          <Reveal className="mb-10">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Gallery Highlights</span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Moments in motion</h2>
+            <p className="mt-2 text-muted-foreground max-w-2xl">Relive the best moments from our past events. Swipe or click to explore more.</p>
+          </Reveal>
+          <EventCarousel slides={carouselSlides} autoPlayInterval={5000} />
         </div>
       </section>
 

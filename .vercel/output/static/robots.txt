@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sree-vidya-high-school.vercel.app/sitemap.xml
