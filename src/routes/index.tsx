@@ -213,17 +213,17 @@ function HomePage() {
         <button
           onClick={prev}
           aria-label="Previous slide"
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-white/15 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
+          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-primary-100 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
         >
-          <ChevronLeft className="h-5 w-5" />
+         <ChevronRight className="h-5 w-5" />
         </button>
-        <button
+        {/* <button
           onClick={next}
           aria-label="Next slide"
           className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-white/15 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
         >
           <ChevronRight className="h-5 w-5" />
-        </button>
+        </button> */}
       </section>
 
 
