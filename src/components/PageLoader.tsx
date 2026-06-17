@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
+import logo from "../assets/logo.png";
 
 export function PageLoader() {
   const [show, setShow] = useState(true);
@@ -17,17 +18,16 @@ export function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] grid place-items-center bg-hero-gradient"
+          className="fixed inset-0 z-[100] grid place-items-center bg-primary"
         >
           <div className="flex flex-col items-center gap-6 text-primary-foreground">
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              transition={{ type: "spring", stiffness: 160, damping: 14 }}
-              className="grid h-20 w-20 place-items-center rounded-2xl bg-gold-gradient text-secondary-foreground shadow-elevated"
+            <div
+             
+              className="grid h-20 w-20 place-items-center "
             >
-              <GraduationCap className="h-10 w-10" />
-            </motion.div>
+              {/* <GraduationCap className="h-10 w-10" /> */}
+              <img src={logo} alt="logo" className="h-15 w-15" />
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}

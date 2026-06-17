@@ -183,7 +183,7 @@ function AdmissionsPage() {
               <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "22px 22px" }} />
               <div className="relative text-center">
                 <span className="inline-block rounded-md bg-red-600 px-6 py-2 text-white text-lg md:text-2xl font-extrabold tracking-wide shadow-lg">
-                  Domination Continues...
+                  Domination Continues
                 </span>
                 <h3 className="mt-4 text-2xl md:text-4xl font-extrabold text-white">
                   Sree Vidya <span className="text-yellow-400">Rules</span> 10<sup>th</sup> Class <span className="text-yellow-400">Top</span> Marks in 2026
@@ -403,14 +403,8 @@ function AdmissionsPage() {
                 </div>
               </div>
               <div className="mt-4">
-                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Message</label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Anything you'd like us to know…"
-                  className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition"
-                />
-              </div>
+  <div className="mt-4"> <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Message</label> <textarea name="message" rows={4} placeholder="Anything you'd like us to know…" className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition" /> </div>
+</div>
               <button
                 type="submit"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-bold text-secondary-foreground shadow-soft hover:shadow-glow hover:-translate-y-0.5 transition"

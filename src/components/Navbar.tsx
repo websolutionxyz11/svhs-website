@@ -1,6 +1,7 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, GraduationCap } from "lucide-react";
+import logo from "../assets/logo.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -33,8 +34,9 @@ export function Navbar() {
     >
       <div className="container-x flex h-16 md:h-20 items-center justify-between gap-4">
         <Link to="/" className="flex items-center gap-2 shrink-0 group">
-          <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary-gradient text-primary-foreground shadow-soft group-hover:rotate-6 transition-transform">
-            <GraduationCap className="h-5 w-5" />
+          <div className="grid h-10 w-10 place-items-center rounded-xl  text-primary-foreground shadow-soft ">
+            {/* <GraduationCap className="h-5 w-5" /> */}
+            <img src={logo} alt="school logo" className="h-10 w-10" />
           </div>
           <div className="leading-tight">
             <div className="font-display font-extrabold text-primary text-base md:text-lg">

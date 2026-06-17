@@ -20,7 +20,7 @@ export function SocialDock() {
   return (
     <aside
       aria-label="Social media"
-      className="fixed left-1.5 sm:left-3 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-1.5 sm:gap-2 rounded-2xl bg-white/90 backdrop-blur p-1.5 sm:p-2 shadow-elevated border border-border"
+      className="fixed right-1.5 sm:right-3 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-1.5 sm:gap-2 rounded-2xl bg-primary-100 backdrop-blur p-1.5 sm:p-2 shadow-elevated border border-border"
     >
       {links.map(({ href, label, Icon, color }) => (
         <a
@@ -32,7 +32,7 @@ export function SocialDock() {
           title={label}
           className={`group grid h-8 w-8 sm:h-10 sm:w-10 place-items-center rounded-lg sm:rounded-xl text-white transition-all duration-300 hover:scale-110 hover:shadow-glow ${color}`}
         >
-          <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
+          <Icon className="h-4 w-4 sm:h-5 sm:w-5 " />
         </a>
       ))}
     </aside>

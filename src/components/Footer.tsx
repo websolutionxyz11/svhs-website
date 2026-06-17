@@ -1,14 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { GraduationCap, MapPin, Phone, Mail, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
-
+import logo from "../assets/logo.png";
 export function Footer() {
   return (
     <footer className="bg-dark text-dark-foreground">
       <div className="container-x py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gold-gradient text-secondary-foreground">
-              <GraduationCap className="h-5 w-5" />
+            <div className="grid h-10 w-10 place-items-center rounded-xl  text-secondary-foreground">
+              {/* <GraduationCap className="h-5 w-5" /> */}
+              <img src={logo} alt="logo" className="h-8 w-8"/>
+
             </div>
             <div>
               <div className="font-display font-extrabold text-lg">Sree Vidya</div>

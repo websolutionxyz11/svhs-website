@@ -16,6 +16,7 @@ import culturalImg from "../assets/cultural.jpg";
 import classroomImg from "../assets/classroom.jpg";
 import libraryImg from "../assets/library.jpg";
 import eventArt from "../assets/event-art.jpg";
+import banner from "../assets/achievement_banner.jpg";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({
@@ -176,7 +177,7 @@ function AchievementsPage() {
   return (
     <>
       <PageHero
-        bgImage={topper1}
+        bgImage={banner}
         eyebrow="Our Achievements"
         title={<>Excellence is a <span className="text-secondary">habit here.</span></>}
         subtitle="From classrooms to courts, our students keep raising the bar."

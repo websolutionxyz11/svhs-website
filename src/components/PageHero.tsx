@@ -22,7 +22,7 @@ export function PageHero({ eyebrow, title, subtitle, crumb, bgImage }: PageHeroP
             aria-hidden
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/85 via-primary/70 to-accent/60" />
+          <div className="absolute inset-0  from-primary/85 via-primary/70 to-accent/60" />
         </>
       ) : (
         <div className="absolute inset-0 bg-hero-gradient" />
