@@ -20,10 +20,12 @@ import eventAnnual from "../assets/event-annual.jpg";
 import eventArt from "../assets/event-art.jpg";
 import resultCard from "../assets/resultcard.jpeg";
 
+
 import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 import { AdmissionPopup } from "../components/AdmissionPopup";
+import { ResultsPopup } from "@/components/Resultspopup ";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,9 +34,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "A premium K-10 school in Penumur blending academic excellence, sports, arts, and values. Admissions for 2026–27 are open." },
       { property: "og:title", content: "Sree Vidya High School" },
       { property: "og:description", content: "Premium K-10 school in Penumur. Admissions Open 2026–27." },
-      { property: "og:url", content: "/" },
+      { property: "og:url", content: "https://school-svhs.vercel.app/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://school-svhs.vercel.app/" }],
   }),
   component: HomePage,
 });
@@ -138,7 +140,8 @@ function HomePage() {
 
   return (
     <>
-      <AdmissionPopup />
+      {/* <AdmissionPopup /> */}
+      <ResultsPopup/>
 
       {/* HERO — FULL IMAGE CAROUSEL */}
       <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-15">

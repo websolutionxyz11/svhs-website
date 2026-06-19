@@ -142,7 +142,7 @@ function ContactPage() {
             <div className="rounded-3xl overflow-hidden shadow-elevated aspect-[16/9] bg-muted border border-border">
               <iframe
                 title="Sree Vidya campus map"
-                src="https://maps.app.goo.gl/4EYydfd7AnCuCYBdA"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6712.181488636178!2d79.18795416090748!3d13.36621824528602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bb2a77fce821097%3A0x110e18b5796eb877!2sSri%20Vidya%20School%20Play%20Ground%2C%20Penumur!5e1!3m2!1sen!2sin!4v1781836458596!5m2!1sen!2sin"
                 className="h-full w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
