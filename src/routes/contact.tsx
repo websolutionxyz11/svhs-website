@@ -62,7 +62,7 @@ function ContactPage() {
           {/* Info */}
           <Reveal className="lg:col-span-2 space-y-4">
             {[
-              { icon: MapPin, t: "Visit", v: "24-A Vidya Marg, Hyderabad, Telangana 500032, India" },
+              { icon: MapPin, t: "Visit", v: "10-73, nearby NTR Colony, Penumuru, Penumur, Andhra Pradesh 517126" },
               { icon: Phone, t: "Call", v: "+91 98765 43210 · +91 40 4012 3456" },
               { icon: Mail, t: "Email", v: "hello@sreevidya.edu.in" },
               { icon: Clock, t: "Hours", v: "Mon – Sat · 8:30 AM – 4:30 PM" },
@@ -142,7 +142,7 @@ function ContactPage() {
             <div className="rounded-3xl overflow-hidden shadow-elevated aspect-[16/9] bg-muted border border-border">
               <iframe
                 title="Sree Vidya campus map"
-                src="https://www.google.com/maps?q=Hyderabad%20Telangana&output=embed"
+                src="https://maps.app.goo.gl/4EYydfd7AnCuCYBdA"
                 className="h-full w-full"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"

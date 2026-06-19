@@ -29,9 +29,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Sree Vidya High School — Nurturing Minds, Shaping Futures" },
-      { name: "description", content: "A premium K-10 school in Hyderabad blending academic excellence, sports, arts, and values. Admissions for 2026–27 are open." },
+      { name: "description", content: "A premium K-10 school in Penumur blending academic excellence, sports, arts, and values. Admissions for 2026–27 are open." },
       { property: "og:title", content: "Sree Vidya High School" },
-      { property: "og:description", content: "Premium K-10 school in Hyderabad. Admissions Open 2026–27." },
+      { property: "og:description", content: "Premium K-10 school in Penumur. Admissions Open 2026–27." },
       { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
@@ -263,7 +263,7 @@ function HomePage() {
             </Reveal>
             <Reveal delay={0.1}>
               <p className="mt-5 text-muted-foreground leading-relaxed">
-                Since 1998, Sree Vidya High School has been a launchpad for young minds in Hyderabad.
+                Since 1998, Sree Vidya High School has been a launchpad for young minds in Penumur .
                 Our 8-acre green campus, low student–teacher ratio and integrated arts-sports-academic
                 philosophy nurture confident, kind and capable learners.
               </p>
