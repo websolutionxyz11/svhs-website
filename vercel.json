@@ -1,6 +1,7 @@
 {
   "framework": "tanstack-start",
   "rewrites": [
-    { "source": "/favicon.ico", "destination": "/favicon.png" }
+    { "source": "/favicon.ico", "destination": "/favicon.png" },
+    { "source": "/sitemap.xml", "destination": "/sitemap.xml" }
   ]
 }
