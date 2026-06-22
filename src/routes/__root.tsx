@@ -71,7 +71,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#1E3A8A" },
-      { title: "Sree Vidya High School — Nurturing Minds, Shaping Futures" },
+      { title: "Sree Vidya High School|Nurturing Minds, Shaping Futures" },
       { name: "description", content: "Sree Vidya High School offers premium LKG-10 education with a holistic curriculum, modern facilities, and a passionate faculty. Admissions for 2026–27 are open." },
       { name: "keywords", content: "Sree Vidya High School , Sree Vidya High School penumur, best school in penumur, best school in chittoor, admissions 2026, K-10 education, holistic learning" },
       { name: "author", content: "Sree Vidya High School" },
