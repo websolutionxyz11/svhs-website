@@ -29,16 +29,73 @@ import { ResultsPopup } from "@/components/Resultspopup ";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    meta: [
-      { title: "Sree Vidya High School|Nurturing Minds, Shaping Futures" },
-      { name: "description", content: "A premium LKG-10 school in Penumur blending academic excellence, sports, arts, and values. Admissions for 2026–27 are open." },
-      { property: "og:title", content: "Sree Vidya High School" },
-      { property: "og:description", content: "Premium K-10 school in Penumur. Admissions Open 2026–27." },
-      { property: "og:url", content: "https://svhs-website.vercel.app/" },
-    ],
-    links: [{ rel: "canonical", href: "https://svhs-website.vercel.app/" }],
-  }),
-  component: HomePage,
+  meta: [
+   
+    {
+      title:
+        "Sree Vidya High School Penumur | Best School in Penumur Chittoor | Admissions Open",
+    },
+
+ 
+    {
+      name: "description",
+      content:
+        "Sree Vidya High School in Penumur is one of the best and top-rated schools in Chittoor district. We provide quality education from LKG to 10th class with experienced teachers, modern facilities, and excellent results. Admissions open for 2026-27.",
+    },
+
+   
+    {
+      name: "keywords",
+      content:
+        "Sree Vidya High School, Sree Vidya High School Penumur, best school in Penumur, top school in Penumur Chittoor, SVHS Penumur",
+    },
+
+    { name: "author", content: "Sree Vidya High School" },
+
+   
+    {
+      property: "og:title",
+      content:
+        "Sree Vidya High School Penumur | Best School in Chittoor",
+    },
+    {
+      property: "og:description",
+      content:
+        "Top-rated school in Penumur offering quality education, modern facilities, and holistic development. Admissions open.",
+    },
+    {
+      property: "og:url",
+      content: "https://svhs-website.vercel.app/",
+    },
+    {
+      property: "og:type",
+      content: "website",
+    },
+
+    {
+      name: "twitter:card",
+      content: "summary_large_image",
+    },
+    {
+      name: "twitter:title",
+      content: "Sree Vidya High School Penumur",
+    },
+    {
+      name: "twitter:description",
+      content:
+        "Best school in Penumur with quality education and modern facilities.",
+    },
+  ],
+
+ 
+  links: [
+    {
+      rel: "canonical",
+      href: "https://svhs-website.vercel.app/",
+    },
+  ],
+}),
+component: HomePage,
 });
 
 const stats = [
@@ -262,14 +319,16 @@ function HomePage() {
           <div>
             <Reveal>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">About the School</span>
-              <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-balance">A school that feels like a community.</h2>
-            </Reveal>
+<h4 className="mt-3 text-xl md:text-3xl font-extrabold text-balance">
+  A school that feels like a community, Best School in Penumur - Sree Vidya High School
+</h4>            </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-5 text-muted-foreground leading-relaxed">
-                Since 1998, Sree Vidya High School has been a launchpad for young minds in Penumur .
-                Our 8-acre green campus, low student–teacher ratio and integrated arts-sports-academic
-                philosophy nurture confident, kind and capable learners.
-              </p>
+           
+              <p>
+                Since 1998, Sree Vidya High School is one of the best schools in Penumur, Chittoor.
+We provide quality education from LKG to 10th class with experienced
+teachers, modern facilities, and excellent academic results.
+                </p>
             </Reveal>
             <Reveal delay={0.2}>
               <ul className="mt-6 grid sm:grid-cols-2 gap-3">
