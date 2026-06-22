@@ -34,9 +34,9 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "A premium K-10 school in Penumur blending academic excellence, sports, arts, and values. Admissions for 2026–27 are open." },
       { property: "og:title", content: "Sree Vidya High School" },
       { property: "og:description", content: "Premium K-10 school in Penumur. Admissions Open 2026–27." },
-      { property: "og:url", content: "https://school-svhs.vercel.app/" },
+      { property: "og:url", content: "https://svhs-website.vercel.app/" },
     ],
-    links: [{ rel: "canonical", href: "https://school-svhs.vercel.app/" }],
+    links: [{ rel: "canonical", href: "https://svhs-website.vercel.app/" }],
   }),
   component: HomePage,
 });

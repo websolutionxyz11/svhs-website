@@ -73,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "theme-color", content: "#1E3A8A" },
       { title: "Sree Vidya High School — Nurturing Minds, Shaping Futures" },
       { name: "description", content: "Sree Vidya High School offers premium LKG-10 education with a holistic curriculum, modern facilities, and a passionate faculty. Admissions for 2026–27 are open." },
-      { name: "keywords", content: "Sree Vidya High School, best school in penumur, best school in chittoor, admissions 2026, K-10 education, holistic learning" },
+      { name: "keywords", content: "Sree Vidya High School , Sree Vidya High School penumur, best school in penumur, best school in chittoor, admissions 2026, K-10 education, holistic learning" },
       { name: "author", content: "Sree Vidya High School" },
       { property: "og:title", content: "Sree Vidya High School — Nurturing Minds, Shaping Futures" },
       { property: "og:description", content: "Sree Vidya High School offers premium LKG-10 education with a holistic curriculum, modern facilities, and a passionate faculty. Admissions for 2026–27 are open." },
@@ -85,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5310019-76f1-4076-9a18-b698c138125e/id-preview-84ea35bd--73ee91ef-90c0-4be5-9819-dde11d45d2a7.lovable.app-1781512216022.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c5310019-76f1-4076-9a18-b698c138125e/id-preview-84ea35bd--73ee91ef-90c0-4be5-9819-dde11d45d2a7.lovable.app-1781512216022.png" },
     
-      { name: "google-site-verification", content:"XnIPD4-dVbKrFITvXXbqURHoJ1B8k6B6dB0iqdNiV-Q" }
+      { name: "google-site-verification", content:"KtTkuXulzmc6dip7WjY6yCizP4oJbqEZRc0bO0O4t5Y" }
     ],
     links: [
       { rel: "stylesheet", href: appCss },

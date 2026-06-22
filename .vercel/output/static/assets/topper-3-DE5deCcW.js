@@ -1,1 +1,0 @@
-import{c as t}from"./index-CyN4K5Fw.js";const o=[["path",{d:"M5 12h14",key:"1ays0h"}],["path",{d:"m12 5 7 7-7 7",key:"xquz4c"}]],p=t("arrow-right",o),e="/assets/topper-1-Muv4bPyq.jpg",r="/assets/topper-2-C1GnGCUb.jpg",a="/assets/topper-3-BQkoKP82.jpg";export{p as A,r as a,a as b,e as t};
