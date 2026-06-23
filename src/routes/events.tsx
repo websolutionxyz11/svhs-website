@@ -116,6 +116,18 @@ function EventsPage() {
         </div>
       </section>
 
+         {/* Event Carousel - Past Events Highlights */}
+      <section className="section-y bg-gradient-to-b from-muted/20 to-background">
+        <div className="container-x">
+          <Reveal className="mb-10">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Gallery Highlights</span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Moments in motion</h2>
+            <p className="mt-2 text-muted-foreground max-w-2xl">Relive the best moments from our past events. Swipe or click to explore more.</p>
+          </Reveal>
+          <EventCarousel slides={carouselSlides} autoPlayInterval={5000} />
+        </div>
+      </section>
+
       {/* Timeline */}
       <section className="section-y bg-blue-100">
         <div className="container-x">
@@ -190,16 +202,7 @@ function EventsPage() {
       </section>
 
       {/* Event Carousel - Past Events Highlights */}
-      <section className="section-y bg-gradient-to-b from-muted/20 to-background">
-        <div className="container-x">
-          <Reveal className="mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Gallery Highlights</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Moments in motion</h2>
-            <p className="mt-2 text-muted-foreground max-w-2xl">Relive the best moments from our past events. Swipe or click to explore more.</p>
-          </Reveal>
-          <EventCarousel slides={carouselSlides} autoPlayInterval={5000} />
-        </div>
-      </section>
+  
 
       {/* Videos */}
       <section className="section-y bg-dark text-dark-foreground">

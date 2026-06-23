@@ -22,7 +22,7 @@ export const Route = createFileRoute("/achievements")({
   head: () => ({
     meta: [
       { title: "Achievements & Awards | Sree Vidya High School" },
-      { name: "description", content: "Academic, sports and cultural achievements of Sree Vidya students, from CBSE toppers to national-level winners." },
+      { name: "description", content: "Academic, sports and cultural achievements of Sree Vidya students, from StateBoard toppers to national-level winners." },
       { property: "og:title", content: "Achievements — Sree Vidya High School" },
       { property: "og:description", content: "Toppers, medalists and award-winners across academics, sports and the arts." },
       { property: "og:url", content: "/achievements" },
@@ -33,7 +33,7 @@ export const Route = createFileRoute("/achievements")({
 });
 
 const academic = [
-  { icon: BookOpen, title: "CBSE Board Excellence", desc: "98.6% school average in Grade 10 boards, with 47 students above 95%." },
+  { icon: BookOpen, title: "StateBoard  Excellence", desc: "98.6% school average in Grade 10 boards, with 47 students above 95%." },
   { icon: Award, title: "Math Olympiad", desc: "12 students qualified for IMO Regional Round in 2024." },
   { icon: Star, title: "Science Talent Search", desc: "5 NTSE scholars in the last three batches." },
 ];
@@ -46,15 +46,15 @@ const sports = [
 
 const awards = [
   "Best School in Academics — Times Education Awards 2024",
-  "Innovative Teaching Award — CBSE 2023",
+  "Innovative Teaching Award — StateBoard 2023",
   "Green School Certification — TERI",
-  "Cleanest Campus Award — Hyderabad Municipal Corp.",
+  "Cleanest Campus Award — Penumur Municipal Corp.",
   "ISA Award — British Council 2022",
   "Excellence in Sports — SGFI 2024",
 ];
 
 const toppers = [
-  { img: topper1, name: "Aarav Mehta", score: "98.6%", subj: "All India CBSE Rank 27" },
+  { img: topper1, name: "Aarav Mehta", score: "98.6%", subj: "All India StateBoard Rank 27" },
   { img: topper2, name: "Sara Iqbal", score: "97.8%", subj: "State Topper · Sciences" },
   { img: topper3, name: "Vikram Rao", score: "Gold", subj: "National Robotics Champ" },
 ];
@@ -312,7 +312,7 @@ function AchievementsPage() {
               <div className="mt-6 flex flex-wrap items-center justify-between gap-3 text-xs text-muted-foreground">
                 <span>Y-axis: Pass percentage (0–100%)</span>
                 <span className="inline-flex items-center gap-2">
-                  <span className="inline-block h-1.5 w-6 rounded bg-primary" /> CBSE Grade 10 Results
+                  <span className="inline-block h-1.5 w-6 rounded bg-primary" /> StateBoard Grade 10 Results
                 </span>
               </div>
             </div>

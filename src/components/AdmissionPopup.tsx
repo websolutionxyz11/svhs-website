@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { X, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/hero-campus.jpg";
+import heroImg from "../assets/hero-campus.webp";
 
 export function AdmissionPopup() {
   const [open, setOpen] = useState(false);

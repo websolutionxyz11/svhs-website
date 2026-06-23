@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import resultsImg from "../assets/neet-results-2025.jpg";
-import resultBanner from "../assets/resultbanner.jpg";
+import resultBanner from "../assets/resultbanner.webp";
 
 export function ResultsPopup() {
   const [open, setOpen] = useState(false);
@@ -51,6 +51,9 @@ export function ResultsPopup() {
             <img
               src={resultBanner}
               alt="NEET Results 2025"
+              width={600}
+              height={400}
+              loading="lazy"
               className="block h-auto w-full"
             />
           </motion.div>

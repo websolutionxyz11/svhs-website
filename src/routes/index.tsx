@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/hero-campus.jpg";
+import heroImg from "../assets/hero-campus.webp";
 import principalImg from "../assets/principal.jpg";
 import classroomImg from "../assets/classroom.jpg";
 import sportsImg from "../assets/sports.jpg";
@@ -215,6 +215,9 @@ function HomePage() {
             <img
               src={current.img}
               alt={current.badge}
+              width={1920}
+              height={1080}
+              fetchPriority="high"
               className="h-full w-full object-cover"
             />
           </motion.div>
@@ -320,7 +323,7 @@ function HomePage() {
             <Reveal>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">About the School</span>
 <h4 className="mt-3 text-xl md:text-3xl font-extrabold text-balance">
-  A school that feels like a community, Best School in Penumur - Sree Vidya High School
+  <span className=" text-primary text-10">A school that feels like a community </span>Best School in Penumur - Sree Vidya High School
 </h4>            </Reveal>
             <Reveal delay={0.1}>
            

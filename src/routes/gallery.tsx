@@ -11,7 +11,7 @@ import sportsImg from "../assets/sports.jpg";
 import culturalImg from "../assets/cultural.jpg";
 import eventAnnual from "../assets/event-annual.jpg";
 import eventArt from "../assets/event-art.jpg";
-import heroImg from "../assets/hero-campus.jpg";
+import heroImg from "../assets/hero-campus.webp";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
