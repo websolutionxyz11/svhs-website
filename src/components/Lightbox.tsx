@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect } from "react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 export interface LightboxItem {
   src: string;
@@ -30,14 +31,16 @@ export function Lightbox({ items, index, onClose, onIndex }: Props) {
 
   const item = index !== null ? items[index] : null;
 
+  const isMobile = useIsMobile();
+
   return (
     <AnimatePresence>
       {item && index !== null && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 pb-24 md:pb-4"
+          initial={isMobile ? undefined : { opacity: 0 }}
+          animate={isMobile ? undefined : { opacity: 1 }}
+          exit={isMobile ? undefined : { opacity: 0 }}
+          className={`fixed inset-0 z-[100] bg-black/90 ${isMobile ? "" : "backdrop-blur-sm"} flex items-center justify-center p-4 pb-24 md:pb-4`}
           onClick={onClose}
         >
           <button

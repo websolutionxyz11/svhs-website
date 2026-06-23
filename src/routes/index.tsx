@@ -6,7 +6,8 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/hero-campus.webp";
+import heroImg from "../assets/hero-campus-1200.webp";
+import { useIsMobile } from "../hooks/use-mobile";
 import principalImg from "../assets/principal.jpg";
 import classroomImg from "../assets/classroom.jpg";
 import sportsImg from "../assets/sports.jpg";
@@ -194,6 +195,7 @@ function HomePage() {
   const next = () => setSlide((s) => (s + 1) % heroSlides.length);
   const prev = () => setSlide((s) => (s - 1 + heroSlides.length) % heroSlides.length);
   const current = heroSlides[slide];
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -204,23 +206,36 @@ function HomePage() {
       <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-15">
         {/* Full-bleed background image carousel */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={slide}
-            initial={{ opacity: 0, scale: 1.08 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute inset-0"
-          >
-            <img
-              src={current.img}
-              alt={current.badge}
-              width={1920}
-              height={1080}
-              fetchPriority="high"
-              className="h-full w-full object-cover"
-            />
-          </motion.div>
+            {!isMobile ? (
+              <motion.div
+                key={slide}
+                initial={{ opacity: 0, scale: 1.08 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.02 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="absolute inset-0"
+              >
+                <img
+                  src={current.img}
+                  alt={current.badge}
+                  width={1200}
+                  height={675}
+                  fetchPriority="high"
+                  className="h-full w-full object-cover"
+                />
+              </motion.div>
+            ) : (
+              <div key={slide} className="absolute inset-0">
+                <img
+                  src={current.img}
+                  alt={current.badge}
+                  width={1200}
+                  height={675}
+                  fetchPriority="high"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            )}
         </AnimatePresence>
 
         {/* Dark overlay for text readability */}

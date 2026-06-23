@@ -208,7 +208,7 @@ function AdmissionsPage() {
                     <div className="mx-auto mt-1 h-px w-16 bg-white/60" />
                     <div className="text-white text-lg font-bold mt-1">{t.of}</div>
                     <div className="mt-4 flex items-center justify-center gap-3">
-                      <img src={t.img} alt={t.name} className="h-14 w-14 rounded-full object-cover border-2 border-yellow-400" />
+                      <img src={t.img} alt={t.name} loading="lazy" className="h-14 w-14 rounded-full object-cover border-2 border-yellow-400" />
                       <div className="rounded-md bg-orange-500 px-3 py-1.5 text-[11px] md:text-xs font-extrabold text-white tracking-wider">
                         {t.tag}
                       </div>

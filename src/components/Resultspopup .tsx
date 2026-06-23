@@ -1,12 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useIsMobile } from "../hooks/use-mobile";
 
 import resultsImg from "../assets/neet-results-2025.jpg";
 import resultBanner from "../assets/resultbanner.webp";
 
 export function ResultsPopup() {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const seen = sessionStorage.getItem("svhs_results_popup");
@@ -25,12 +27,12 @@ export function ResultsPopup() {
       {open && (
         <motion.div
           className="fixed inset-0 z-[100] grid place-items-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={isMobile ? undefined : { opacity: 0 }}
+          animate={isMobile ? undefined : { opacity: 1 }}
+          exit={isMobile ? undefined : { opacity: 0 }}
         >
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className={`absolute inset-0 bg-black/70 ${isMobile ? "" : "backdrop-blur-sm"}`}
             onClick={close}
           />
           <motion.div

@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X, GraduationCap } from "lucide-react";
 import logo from "../assets/logo.png";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,6 +17,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -28,8 +30,8 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-lg border-b border-border ${
-        scrolled ? "shadow-soft" : ""
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 bg-white/95 ${isMobile ? "" : "backdrop-blur-lg"} border-b border-border ${
+        scrolled && !isMobile ? "shadow-soft" : ""
       }`}
     >
       <div className="container-x flex h-16 md:h-20 items-center justify-between gap-4">

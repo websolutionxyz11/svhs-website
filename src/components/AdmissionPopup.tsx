@@ -3,10 +3,12 @@ import { Link } from "@tanstack/react-router";
 import { X, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/hero-campus.webp";
+import heroImg from "../assets/hero-campus-1200.webp";
+import { useIsMobile } from "../hooks/use-mobile";
 
 export function AdmissionPopup() {
   const [open, setOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const seen = sessionStorage.getItem("svhs_admission_popup");
@@ -25,12 +27,12 @@ export function AdmissionPopup() {
       {open && (
         <motion.div
           className="fixed inset-0 z-[100] grid place-items-center p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
+          initial={isMobile ? undefined : { opacity: 0 }}
+          animate={isMobile ? undefined : { opacity: 1 }}
+          exit={isMobile ? undefined : { opacity: 0 }}
         >
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className={`absolute inset-0 bg-black/70 ${isMobile ? "" : "backdrop-blur-sm"}`}
             onClick={close}
           />
           <motion.div
@@ -45,6 +47,9 @@ export function AdmissionPopup() {
               <img
                 src={heroImg}
                 alt="Sree Vidya High School campus"
+                width={1200}
+                height={675}
+                loading={isMobile ? "lazy" : undefined}
                 className="h-full w-full object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/40 to-transparent" />
