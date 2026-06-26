@@ -3,7 +3,7 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 
-import campusAerial from "../assets/campus-aerial.jpg";
+import campusAerial from "../assets/campus-aerial.webp";
 import classroomImg from "../assets/classroom.jpg";
 import scienceImg from "../assets/science-lab.jpg";
 import libraryImg from "../assets/library.jpg";
@@ -56,8 +56,8 @@ function GalleryPage() {
       <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden bg-dark">
         <video
           className="absolute inset-0 h-full w-full object-cover"
-          src="https://assets.mixkit.co/videos/4429/4429-720.mp4"
-          poster={campusAerial}
+          src="https://www.pexels.com/download/video/12724037/"
+          
           autoPlay
           muted
           loop

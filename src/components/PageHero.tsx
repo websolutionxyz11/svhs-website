@@ -17,12 +17,12 @@ export function PageHero({ eyebrow, title, subtitle, crumb, bgImage }: PageHeroP
       {bgImage ? (
         <>
           <img
-            src={bgImage}
+            src={bgImage} 
             alt=""
             aria-hidden
             className="absolute inset-0 h-full w-full object-cover"
           />
-          <div className="absolute inset-0  from-primary/85 via-primary/70 to-accent/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/45 via-slate-900/60 to-transparent" />
         </>
       ) : (
         <div className="absolute inset-0 bg-hero-gradient" />

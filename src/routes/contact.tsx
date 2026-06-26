@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, CheckCircle2, Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import campusAerial from "../assets/campus-aerial.jpg";
+import campusAerial from "../assets/contact-image.webp";
 
 const WHATSAPP_NUMBER = "919876543210";
 

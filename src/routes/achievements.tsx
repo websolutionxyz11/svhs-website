@@ -16,7 +16,7 @@ import culturalImg from "../assets/cultural.jpg";
 import classroomImg from "../assets/classroom.jpg";
 import libraryImg from "../assets/library.jpg";
 import eventArt from "../assets/event-art.jpg";
-import banner from "../assets/achievement_banner.jpg";
+import banner from "../assets/achievement_banner.webp";
 
 export const Route = createFileRoute("/achievements")({
   head: () => ({

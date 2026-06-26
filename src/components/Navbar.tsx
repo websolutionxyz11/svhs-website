@@ -71,12 +71,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            to="/admissions"
-            className="hidden sm:inline-flex items-center justify-center rounded-full bg-gold-gradient px-5 py-2.5 text-sm font-semibold text-secondary-foreground shadow-soft hover:shadow-glow transition-all hover:-translate-y-0.5"
-          >
-            Apply Now
-          </Link>
+         
           <button
             aria-label="Toggle menu"
             onClick={() => setOpen((o) => !o)}

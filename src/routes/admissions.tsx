@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
-import campusAerial from "../assets/campus-aerial.jpg";
+import campusAerial from "../assets/campus-aerial.webp";
 import topper1 from "../assets/topper-1.jpg";
 import topper2 from "../assets/topper-2.jpg";
 import topper3 from "../assets/topper-3.jpg";

@@ -14,7 +14,7 @@ import eventAnnual from "../assets/event-annual.jpg";
 import eventArt from "../assets/event-art.jpg";
 import libraryImg from "../assets/library.jpg";
 import classroomImg from "../assets/classroom.jpg";
-import campusAerial from "../assets/campus-aerial.jpg";
+import campusAerial from "../assets/campus-aerial.webp"
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/invite-link-placeholder";
 

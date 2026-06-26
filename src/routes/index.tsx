@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/hero-campus-1200.webp";
+import heroImg from "../assets/campus-aerial.webp";
 import { useIsMobile } from "../hooks/use-mobile";
 import principalImg from "../assets/principal.jpg";
 import classroomImg from "../assets/classroom.jpg";
@@ -20,6 +20,9 @@ import topper3 from "../assets/topper-3.jpg";
 import eventAnnual from "../assets/event-annual.jpg";
 import eventArt from "../assets/event-art.jpg";
 import resultCard from "../assets/resultcard.jpeg";
+import founderImg from "@/assets/principal.jpg";
+import vicePresidentImg from "@/assets/sports.webp";
+import headmasterImg from "@/assets/event-annual.jpg";
 
 
 import { Counter } from "../components/Counter";
@@ -27,6 +30,8 @@ import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 import { AdmissionPopup } from "../components/AdmissionPopup";
 import { ResultsPopup } from "@/components/Resultspopup ";
+import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
+import { FacultyMasonryGallery } from "../components/FacultyMasonryGallery";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -145,6 +150,14 @@ const teachers = [
   { img: topper1, name: "Mr. Suresh Kumar", subject: "Chemistry", exp: "M.Sc · 16 yrs experience" },
   { img: topper2, name: "Ms. Neha Sharma", subject: "Computer Science", exp: "M.Tech · 10 yrs experience" },
   { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+    { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+
+      { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+        { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+          { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+
+
+
 ];
 
 const heroSlides = [
@@ -203,7 +216,7 @@ function HomePage() {
       <ResultsPopup/>
 
       {/* HERO — FULL IMAGE CAROUSEL */}
-      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-15">
+      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-20">
         {/* Full-bleed background image carousel */}
         <AnimatePresence mode="wait">
             {!isMobile ? (
@@ -320,6 +333,15 @@ function HomePage() {
           </div>
         </div>
       </section>
+
+{/* SSCResult section */}
+
+<SSCResults />
+
+
+
+
+
 
       {/* ABOUT */}
       <section className="section-y">
@@ -519,37 +541,79 @@ teachers, modern facilities, and excellent academic results.
         </div>
       </section>
 
-      {/* TOPPERS / ACHIEVEMENTS PREVIEW */}
-      <section className="section-y">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Achievements</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Meet our class of stars.</h2>
-            <p className="mt-4 text-muted-foreground">Stories of grit, growth and grades that speak for themselves.</p>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              { img: topper1, name: "Aarav Mehta", score: "98.6%", subj: "All India CBSE Rank 27" },
-              { img: topper2, name: "Sara Iqbal", score: "97.8%", subj: "State Topper · Sciences" },
-              { img: topper3, name: "Vikram Rao", score: "Gold", subj: "National Robotics Championship" },
-            ].map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08}>
-                <article className="group relative overflow-hidden rounded-3xl bg-dark text-dark-foreground shadow-soft hover:shadow-elevated transition-all">
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img src={t.img} alt={t.name} loading="lazy" width={600} height={800} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/30 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="text-xs uppercase tracking-[0.2em] text-secondary font-bold">{t.subj}</div>
-                    <div className="mt-1 text-2xl font-extrabold">{t.name}</div>
-                    <div className="mt-1 text-3xl font-extrabold bg-gold-gradient bg-clip-text text-transparent">{t.score}</div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+     {/* LEADERSHIP TEAM */}
+<section className="section-y">
+  <div className="container-x">
+    <Reveal className="text-center max-w-2xl mx-auto mb-14">
+      <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+        Leadership
+      </span>
+
+      <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">
+        Meet Our Leadership Team
+      </h2>
+
+      <p className="mt-4 text-muted-foreground">
+        Dedicated leaders committed to academic excellence, discipline, and
+        shaping the future of every student.
+      </p>
+    </Reveal>
+
+    <div className="grid md:grid-cols-3 gap-6">
+      {[
+        {
+          img: founderImg,
+          name: "Sri. Founder Name",
+          role: "Founder",
+          quote: "Building a strong foundation for future generations.",
+        },
+        {
+          img: vicePresidentImg,
+          name: "Sri. Vice President Name",
+          role: "Vice President",
+          quote: "Empowering students through quality education.",
+        },
+        {
+          img: headmasterImg,
+          name: "Sri. Headmaster Name",
+          role: "Headmaster",
+          quote: "Inspiring excellence, discipline and lifelong learning.",
+        },
+      ].map((member, i) => (
+        <Reveal key={member.name} delay={i * 0.08}>
+          <article className="group relative overflow-hidden rounded-3xl bg-dark text-white shadow-soft hover:shadow-elevated transition-all duration-500">
+            <div className="aspect-[4/5] overflow-hidden">
+              <img
+                src={member.img}
+                alt={member.name}
+                loading="lazy"
+                width={600}
+                height={800}
+                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+              />
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="inline-block rounded-full bg-secondary/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-black">
+                {member.role}
+              </div>
+
+              <h3 className="mt-3 text-2xl font-extrabold">
+                {member.name}
+              </h3>
+
+              <p className="mt-2 text-sm text-white/85 leading-relaxed">
+                {member.quote}
+              </p>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* CTA */}
       <section className="section-y">
@@ -578,32 +642,12 @@ teachers, modern facilities, and excellent academic results.
         </div>
       </section>
 
-      {/* TEACHERS - horizontal scroll */}
-      <section className="section-y bg-muted/40 overflow-hidden">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Our Faculty</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Meet our brilliant teachers.</h2>
-            <p className="mt-4 text-muted-foreground">Mentors who shape minds and inspire lifelong learners.</p>
-          </Reveal>
-        </div>
-        <div className="relative group">
-          <div className="flex gap-6 animate-h-scroll group-hover:[animation-play-state:paused] w-max px-6">
-            {[...teachers, ...teachers].map((t, i) => (
-              <article key={i} className="w-64 shrink-0 rounded-2xl bg-card border border-border shadow-soft overflow-hidden hover:shadow-elevated hover:-translate-y-1 transition">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img src={t.img} alt={t.name} loading="lazy" className="h-full w-full object-cover" />
-                </div>
-                <div className="p-5">
-                  <div className="text-xs uppercase tracking-wider text-accent font-bold">{t.subject}</div>
-                  <h3 className="mt-1 font-bold text-lg">{t.name}</h3>
-                  <p className="mt-1 text-xs text-muted-foreground">{t.exp}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+      <FacultyMasonryGallery
+        teachers={teachers.map((teacher, index) => ({
+          ...teacher,
+          heightClass: index % 2 === 0 ? "h-56 sm:h-64" : "h-72 sm:h-80",
+        }))}
+      />
 
     </>
   );
