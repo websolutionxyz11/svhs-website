@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { ArrowUpRight, X, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 export type FacultyTeacher = {
@@ -15,6 +15,7 @@ type FacultyMasonryGalleryProps = {
   badge?: string;
   title?: string;
   subtitle?: string;
+  initialCount?: number;
 };
 
 const defaultHeights = [
@@ -33,8 +34,13 @@ export function FacultyMasonryGallery({
   badge = "Our Faculty",
   title = "Meet Our Brilliant Teachers",
   subtitle = "Experienced educators dedicated to inspiring every student.",
+  initialCount = 5,
 }: FacultyMasonryGalleryProps) {
   const [activeTeacher, setActiveTeacher] = useState<FacultyTeacher | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const hasMore = teachers.length > initialCount;
+  const visibleTeachers = showAll ? teachers : teachers.slice(0, initialCount);
 
   return (
     <section className="w-full bg-[#FAFAFA] py-16 sm:py-20 lg:py-24">
@@ -57,63 +63,94 @@ export function FacultyMasonryGallery({
           </p>
         </motion.div>
 
-<div className="flex justify-center">
-  <div className="mt-10 w-full max-w-7xl columns-2 sm:columns-3 md:columns-3 lg:columns-5 xl:columns-6 2xl:columns-7">          {teachers.map((teacher, index) => {
-            const heightClass = teacher.heightClass ?? defaultHeights[index % defaultHeights.length];
+        <div className="flex justify-center">
+          <div className="mt-10 w-full max-w-7xl columns-2 sm:columns-3 md:columns-3 lg:columns-5 xl:columns-6 2xl:columns-7">
+            <AnimatePresence initial={false}>
+              {visibleTeachers.map((teacher, index) => {
+                const heightClass =
+                  teacher.heightClass ?? defaultHeights[index % defaultHeights.length];
 
-            return (
-              <motion.article
-                key={`${teacher.name}-${index}`}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
-                whileHover={{ y: -6, scale: 1.01, boxShadow: "0 20px 45px rgba(15, 23, 42, 0.14)" }}
-                className="group relative mb-3 break-inside-avoid overflow-hidden rounded-[20px] border border-black/5 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)] sm:mb-4 cursor-pointer"
-                onClick={() => setActiveTeacher(teacher)}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    setActiveTeacher(teacher);
-                  }
-                }}
-              >
-                <div className={`relative overflow-hidden ${heightClass}`}>
-                  <img
-                    src={teacher.img}
-                    alt={teacher.name}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-110"
-                  />
+                return (
+                  <motion.article
+                    key={`${teacher.name}-${index}`}
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    transition={{ duration: 0.45, delay: index * 0.03, ease: "easeOut" }}
+                    whileHover={{ y: -6, scale: 1.01, boxShadow: "0 20px 45px rgba(15, 23, 42, 0.14)" }}
+                    className="group relative mb-3 break-inside-avoid overflow-hidden rounded-[20px] border border-black/5 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.08)] sm:mb-4 cursor-pointer"
+                    onClick={() => setActiveTeacher(teacher)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault();
+                        setActiveTeacher(teacher);
+                      }
+                    }}
+                  >
+                    <div className={`relative overflow-hidden ${heightClass}`}>
+                      <img
+                        src={teacher.img}
+                        alt={teacher.name}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition duration-500 ease-out group-hover:scale-110"
+                      />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-90 transition-opacity duration-300 group-hover:opacity-100" />
 
-                  <div className="absolute inset-x-0 bottom-0 p-4 text-white transition duration-300 group-hover:-translate-y-1 sm:p-5">
-                    <div className="flex items-start justify-between gap-2">
-                      <div>
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#FFD166]">
-                          {teacher.subject}
-                        </p>
-                        <h3 className="mt-1 text-base font-semibold leading-tight sm:text-lg">
-                          {teacher.name}
-                        </h3>
+                      <div className="absolute inset-x-0 bottom-0 p-4 text-white transition duration-300 group-hover:-translate-y-1 sm:p-5">
+                        <div className="flex items-start justify-between gap-2">
+                          <div>
+                            <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#FFD166]">
+                              {teacher.subject}
+                            </p>
+                            <h3 className="mt-1 text-base font-semibold leading-tight sm:text-lg">
+                              {teacher.name}
+                            </h3>
+                          </div>
+                          <span className="rounded-full border border-white/30 bg-white/10 p-2 backdrop-blur-sm transition duration-300 group-hover:scale-105">
+                            <ArrowUpRight className="h-4 w-4" />
+                          </span>
+                        </div>
+
+                        <p className="mt-2 text-sm text-white/80">{teacher.exp}</p>
                       </div>
-                      <span className="rounded-full border border-white/30 bg-white/10 p-2 backdrop-blur-sm transition duration-300 group-hover:scale-105">
-                        <ArrowUpRight className="h-4 w-4" />
-                      </span>
                     </div>
-
-                    <p className="mt-2 text-sm text-white/80">{teacher.exp}</p>
-                  </div>
-                </div>
-              </motion.article>
-            );
-          })}
+                  </motion.article>
+                );
+              })}
+            </AnimatePresence>
+          </div>
         </div>
+
+        {/* Show More / Show Less control */}
+        {hasMore && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-10 flex justify-center"
+          >
+            <button
+              onClick={() => setShowAll((prev) => !prev)}
+              className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-slate-800 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
+            >
+              {showAll ? (
+                <>
+                  Show Less <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Show All {teachers.length} Teachers <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </motion.div>
+        )}
       </div>
-</div>
+
       <AnimatePresence>
         {activeTeacher && (
           <motion.div
@@ -128,7 +165,8 @@ export function FacultyMasonryGallery({
               animate={{ y: 0, scale: 1, opacity: 1 }}
               exit={{ y: 10, scale: 0.98, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
-className="relative w-[90vw] max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white shadow-2xl"             onClick={(event) => event.stopPropagation()}
+              className="relative w-[90vw] max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white shadow-2xl"
+              onClick={(event) => event.stopPropagation()}
             >
               <button
                 onClick={() => setActiveTeacher(null)}

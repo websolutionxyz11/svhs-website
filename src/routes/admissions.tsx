@@ -61,6 +61,9 @@ const faqs = [
   { q: "What languages are offered?", a: "English (primary), Hindi, Telugu and an optional third language — Sanskrit, French or German — from Grade 6." },
 ];
 
+// Admissions desk WhatsApp number — country code + number, no "+", no spaces, no dashes
+const ADMISSIONS_WHATSAPP_NUMBER = "919876543210";
+
 function AdmissionsPage() {
   const [open, setOpen] = useState<number | null>(0);
   const [submitted, setSubmitted] = useState(false);
@@ -70,16 +73,37 @@ function AdmissionsPage() {
     const form = e.target as HTMLFormElement;
     const fd = new FormData(form);
 
-    const gformUrl =
-      "https://docs.google.com/forms/d/e/1FAIpQLSf-TpRUnZEeeYYhuUn0nea97q9s9MQVdUyZ7_Gr-N_rRx_Ikg/formResponse";
-    const payload = new FormData();
-    payload.append("entry.1266593493", String(fd.get("student") ?? ""));
-    payload.append("entry.1120022751", String(fd.get("parent") ?? ""));
-    payload.append("entry.1199405799", String(fd.get("phone") ?? ""));
-    payload.append("entry.538301213", String(fd.get("class") ?? ""));
-    payload.append("entry.1929131956", String(fd.get("message") ?? ""));
+    const student = String(fd.get("student") ?? "").trim();
+    const parent = String(fd.get("parent") ?? "").trim();
+    const phone = String(fd.get("phone") ?? "").trim();
+    const studentClass = String(fd.get("class") ?? "").trim();
+    const message = String(fd.get("message") ?? "").trim();
 
-    fetch(gformUrl, { method: "POST", mode: "no-cors", body: payload }).catch(() => {});
+    // Build a clean, readable WhatsApp message using WhatsApp's own
+    // formatting syntax (*bold*, _italic_) so it's easy to scan on the
+    // admissions team's phone.
+    const lines = [
+      "*New Admission Inquiry — Sree Vidya High School*",
+      "",
+      `*Student Name:* ${student}`,
+      `*Parent/Guardian:* ${parent}`,
+      `*Phone Number:* ${phone}`,
+      `*Class Applying For:* ${studentClass}`,
+    ];
+
+    if (message) {
+      lines.push("", "*Message:*", message);
+    }
+
+    lines.push("", "_Submitted via website admissions form_");
+
+    const whatsappText = encodeURIComponent(lines.join("\n"));
+    const whatsappUrl = `https://wa.me/${ADMISSIONS_WHATSAPP_NUMBER}?text=${whatsappText}`;
+
+    // Opens WhatsApp (app on mobile, WhatsApp Web on desktop) with the
+    // message pre-filled. The parent/staff member taps Send to deliver it —
+    // no backend, no Business API approval needed.
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
 
     setSubmitted(true);
     form.reset();
@@ -375,7 +399,9 @@ function AdmissionsPage() {
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Apply Now</span>
             <h2 className="mt-3 text-3xl md:text-4xl font-extrabold">Start your application</h2>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Fill the short form and our admissions team will reach out within 48 hours to schedule your visit and interaction.
+              Fill the short form — it opens WhatsApp with your details ready to send to our
+              admissions desk. Our team will reach out within 48 hours to schedule your visit
+              and interaction.
             </p>
             <a href="#" className="mt-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-semibold hover:border-primary transition">
               <Download className="h-4 w-4" /> Download Prospectus
@@ -385,9 +411,9 @@ function AdmissionsPage() {
           <Reveal delay={0.1} className="lg:col-span-3">
             <form onSubmit={handleApply} className="rounded-3xl bg-card border border-border p-7 md:p-10 shadow-elevated">
               <div className="grid sm:grid-cols-2 gap-4">
-                <FormField label="Student Name" name="student" placeholder="Aanya Sharma" required />
-                <FormField label="Parent Name" name="parent" placeholder="Mr/Mrs Sharma" required />
-                <FormField label="Phone Number" name="phone" type="tel" placeholder="+91 98765 43210" required />
+                <FormField label="Student Name" name="student" placeholder="XXXX" required />
+                <FormField label="Parent Name" name="parent" placeholder="Mr/Mrs XXXX" required />
+                <FormField label="Phone Number" name="phone" type="tel" placeholder="+91 XXXXX" required />
                 <div>
                   <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     Class Applying For <span className="text-destructive">*</span>
@@ -403,13 +429,14 @@ function AdmissionsPage() {
                 </div>
               </div>
               <div className="mt-4">
-  <div className="mt-4"> <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Message</label> <textarea name="message" rows={4} placeholder="Anything you'd like us to know…" className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition" /> </div>
-</div>
+                <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Message</label>
+                <textarea name="message" rows={4} placeholder="Anything you'd like us to know…" className="mt-2 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm outline-none focus:border-primary focus:ring-4 focus:ring-primary/15 transition" />
+              </div>
               <button
                 type="submit"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-bold text-secondary-foreground shadow-soft hover:shadow-glow hover:-translate-y-0.5 transition"
               >
-                <Send className="h-4 w-4" /> Submit Application
+                <Send className="h-4 w-4" /> Send via WhatsApp
               </button>
 
               {submitted && (
@@ -419,7 +446,7 @@ function AdmissionsPage() {
                   className="mt-5 flex items-start gap-3 rounded-xl bg-accent/15 text-accent px-4 py-3 text-sm font-semibold"
                 >
                   <CheckCircle2 className="h-5 w-5 shrink-0" />
-                  <span>Thank you! Your application has been received. We'll be in touch within 48 hours.</span>
+                  <span>WhatsApp opened with your details — just tap Send to reach our admissions team!</span>
                 </motion.div>
               )}
             </form>
@@ -447,4 +474,3 @@ function FormField({ label, name, type = "text", placeholder, required }: { labe
     </div>
   );
 }
-

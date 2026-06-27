@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
-import student1 from "../assets/principal.webp";
+import student1 from "../assets/principal.jpg";
 import student2 from "../assets/topper-1.webp";
 import student3 from "../assets/topper-2.webp";
 import student4 from "../assets/topper-3.webp";
