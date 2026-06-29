@@ -11,9 +11,9 @@ import campusAerial from "../assets/campus-aerial.webp";
 
 
 
-import student_2620106310 from "../assets/10th_students/2620106310.png";
-import student_2620106314 from "../assets/10th_students/2620106314.png";
-import student_2620106320 from "../assets/10th_students/2620106320.png";
+import student_2620106310 from "../assets/10th_Students/2620106310.png";
+import student_2620106314 from "../assets/10th_Students/2620106314.png";
+import student_2620106320 from "../assets/10th_Students/2620106320.png";
 
 
 export const Route = createFileRoute("/admissions")({

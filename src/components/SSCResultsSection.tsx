@@ -3,14 +3,14 @@ import { motion, useInView } from 'framer-motion';
 
 
 
-import student_2620106310 from "../assets/10th_students/2620106310.png";
-import student_2620106314 from "../assets/10th_students/2620106314.png";
-import student_2620106320 from "../assets/10th_students/2620106320.png";
-import student_2620106328 from "../assets/10th_students/2620106328.png";
-import student_2620106330 from "../assets/10th_students/2620106330.png";
-import student_2620106332 from "../assets/10th_students/2620106332.png";
-import student_2620106398 from "../assets/10th_students/2620106398.png";
-import student_2620106400 from "../assets/10th_students/2620106400.png";
+import student_2620106310 from "../assets/10th_Students/2620106310.png";
+import student_2620106314 from "../assets/10th_Students/2620106314.png";
+import student_2620106320 from "../assets/10th_Students/2620106320.png";
+import student_2620106328 from "../assets/10th_Students/2620106328.png";
+import student_2620106330 from "../assets/10th_Students/2620106330.png";
+import student_2620106332 from "../assets/10th_Students/2620106332.png";
+import student_2620106398 from "../assets/10th_Students/2620106398.png";
+import student_2620106400 from "../assets/10th_Students/2620106400.png";
 
 
 
