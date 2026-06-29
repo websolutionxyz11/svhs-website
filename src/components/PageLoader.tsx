@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { GraduationCap } from "lucide-react";
-import logo from "../assets/logo.png";
+import logo from "../assets/logo.webp";
 
 export function PageLoader() {
   const [show, setShow] = useState(true);
@@ -26,7 +26,7 @@ export function PageLoader() {
               className="grid h-20 w-20 place-items-center "
             >
               {/* <GraduationCap className="h-10 w-10" /> */}
-              <img src={logo} alt="logo" className="h-15 w-15" />
+              <img src={logo} alt="logo" width={60} height={60} loading="eager" className="h-15 w-15" />
             </div>
             <motion.div
               initial={{ opacity: 0, y: 10 }}

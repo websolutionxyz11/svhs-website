@@ -3,17 +3,17 @@ import { X, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 
 // ─── 1. IMPORT YOUR TEACHER PHOTOS HERE ──────────────────────────────────
-import principalImg from "../assets/teachers/principal.jpg";
-import HeadMaster from "../assets/teachers/HeadMaster.jpg";
-import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.jpg";
-import BabuNaidu from "../assets/teachers/BabuNaidu.jpg";
-import CheekatipalliLakshmidevi from "../assets/teachers/CheekatipalliLakshmidevi.jpg";
-import Manjuvani from "../assets/teachers/Manjuvani.jpg";
-import Mudiupiletiprathima from "../assets/teachers/Mudiupiletiprathima.jpg";
-import Pushpalatha from "../assets/teachers/Pushpalatha.jpg";
-import Rekha from "../assets/teachers/Rekha.jpg";
-import Shakira from "../assets/teachers/Shakira.jpg";
-import ThotiHaritha from "../assets/teachers/ThotiHaritha.jpg";
+import principalImg from "../assets/teachers/principal.webp";
+import HeadMaster from "../assets/teachers/HeadMaster.webp";
+import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.webp";
+import BabuNaidu from "../assets/teachers/BabuNaidu.webp";
+import CheekatipalliLakshmidevi from "../assets/teachers/CheekatipalliLakshmidevi.webp";
+import Manjuvani from "../assets/teachers/Manjuvani.webp";
+import Mudiupiletiprathima from "../assets/teachers/Mudiupiletiprathima.webp";
+import Pushpalatha from "../assets/teachers/Pushpalatha.webp";
+import Rekha from "../assets/teachers/Rekha.webp";
+import Shakira from "../assets/teachers/Shakira.webp";
+import ThotiHaritha from "../assets/teachers/ThotiHaritha.webp";
 
 export type FacultyTeacher = {
   img: string;

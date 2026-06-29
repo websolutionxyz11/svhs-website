@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import type { ReactNode } from "react";
+import type { ResponsivePictureSource } from "./ResponsivePicture";
+import { ResponsivePicture } from "./ResponsivePicture";
 
 interface PageHeroProps {
   eyebrow?: string;
@@ -9,19 +11,29 @@ interface PageHeroProps {
   subtitle?: string;
   crumb?: string;
   bgImage?: string;
+  bgImageSources?: ResponsivePictureSource[];
 }
 
-export function PageHero({ eyebrow, title, subtitle, crumb, bgImage }: PageHeroProps) {
+export function PageHero({ eyebrow, title, subtitle, crumb, bgImage, bgImageSources }: PageHeroProps) {
   return (
     <section className="relative overflow-hidden text-primary-foreground pt-36 pb-20 md:pt-44 md:pb-28">
       {bgImage ? (
         <>
-          <img
-            src={bgImage} 
-            alt=""
-            aria-hidden
-            className="absolute inset-0 h-full w-full object-cover"
-          />
+          <picture className="absolute inset-0 block h-full w-full">
+            {bgImageSources?.map((source) => (
+              <source key={`${source.type}:${source.srcSet}`} type={source.type} srcSet={source.srcSet} sizes={source.sizes} />
+            ))}
+            <img
+              src={bgImage}
+              alt=""
+              aria-hidden
+              width={1600}
+              height={700}
+              fetchPriority="high"
+              decoding="async"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </picture>
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/45 via-slate-900/60 to-transparent" />
         </>
       ) : (

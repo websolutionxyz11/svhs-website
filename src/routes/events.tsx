@@ -7,13 +7,13 @@ import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 import { EventCarousel, type CarouselSlide } from "../components/EventCarousel";
 
-import sportsImg from "../assets/sports.jpg";
-import culturalImg from "../assets/cultural.jpg";
-import scienceImg from "../assets/science-lab.jpg";
-import eventAnnual from "../assets/event-annual.jpg";
-import eventArt from "../assets/event-art.jpg";
-import libraryImg from "../assets/library.jpg";
-import classroomImg from "../assets/classroom.jpg";
+import sportsImg from "../assets/sports.webp";
+import culturalImg from "../assets/cultural.webp";
+import scienceImg from "../assets/science-lab.webp";
+import eventAnnual from "../assets/event-annual.webp";
+import eventArt from "../assets/event-art.webp";
+import libraryImg from "../assets/library.webp";
+import classroomImg from "../assets/classroom.webp";
 import campusAerial from "../assets/campus-aerial.webp"
 
 const WHATSAPP_GROUP = "https://chat.whatsapp.com/invite-link-placeholder";

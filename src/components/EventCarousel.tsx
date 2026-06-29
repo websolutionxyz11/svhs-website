@@ -106,6 +106,9 @@ export function EventCarousel({ slides, autoPlayInterval = 4000, onSlideChange }
               src={currentSlide.src}
               alt={currentSlide.alt}
               loading="lazy"
+              decoding="async"
+              width={1280}
+              height={720}
               onLoad={() => handleImageLoad(currentIndex)}
               className="w-full h-full object-cover"
             />

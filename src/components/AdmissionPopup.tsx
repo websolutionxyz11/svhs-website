@@ -3,7 +3,9 @@ import { Link } from "@tanstack/react-router";
 import { X, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 
+import { ResponsivePicture } from "../components/ResponsivePicture";
 import heroImg from "../assets/hero-campus-1200.webp";
+import heroImgAvif from "../assets/hero-campus-1200.avif";
 import { useIsMobile } from "../hooks/use-mobile";
 
 export function AdmissionPopup() {
@@ -44,9 +46,13 @@ export function AdmissionPopup() {
           >
             {/* Banner image */}
             <div className="relative h-44 md:h-52 overflow-hidden">
-              <img
+              <ResponsivePicture
                 src={heroImg}
                 alt="Sree Vidya High School campus"
+                sources={[
+                  { type: "image/avif", srcSet: heroImgAvif },
+                  { type: "image/webp", srcSet: heroImg },
+                ]}
                 width={1200}
                 height={675}
                 loading={isMobile ? "lazy" : undefined}

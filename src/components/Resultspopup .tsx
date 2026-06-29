@@ -2,9 +2,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useIsMobile } from "../hooks/use-mobile";
+import { ResponsivePicture } from "./ResponsivePicture";
 
-import resultsImg from "../assets/neet-results-2025.jpg";
 import resultBanner from "../assets/resultbanner.webp";
+import resultBannerAvif from "../assets/resultbanner.avif";
 
 export function ResultsPopup() {
   const [open, setOpen] = useState(false);
@@ -50,9 +51,13 @@ export function ResultsPopup() {
               <X className="h-4 w-4" />
             </button>
 
-            <img
+            <ResponsivePicture
               src={resultBanner}
               alt="NEET Results 2025"
+              sources={[
+                { type: "image/avif", srcSet: resultBannerAvif },
+                { type: "image/webp", srcSet: resultBanner },
+              ]}
               width={600}
               height={400}
               loading="lazy"

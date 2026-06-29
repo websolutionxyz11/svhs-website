@@ -7,15 +7,15 @@ import { Reveal } from "../components/Reveal";
 import { Counter } from "../components/Counter";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 
-import topper1 from "../assets/topper-1.jpg";
-import topper2 from "../assets/topper-2.jpg";
-import topper3 from "../assets/topper-3.jpg";
-import sportsImg from "../assets/sports.jpg";
-import scienceImg from "../assets/science-lab.jpg";
-import culturalImg from "../assets/cultural.jpg";
-import classroomImg from "../assets/classroom.jpg";
-import libraryImg from "../assets/library.jpg";
-import eventArt from "../assets/event-art.jpg";
+import topper1 from "../assets/topper-1.webp";
+import topper2 from "../assets/topper-2.webp";
+import topper3 from "../assets/topper-3.webp";
+import sportsImg from "../assets/sports.webp";
+import scienceImg from "../assets/science-lab.webp";
+import culturalImg from "../assets/cultural.webp";
+import classroomImg from "../assets/classroom.webp";
+import libraryImg from "../assets/library.webp";
+import eventArt from "../assets/event-art.webp";
 import banner from "../assets/achievement_banner.webp";
 
 export const Route = createFileRoute("/achievements")({
@@ -282,7 +282,7 @@ function AchievementsPage() {
               <Reveal key={t.name} delay={i * 0.08}>
                 <article className="group relative overflow-hidden rounded-3xl bg-dark text-dark-foreground shadow-soft hover:shadow-elevated transition">
                   <div className="aspect-[4/5] overflow-hidden">
-                    <img src={t.img} alt={t.name} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <img src={t.img} alt={t.name} loading="lazy" decoding="async" width={400} height={300} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -335,7 +335,7 @@ function AchievementsPage() {
                   onClick={() => setLb(i)}
                   className="group relative block w-full overflow-hidden rounded-2xl shadow-soft hover:shadow-elevated transition"
                 >
-                  <img src={c.src} alt={c.alt} loading="lazy" className="aspect-[4/3] w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={c.src} alt={c.alt} loading="lazy" decoding="async" width={640} height={480} className="aspect-[4/3] w-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent" />
                   <div className="absolute bottom-3 left-4 right-4 text-left">
                     <p className="text-sm font-semibold text-white">{c.alt}</p>

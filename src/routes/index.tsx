@@ -6,31 +6,45 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import heroImg from "../assets/campus-aerial.webp";
+import heroImgWebp from "../assets/campus-aerial.webp";
+import heroImgAvif from "../assets/campus-aerial.avif";
 import { useIsMobile } from "../hooks/use-mobile";
-import principalImg from "../assets/principal.jpg";
-import classroomImg from "../assets/classroom.jpg";
-import schoolEntranc from "../assets/School_Entrance.jpg"
-import sportsImg from "../assets/sports.jpg";
-import culturalImg from "../assets/cultural.jpg";
-import scienceImg from "../assets/science-lab.jpg";
-import libraryImg from "../assets/library.jpg";
-import topper1 from "../assets/topper-1.jpg";
-import topper2 from "../assets/topper-2.jpg";
-import topper3 from "../assets/topper-3.jpg";
-import eventAnnual from "../assets/event-annual.jpg";
-import eventArt from "../assets/event-art.jpg";
-import resultCard from "../assets/resultcard.jpeg";
-import founderImg from "@/assets/principal.jpg";
+import principalImgWebp from "../assets/principal.webp";
+import principalImgAvif from "../assets/principal.avif";
+import classroomImgWebp from "../assets/classroom.webp";
+import schoolEntrancWebp from "../assets/School_Entrance.webp";
+import schoolEntrancAvif from "../assets/School_Entrance.avif";
+import sportsImgWebp from "../assets/sports.webp";
+import sportsImgAvif from "../assets/sports.avif";
+import culturalImgWebp from "../assets/cultural.webp";
+import culturalImgAvif from "../assets/cultural.avif";
+import scienceImgWebp from "../assets/science-lab.webp";
+import scienceImgAvif from "../assets/science-lab.avif";
+import libraryImgWebp from "../assets/library.webp";
+import libraryImgAvif from "../assets/library.avif";
+import topper1 from "../assets/topper-1.webp";
+import topper2 from "../assets/topper-2.webp";
+import topper3 from "../assets/topper-3.webp";
+import eventAnnualWebp from "../assets/event-annual.webp";
+import eventAnnualAvif from "../assets/event-annual.avif";
+import eventArtWebp from "../assets/event-art.webp";
+import eventArtAvif from "../assets/event-art.avif";
+import resultCard from "../assets/resultcard.webp";
+import founderImg from "@/assets/principal.webp";
 import vicePresidentImg from "@/assets/sports.webp";
-import headmaster from "@/assets/teachers/HeadMaster.jpg";
-import schoolbanner from "../assets/schoolBanner.png"
-import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.jpg"
+import headmaster from "@/assets/teachers/HeadMaster.webp";
+import schoolbannerWebp from "../assets/schoolBanner.webp";
+import schoolbannerAvif from "../assets/schoolBanner.avif";
+import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.webp";
 
-import buss from "../assets/school_buss.jpeg";
-import schoolview from "../assets/school_view.jpeg";
-import game1 from "../assets/game1.jpeg"
-import game2 from "../assets/game2.jpeg"
+import buss from "../assets/school_buss.webp";
+import schoolviewWebp from "../assets/school_view.webp";
+import schoolviewAvif from "../assets/school_view.avif";
+import game1Webp from "../assets/game1.webp";
+import game1Avif from "../assets/game1.avif";
+import game2Webp from "../assets/game2.webp";
+import game2Avif from "../assets/game2.avif";
+import { ResponsivePicture } from "../components/ResponsivePicture";
 
 import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
@@ -128,17 +142,14 @@ const features = [
 ];
 
 const galleryPreview = [
- 
-  { src: schoolview, alt: "school view" },
- 
-  { src: sportsImg, alt: "Sports day" },
-  {src: buss, alt:"buss"},
-  { src: culturalImg, alt: "Cultural festival" },
-  { src: libraryImg, alt: "Reading hall" },
-  { src : game1 , alt:" Games"},
-  { src: eventArt, alt: "Art exhibition" },
-  { src: schoolEntranc, alt: "schoolEntranc"},
-
+  { src: schoolviewWebp, avif: schoolviewAvif, alt: "school view" },
+  { src: sportsImgWebp, avif: sportsImgAvif, alt: "Sports day" },
+  { src: buss, avif: undefined, alt: "bus" },
+  { src: culturalImgWebp, avif: culturalImgAvif, alt: "Cultural festival" },
+  { src: libraryImgWebp, avif: libraryImgAvif, alt: "Reading hall" },
+  { src: game1Webp, avif: game1Avif, alt: "Games" },
+  { src: eventArtWebp, avif: eventArtAvif, alt: "Art exhibition" },
+  { src: schoolEntrancWebp, avif: schoolEntrancAvif, alt: "school entrance" },
 ];
 
 const testimonials = [
@@ -148,9 +159,9 @@ const testimonials = [
 ];
 
 const upcomingEvents = [
-  { date: "Dec 18", title: "Annual Day Celebrations", img: eventAnnual, tag: "Cultural" },
-  { date: "Jan 12", title: "Inter-School Sports Meet", img: sportsImg, tag: "Sports" },
-  { date: "Feb 04", title: "Science & Robotics Expo", img: scienceImg, tag: "Academic" },
+  { date: "Dec 18", title: "Annual Day Celebrations", img: eventAnnualWebp, avif: eventAnnualAvif, tag: "Cultural" },
+  { date: "Jan 12", title: "Inter-School Sports Meet", img: sportsImgWebp, avif: sportsImgAvif, tag: "Sports" },
+  { date: "Feb 04", title: "Science & Robotics Expo", img: scienceImgWebp, avif: scienceImgAvif, tag: "Academic" },
 ];
 
 const teachers = [
@@ -173,15 +184,13 @@ const teachers = [
 ];
 
 const heroSlides = [
- 
   {
-    img: heroImg,
+    webp: heroImgWebp,
+    avif: heroImgAvif,
     badge: "Admissions Open · 2026–27",
     title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers. </>,
     sub: "Sree Vidya High School blends rigorous academics, creative arts and competitive sports in a campus designed for joyful, lifelong learning."
   },
-  
-
 ];
 
 function HomePage() {
@@ -206,10 +215,13 @@ function HomePage() {
       {/* School Banner — sits directly below the navbar */}
 <section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4">
   <div className="mx-auto max-w-4xl px-4">
-    <img
-      src={schoolbanner}
+    <ResponsivePicture
+      src={schoolbannerWebp}
       alt="Sri Vidya High School — Right choice for Bright Future, 22nd Year, Vidyanagar, Penumuru"
-      className="w-full h-auto rounded-md shadow-md mt-30"
+      sources={[
+        { type: "image/avif", srcSet: schoolbannerAvif },
+        { type: "image/webp", srcSet: schoolbannerWebp },
+      ]}
     />
   </div>
 </section>
@@ -227,9 +239,13 @@ function HomePage() {
                 transition={{ duration: 1.2, ease: "easeOut" }}
                 className="absolute inset-0"
               >
-                <img
-                  src={current.img}
+                <ResponsivePicture
+                  src={current.webp}
                   alt={current.badge}
+                  sources={[
+                    { type: "image/avif", srcSet: current.avif },
+                    { type: "image/webp", srcSet: current.webp },
+                  ]}
                   width={1200}
                   height={675}
                   fetchPriority="high"
@@ -238,9 +254,13 @@ function HomePage() {
               </motion.div>
             ) : (
               <div key={slide} className="absolute inset-0">
-                <img
-                  src={current.img}
+                <ResponsivePicture
+                  src={current.webp}
                   alt={current.badge}
+                  sources={[
+                    { type: "image/avif", srcSet: current.avif },
+                    { type: "image/webp", srcSet: current.webp },
+                  ]}
                   width={1200}
                   height={675}
                   fetchPriority="high"
@@ -347,8 +367,30 @@ function HomePage() {
         <div className="container-x grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <img src={schoolEntranc} alt="Smart classroom" loading="lazy" width={1280} height={896} className="rounded-2xl shadow-soft aspect-[4/5] object-cover" />
-              <img src={libraryImg} alt="Library" loading="lazy" width={1280} height={896} className="rounded-2xl shadow-soft aspect-[4/5] object-cover mt-10" />
+              <ResponsivePicture
+                src={schoolEntrancWebp}
+                alt="Smart classroom"
+                sources={[
+                  { type: "image/avif", srcSet: schoolEntrancAvif },
+                  { type: "image/webp", srcSet: schoolEntrancWebp },
+                ]}
+                loading="lazy"
+                width={1280}
+                height={896}
+                className="rounded-2xl shadow-soft aspect-[4/5] object-cover"
+              />
+              <ResponsivePicture
+                src={libraryImgWebp}
+                alt="Library"
+                sources={[
+                  { type: "image/avif", srcSet: libraryImgWebp.replace(/\.webp$/, '.avif') },
+                  { type: "image/webp", srcSet: libraryImgWebp },
+                ]}
+                loading="lazy"
+                width={1280}
+                height={896}
+                className="rounded-2xl shadow-soft aspect-[4/5] object-cover mt-10"
+              />
             </div>
             <div className="absolute -bottom-6 -right-2 sm:right-8 rounded-2xl bg-primary-gradient text-primary-foreground p-5 shadow-elevated w-56">
               <div className="text-3xl font-extrabold"><Counter to={22} /></div>
@@ -429,7 +471,16 @@ teachers, modern facilities, and excellent academic results.
               <Reveal key={e.title} delay={i * 0.08}>
                 <article className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elevated transition-all">
                   <div className="aspect-[5/3] overflow-hidden">
-                    <img src={e.img} alt={e.title} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    <ResponsivePicture
+              src={e.img}
+              alt={e.title}
+              sources={e.avif ? [
+                { type: "image/avif", srcSet: e.avif },
+                { type: "image/webp", srcSet: e.img },
+              ] : undefined}
+              loading="lazy"
+              className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+            />
                   </div>
                   <div className="absolute top-4 left-4 rounded-xl bg-white/95 backdrop-blur px-3 py-2 text-center shadow-soft">
                     <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{e.date.split(" ")[0]}</div>
@@ -469,9 +520,13 @@ teachers, modern facilities, and excellent academic results.
                   onClick={() => setLightbox(i)}
                   className="relative block w-full aspect-square overflow-hidden rounded-xl group"
                 >
-                  <img
+                  <ResponsivePicture
                     src={g.src}
                     alt={g.alt}
+                    sources={g.avif ? [
+                      { type: "image/avif", srcSet: g.avif },
+                      { type: "image/webp", srcSet: g.src },
+                    ] : undefined}
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -493,7 +548,18 @@ teachers, modern facilities, and excellent academic results.
           <Reveal className="lg:col-span-5">
             <div className="relative">
               <div className="absolute -inset-3 bg-gold-gradient rounded-3xl opacity-30 blur-2xl" />
-              <img src={principalImg} alt="Principal Dr. Ramesh Iyer" loading="lazy" width={800} height={1024} className="relative rounded-3xl shadow-elevated object-cover aspect-[4/5] w-full" />
+              <ResponsivePicture
+                src={principalImgWebp}
+                alt="Principal Dr. Ramesh Iyer"
+                sources={[
+                  { type: "image/avif", srcSet: principalImgAvif },
+                  { type: "image/webp", srcSet: principalImgWebp },
+                ]}
+                loading="lazy"
+                width={800}
+                height={1024}
+                className="relative rounded-3xl shadow-elevated object-cover aspect-[4/5] w-full"
+              />
             </div>
           </Reveal>
           <div className="lg:col-span-7">

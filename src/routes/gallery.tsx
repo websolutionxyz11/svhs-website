@@ -3,15 +3,25 @@ import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 
-import campusAerial from "../assets/campus-aerial.webp";
-import classroomImg from "../assets/classroom.jpg";
-import scienceImg from "../assets/science-lab.jpg";
-import libraryImg from "../assets/library.jpg";
-import sportsImg from "../assets/sports.jpg";
-import culturalImg from "../assets/cultural.jpg";
-import eventAnnual from "../assets/event-annual.jpg";
-import eventArt from "../assets/event-art.jpg";
-import heroImg from "../assets/hero-campus.webp";
+import campusAerialWebp from "../assets/campus-aerial.webp";
+import campusAerialAvif from "../assets/campus-aerial.avif";
+import classroomImgWebp from "../assets/classroom.webp";
+import classroomImgAvif from "../assets/classroom.avif";
+import scienceImgWebp from "../assets/science-lab.webp";
+import scienceImgAvif from "../assets/science-lab.avif";
+import libraryImgWebp from "../assets/library.webp";
+import libraryImgAvif from "../assets/library.avif";
+import sportsImgWebp from "../assets/sports.webp";
+import sportsImgAvif from "../assets/sports.avif";
+import culturalImgWebp from "../assets/cultural.webp";
+import culturalImgAvif from "../assets/cultural.avif";
+import eventAnnualWebp from "../assets/event-annual.webp";
+import eventAnnualAvif from "../assets/event-annual.avif";
+import eventArtWebp from "../assets/event-art.webp";
+import eventArtAvif from "../assets/event-art.avif";
+import heroImgWebp from "../assets/hero-campus.webp";
+import heroImgAvif from "../assets/hero-campus.avif";
+import { ResponsivePicture } from "../components/ResponsivePicture";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -29,16 +39,16 @@ export const Route = createFileRoute("/gallery")({
 
 type Cat = "All" | "Campus" | "Events" | "Sports" | "Cultural";
 
-const items: (LightboxItem & { cat: Exclude<Cat, "All">; tall?: boolean })[] = [
-  { src: heroImg, alt: "Front facade", cat: "Campus", tall: true },
-  { src: classroomImg, alt: "Smart classroom", cat: "Campus" },
-  { src: scienceImg, alt: "Science lab in action", cat: "Campus" },
-  { src: libraryImg, alt: "Library reading hall", cat: "Campus" },
-  { src: campusAerial, alt: "Aerial campus view", cat: "Campus", tall: true },
-  { src: sportsImg, alt: "Sports day finals", cat: "Sports" },
-  { src: culturalImg, alt: "Cultural dance", cat: "Cultural", tall: true },
-  { src: eventAnnual, alt: "Annual day stage", cat: "Events" },
-  { src: eventArt, alt: "Art exhibition", cat: "Cultural" },
+const items: (LightboxItem & { cat: Exclude<Cat, "All">; tall?: boolean; avif: string })[] = [
+  { src: heroImgWebp, avif: heroImgAvif, alt: "Front facade", cat: "Campus", tall: true },
+  { src: classroomImgWebp, avif: classroomImgAvif, alt: "Smart classroom", cat: "Campus" },
+  { src: scienceImgWebp, avif: scienceImgAvif, alt: "Science lab in action", cat: "Campus" },
+  { src: libraryImgWebp, avif: libraryImgAvif, alt: "Library reading hall", cat: "Campus" },
+  { src: campusAerialWebp, avif: campusAerialAvif, alt: "Aerial campus view", cat: "Campus", tall: true },
+  { src: sportsImgWebp, avif: sportsImgAvif, alt: "Sports day finals", cat: "Sports" },
+  { src: culturalImgWebp, avif: culturalImgAvif, alt: "Cultural dance", cat: "Cultural", tall: true },
+  { src: eventAnnualWebp, avif: eventAnnualAvif, alt: "Annual day stage", cat: "Events" },
+  { src: eventArtWebp, avif: eventArtAvif, alt: "Art exhibition", cat: "Cultural" },
 ];
 
 function GalleryPage() {
@@ -111,9 +121,13 @@ function GalleryPage() {
                   onClick={() => setLbIndex(filtered.indexOf(it))}
                   className="group relative block w-full overflow-hidden rounded-2xl break-inside-avoid shadow-soft hover:shadow-glow transition"
                 >
-                  <img
+                  <ResponsivePicture
                     src={it.src}
                     alt={it.alt}
+                    sources={[
+                      { type: "image/avif", srcSet: it.avif },
+                      { type: "image/webp", srcSet: it.src },
+                    ]}
                     loading="lazy"
                     className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${it.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}
                   />

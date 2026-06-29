@@ -11,9 +11,9 @@ import campusAerial from "../assets/campus-aerial.webp";
 
 
 
-import student_2620106310 from "../assets/10th_Students/2620106310.png";
-import student_2620106314 from "../assets/10th_Students/2620106314.png";
-import student_2620106320 from "../assets/10th_Students/2620106320.png";
+import student_2620106310 from "../assets/10th_Students/2620106310.webp";
+import student_2620106314 from "../assets/10th_Students/2620106314.webp";
+import student_2620106320 from "../assets/10th_Students/2620106320.webp";
 
 
 export const Route = createFileRoute("/admissions")({
@@ -25,7 +25,10 @@ export const Route = createFileRoute("/admissions")({
       { property: "og:description", content: "Limited seats. Apply early for the 2026–27 academic year." },
       { property: "og:url", content: "/admissions" },
     ],
-    links: [{ rel: "canonical", href: "/admissions" }],
+    links: [
+      { rel: "canonical", href: "/admissions" },
+      { rel: "preload", href: campusAerial, as: "image" },
+    ],
   }),
   component: AdmissionsPage,
 });
@@ -236,7 +239,7 @@ function AdmissionsPage() {
                     <div className="mx-auto mt-1 h-px w-16 bg-white/60" />
                     <div className="text-white text-lg font-bold mt-1">{t.of}</div>
                     <div className="mt-4 flex items-center justify-center gap-3">
-                      <img src={t.img} alt={t.name} loading="lazy" className="h-14 w-14 rounded-full object-cover border-2 border-yellow-400" />
+                      <img src={t.img} alt={t.name} loading="lazy" width={56} height={56} className="h-14 w-14 rounded-full object-cover border-2 border-yellow-400" />
                       <div className="rounded-md bg-orange-500 px-3 py-1.5 text-[11px] md:text-xs font-extrabold text-white tracking-wider">
                         {t.tag}
                       </div>
