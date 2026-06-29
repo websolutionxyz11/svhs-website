@@ -8,9 +8,13 @@ import {
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import campusAerial from "../assets/campus-aerial.webp";
-import topper1 from "../assets/topper-1.jpg";
-import topper2 from "../assets/topper-2.jpg";
-import topper3 from "../assets/topper-3.jpg";
+
+
+
+import student_2620106310 from "../assets/10th_students/2620106310.png";
+import student_2620106314 from "../assets/10th_students/2620106314.png";
+import student_2620106320 from "../assets/10th_students/2620106320.png";
+
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
@@ -62,7 +66,7 @@ const faqs = [
 ];
 
 // Admissions desk WhatsApp number — country code + number, no "+", no spaces, no dashes
-const ADMISSIONS_WHATSAPP_NUMBER = "919876543210";
+const ADMISSIONS_WHATSAPP_NUMBER = "9441595469";
 
 function AdmissionsPage() {
   const [open, setOpen] = useState<number | null>(0);
@@ -216,9 +220,9 @@ function AdmissionsPage() {
 
               <div className="relative mt-8 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
                 {[
-                  { score: 599, of: 600, img: topper1, name: "K Gyaneswari", ht: "2604113149", tag: "AP STATE TOP MARK" },
-                  { score: 499, of: 500, img: topper2, name: "B Tarunya", ht: "18132288", tag: "ALL INDIA CBSE TOP MARK" },
-                  { score: 597, of: 600, img: topper3, name: "K Vrithika Krishna", ht: "2631103849", tag: "TG STATE TOP MARK" },
+                  { score: 559, of: 600, img: student_2620106310, name: "G. Vekanth Reddy", ht: "2620106310", tag: "AP STATE TOP MARK" },
+                  { score: 552, of: 500, img: student_2620106314, name: "G. Lakshmi Prasad", ht: "2620106314", tag: "2nd Topper" },
+                  { score: 557, of: 600, img: student_2620106320, name: "K. Pream Kumar", ht: "2620106320", tag: "3rd Topper" },
                 ].map((t, i) => (
                   <motion.div
                     key={t.name}
