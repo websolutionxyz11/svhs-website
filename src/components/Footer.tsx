@@ -69,8 +69,8 @@ export function Footer() {
         <div>
           <h4 className="font-semibold text-white">Reach Us</h4>
           <ul className="mt-4 space-y-3 text-sm text-white/70">
-            <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> 10-73, nearby NTR Colony, Penumuru, Penumur, Andhra Pradesh 517126</li>
-            <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> +91 98765 43210</li>
+            <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-secondary shrink-0" />10-88 vidya nagar colony, pakala road, penumur, Chittoor, Andhra pradesh - 517126</li>
+            <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> +91 9441595469, 9652425469</li>
             <li className="flex gap-3"><Mail className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> hello@sreevidya.edu.in</li>
           </ul>
         </div>

@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
-import student1 from "../assets/principal.jpg";
-import student2 from "../assets/topper-1.webp";
-import student3 from "../assets/topper-2.webp";
-import student4 from "../assets/topper-3.webp";
-import student5 from "../assets/classroom.webp";
-import student6 from "../assets/science-lab.webp";
-import student7 from "../assets/sports.webp";
-import student8 from "../assets/cultural.webp";
+
+
+
+import student_2620106310 from "../assets/10th_students/2620106310.png";
+import student_2620106314 from "../assets/10th_students/2620106314.png";
+import student_2620106320 from "../assets/10th_students/2620106320.png";
+import student_2620106328 from "../assets/10th_students/2620106328.png";
+import student_2620106330 from "../assets/10th_students/2620106330.png";
+import student_2620106332 from "../assets/10th_students/2620106332.png";
+import student_2620106398 from "../assets/10th_students/2620106398.png";
+import student_2620106400 from "../assets/10th_students/2620106400.png";
+
+
 
 // ─── Types ────────────────────────────────────────────────────────────────
 
@@ -33,84 +38,87 @@ type Student = {
 // ─── Data ──────────────────────────────────────────────────────────────────
 
 const STATISTICS: Statistic[] = [
-  { id: 1, label: 'Overall Pass %', value: '100', icon: '🎯', suffix: '%' },
-  { id: 2, label: 'Students Appeared', value: '186', icon: '👨‍🎓' },
-  { id: 3, label: 'Distinctions', value: '142', icon: '⭐' },
-  { id: 4, label: 'School Top Score', value: '98.6', icon: '🏆', suffix: '%' },
+  { id: 1, label: 'Overall Pass Percentage', value: '100', icon: '🎯', suffix: '%' },
+  { id: 2, label: 'Total Students Appeared', value: '186', icon: '👨‍🎓' },
+  { id: 3, label: 'Secured High Distinctions', value: '142', icon: '⭐' },
+  { id: 4, label: 'Academic Excellence', value: '98.6', icon: '🏆', suffix: '%' },
+    { id: 5, label: 'Scored Above Five-Hundred', value: '4', icon: '🏅', suffix: '+' },
 ];
 
 // Helper to generate avatar URLs (replace with real images in production)
 
 
 const STUDENTS: Student[] = [
-  {
+  
+    {
     id: 1,
-    name: "Ananya Sharma",
-    rollNumber: "SSC-101",
-    marks: "495/500",
-    percentage: "99.0%",
-    photo: student1,
+    name: "G. Vekanth Reddy",
+    rollNumber: "H.T. 2620106398",
+    marks: "559/600",
+    percentage: "93.2%",
+    photo: student_2620106398,
     isTopper: true,
     medal: "gold",
   },
   {
     id: 2,
-    name: "Rahul Verma",
-    rollNumber: "SSC-042",
-    marks: "488/500",
-    percentage: "97.6%",
-    photo: student2,
+    name: "G. Lakshmi Prasad",
+    rollNumber: "H.T. 2620106330",
+    marks: "552/600",
+    percentage: "92.0%",
+    photo: student_2620106330,
     medal: "silver",
   },
   {
     id: 3,
-    name: "Priya Patel",
-    rollNumber: "SSC-076",
-    marks: "482/500",
-    percentage: "96.4%",
-    photo: student3,
+    name: "K. Pream Kumar",
+    rollNumber: "H.T. 2620106332",
+    marks: "547/600",
+    percentage: "91.2%",
+    photo: student_2620106332,
     medal: "bronze",
   },
   {
     id: 4,
-    name: "Arjun Reddy",
-    rollNumber: "SSC-203",
-    marks: "479/500",
-    percentage: "95.8%",
-    photo: student4,
+    name: "M. Arun Kumar",
+    rollNumber: "H.T. 2620106320",
+    marks: "521/600",
+    percentage: "86.8%",
+    photo: student_2620106320,
   },
   {
     id: 5,
-    name: "Sneha Iyer",
-    rollNumber: "SSC-118",
-    marks: "476/500",
-    percentage: "95.2%",
-    photo: student5,
+    name: "S. Bharath",
+    rollNumber: "H.T. 2620106400",
+    marks: "495/600",
+    percentage: "82.5%",
+    photo: student_2620106400,
   },
   {
     id: 6,
-    name: "Vikram Singh",
-    rollNumber: "SSC-055",
-    marks: "472/500",
-    percentage: "94.4%",
-    photo: student6,
+    name: "K. Charan Reddy",
+    rollNumber: "H.T. 2620106310",
+    marks: "470/600",
+    percentage: "78.3%",
+    photo: student_2620106310,
   },
   {
     id: 7,
-    name: "Kavya Nair",
-    rollNumber: "SSC-189",
-    marks: "468/500",
-    percentage: "93.6%",
-    photo: student7,
+    name: "G. Pavithra",
+    rollNumber: "H.T. 2620106328",
+    marks: "463/600",
+    percentage: "77.2%",
+    photo: student_2620106328,
   },
   {
     id: 8,
-    name: "Aarav Gupta",
-    rollNumber: "SSC-134",
-    marks: "465/500",
-    percentage: "93.0%",
-    photo: student8,
+    name: "T. Bhavya Sree",
+    rollNumber: "H.T. 2620106314",
+    marks: "451/600",
+    percentage: "75.2%",
+    photo: student_2620106314,
   },
+  
 ];
 
 // ─── Subcomponents ────────────────────────────────────────────────────────
@@ -227,41 +235,14 @@ const StudentMarquee: React.FC<{ students: Student[] }> = ({ students }) => {
 /** Download PDF card with CTA button */
 const DownloadCard: React.FC = () => {
   const handleDownload = useCallback(() => {
-    // In production, replace with actual PDF URL.
-    // For demo, we generate a simple text-based "PDF" (blob) that triggers a download.
-    const content = `
-═══════════════════════════════════════════════════
-SREE VIDYA HIGH SCHOOL
-SSC 2026 RESULTS — OFFICIAL SHEET
-═══════════════════════════════════════════════════
+  const link = document.createElement('a');
+  link.href = '/public/SriVidyaSchool.pdf'; // must be in `public/assets/`, not `src/assets/`
+  link.download = 'SriVidyaSchool.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}, []);
 
-Overall Pass Percentage  : 100%
-Total Students Appeared  : 186
-Distinctions             : 142
-School Top Score         : 98.6%
-
-─── Top Achievers ───
-1. Ananya Sharma   (SSC-101)  99.0%  🥇
-2. Rahul Verma     (SSC-042)  97.6%  🥈
-3. Priya Patel     (SSC-076)  96.4%  🥉
-4. Arjun Reddy     (SSC-203)  95.8%
-5. Sneha Iyer      (SSC-118)  95.2%
-
-For complete results, please visit the school office.
-═══════════════════════════════════════════════════
-Sree Vidya High School · Academic Year 2025–26
-`;
-
-    const blob = new Blob([content], { type: 'application/pdf' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'SSC_2026_Results_SreeVidyaHighSchool.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  }, []);
 
   return (
     <motion.div

@@ -10,6 +10,7 @@ import heroImg from "../assets/campus-aerial.webp";
 import { useIsMobile } from "../hooks/use-mobile";
 import principalImg from "../assets/principal.jpg";
 import classroomImg from "../assets/classroom.jpg";
+import schoolEntranc from "../assets/School_Entrance.jpg"
 import sportsImg from "../assets/sports.jpg";
 import culturalImg from "../assets/cultural.jpg";
 import scienceImg from "../assets/science-lab.jpg";
@@ -22,8 +23,14 @@ import eventArt from "../assets/event-art.jpg";
 import resultCard from "../assets/resultcard.jpeg";
 import founderImg from "@/assets/principal.jpg";
 import vicePresidentImg from "@/assets/sports.webp";
-import headmasterImg from "@/assets/event-annual.jpg";
+import headmaster from "@/assets/teachers/HeadMaster.jpg";
+import schoolbanner from "../assets/schoolBanner.png"
+import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.jpg"
 
+import buss from "../assets/school_buss.jpeg";
+import schoolview from "../assets/school_view.jpeg";
+import game1 from "../assets/game1.jpeg"
+import game2 from "../assets/game2.jpeg"
 
 import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
@@ -105,10 +112,10 @@ component: HomePage,
 });
 
 const stats = [
-  { value: 2400, suffix: "+", label: "Active Students" },
+  { value: 500, suffix: "+", label: "Active Students" },
   { value: 98, suffix: "%", label: "Board Results" },
-  { value: 140, suffix: "+", label: "Expert Faculty" },
-  { value: 27, suffix: "", label: "Years of Legacy" },
+  { value: 50, suffix: "+", label: "Expert Faculty" },
+  { value: 22, suffix: "", label: "Years of Legacy" },
 ];
 
 const features = [
@@ -121,12 +128,17 @@ const features = [
 ];
 
 const galleryPreview = [
-  { src: classroomImg, alt: "Collaborative classroom" },
-  { src: scienceImg, alt: "Science lab" },
+ 
+  { src: schoolview, alt: "school view" },
+ 
   { src: sportsImg, alt: "Sports day" },
+  {src: buss, alt:"buss"},
   { src: culturalImg, alt: "Cultural festival" },
   { src: libraryImg, alt: "Reading hall" },
+  { src : game1 , alt:" Games"},
   { src: eventArt, alt: "Art exhibition" },
+  { src: schoolEntranc, alt: "schoolEntranc"},
+
 ];
 
 const testimonials = [
@@ -165,33 +177,10 @@ const heroSlides = [
   {
     img: heroImg,
     badge: "Admissions Open · 2026–27",
-    title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers.</>,
+    title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers. </>,
     sub: "Sree Vidya High School blends rigorous academics, creative arts and competitive sports in a campus designed for joyful, lifelong learning."
   },
-  {
-    img: classroomImg,
-    badge: "Holistic Learning",
-    title: <>Shaping students through <span className="bg-gold-gradient bg-clip-text text-transparent">all-round development.</span></>,
-    sub: "We focus on academics, discipline, creativity, and values to build confident and responsible individuals."
-  },
-  {
-    img: sportsImg,
-    badge: "Sports Academy",
-    title: <>Champions are built on <span className="bg-gold-gradient bg-clip-text text-transparent">our fields</span> and courts.</>,
-    sub: "From cricket to athletics, our certified coaches nurture state and national level champions."
-  },
-  {
-    img: scienceImg,
-    badge: "STEM & Robotics",
-    title: <>Modern labs where <span className="bg-gold-gradient bg-clip-text text-transparent">ideas come alive.</span></>,
-    sub: "Hands-on science, robotics and computer labs that prepare students for the world of tomorrow."
-  },
-  {
-    img: resultCard,
-    badge: "",
-    title: <> <span className="bg-gold-gradient bg-clip-text text-transparent"></span></>,
-    sub: ""
-  }
+  
 
 ];
 
@@ -214,9 +203,19 @@ function HomePage() {
     <>
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
+      {/* School Banner — sits directly below the navbar */}
+<section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4">
+  <div className="mx-auto max-w-4xl px-4">
+    <img
+      src={schoolbanner}
+      alt="Sri Vidya High School — Right choice for Bright Future, 22nd Year, Vidyanagar, Penumuru"
+      className="w-full h-auto rounded-md shadow-md mt-30"
+    />
+  </div>
+</section>
 
       {/* HERO — FULL IMAGE CAROUSEL */}
-      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-20">
+      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-0">
         {/* Full-bleed background image carousel */}
         <AnimatePresence mode="wait">
             {!isMobile ? (
@@ -252,8 +251,8 @@ function HomePage() {
         </AnimatePresence>
 
         {/* Dark overlay for text readability */}
-       {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/10" />
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-primary/20" /> */}
+       {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/10" /> */}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent   to-primary/2" />
         {/* Content */}
         <div className="container-x relative h-full flex items-center text-primary-foreground pt-24 pb-20">
           <div className="max-w-3xl">
@@ -301,13 +300,13 @@ function HomePage() {
         </div>
 
         {/* Carousel arrows */}
-        <button
+        {/* <button
           onClick={prev}
           aria-label="Previous slide"
           className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-primary-100 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
         >
          <ChevronRight className="h-5 w-5" />
-        </button>
+        </button> */}
         {/* <button
           onClick={next}
           aria-label="Next slide"
@@ -348,11 +347,11 @@ function HomePage() {
         <div className="container-x grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <Reveal className="relative">
             <div className="grid grid-cols-2 gap-4">
-              <img src={classroomImg} alt="Smart classroom" loading="lazy" width={1280} height={896} className="rounded-2xl shadow-soft aspect-[4/5] object-cover" />
+              <img src={schoolEntranc} alt="Smart classroom" loading="lazy" width={1280} height={896} className="rounded-2xl shadow-soft aspect-[4/5] object-cover" />
               <img src={libraryImg} alt="Library" loading="lazy" width={1280} height={896} className="rounded-2xl shadow-soft aspect-[4/5] object-cover mt-10" />
             </div>
             <div className="absolute -bottom-6 -right-2 sm:right-8 rounded-2xl bg-primary-gradient text-primary-foreground p-5 shadow-elevated w-56">
-              <div className="text-3xl font-extrabold"><Counter to={27} /></div>
+              <div className="text-3xl font-extrabold"><Counter to={22} /></div>
               <div className="text-xs uppercase tracking-wider opacity-80">Years of Trust</div>
             </div>
           </Reveal>
@@ -365,14 +364,14 @@ function HomePage() {
             <Reveal delay={0.1}>
            
               <p>
-                Since 1998, Sree Vidya High School is one of the best schools in Penumur, Chittoor.
+                Since 2002, Sree Vidya High School is one of the best schools in Penumur, Chittoor.
 We provide quality education from LKG to 10th class with experienced
 teachers, modern facilities, and excellent academic results.
                 </p>
             </Reveal>
             <Reveal delay={0.2}>
               <ul className="mt-6 grid sm:grid-cols-2 gap-3">
-                {["CBSE Affiliated", "8-Acre Green Campus", "1:18 Student–Teacher Ratio", "Smart Classrooms"].map((p) => (
+                {["Recognised by Govt. of A.P", "3-Acre Green Campus", "1:18 Student–Teacher Ratio", "Smart Classrooms"].map((p) => (
                   <li key={p} className="flex items-center gap-2 text-sm font-medium">
                     <span className="grid h-6 w-6 place-items-center rounded-full bg-accent/15 text-accent">✓</span>
                     {p}
@@ -453,28 +452,33 @@ teachers, modern facilities, and excellent academic results.
       {/* GALLERY PREVIEW */}
       <section className="section-y bg-dark text-dark-foreground">
         <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
             <Reveal>
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Gallery</span>
-              <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-white">Moments that define us.</h2>
+              <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white">Moments that define us.</h2>
             </Reveal>
             <Link to="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:gap-3 transition-all">
               Open full gallery <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-4">
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
             {galleryPreview.map((g, i) => (
               <Reveal key={g.alt} delay={i * 0.05}>
                 <button
                   onClick={() => setLightbox(i)}
-                  className={`relative block w-full overflow-hidden rounded-2xl group ${i === 0 ? "md:row-span-2 md:col-span-1" : ""}`}
+                  className="relative block w-full aspect-square overflow-hidden rounded-xl group"
                 >
-                  <img src={g.src} alt={g.alt} loading="lazy" className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${i === 0 ? "h-full aspect-square md:aspect-[3/5]" : "aspect-square"}`} />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-60 group-hover:opacity-90 transition" />
-                  <div className="absolute bottom-3 left-3 right-3 text-left">
-                    <p className="text-xs text-white/80 uppercase tracking-wider">Click to view</p>
-                    <p className="text-sm font-bold text-white">{g.alt}</p>
-                  </div>
+                  <img
+                    src={g.src}
+                    alt={g.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-70 group-hover:opacity-90 transition" />
+                  <p className="absolute bottom-3 left-3 right-3 text-sm font-semibold text-white text-left">
+                    {g.alt}
+                  </p>
                 </button>
               </Reveal>
             ))}
@@ -502,8 +506,8 @@ teachers, modern facilities, and excellent academic results.
                 kindly they treat the world around them."
               </p>
               <div className="mt-6">
-                <div className="font-bold text-lg">Dr. Ramesh Iyer</div>
-                <div className="text-sm text-muted-foreground">Principal · M.Ed, Ph.D in Education</div>
+                <div className="font-bold text-lg">Dr. E. Jayachandra Reddy</div>
+                <div className="text-sm text-muted-foreground">Correspondent M.Sc., M.Phil, B.Ed., Ph.Din Education</div>
               </div>
             </Reveal>
           </div>
@@ -544,7 +548,7 @@ teachers, modern facilities, and excellent academic results.
      {/* LEADERSHIP TEAM */}
 <section className="section-y">
   <div className="container-x">
-    <Reveal className="text-center max-w-2xl mx-auto mb-14">
+    <Reveal className="text-center max-w-2xl mx-auto mb-12">
       <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
         Leadership
       </span>
@@ -559,54 +563,50 @@ teachers, modern facilities, and excellent academic results.
       </p>
     </Reveal>
 
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
       {[
         {
-          img: founderImg,
-          name: "Sri. Founder Name",
-          role: "Founder",
-          quote: "Building a strong foundation for future generations.",
-        },
-        {
-          img: vicePresidentImg,
-          name: "Sri. Vice President Name",
-          role: "Vice President",
-          quote: "Empowering students through quality education.",
-        },
-        {
-          img: headmasterImg,
-          name: "Sri. Headmaster Name",
+          img: headmaster,
+          name: "K. Giridhar",
+          qualification: "M.Sc., M.A., B.Ed.",
           role: "Headmaster",
-          quote: "Inspiring excellence, discipline and lifelong learning.",
+          phone: "94909 46911",
+        },
+        {
+          img: AccadamicIncharge,
+          name: "Sri. C. Chennakesavulu",
+          qualification: "B.A., J.D.C.",
+          role: "Academic In-charge",
+          phone: "79754 44068",
         },
       ].map((member, i) => (
         <Reveal key={member.name} delay={i * 0.08}>
-          <article className="group relative overflow-hidden rounded-3xl bg-dark text-white shadow-soft hover:shadow-elevated transition-all duration-500">
-            <div className="aspect-[4/5] overflow-hidden">
-              <img
-                src={member.img}
-                alt={member.name}
-                loading="lazy"
-                width={600}
-                height={800}
-                className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-            </div>
+          <article className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300">
+            <img
+              src={member.img}
+              alt={member.name}
+              loading="lazy"
+              width={96}
+              height={96}
+              className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-accent/20"
+            />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-
-            <div className="absolute bottom-0 left-0 right-0 p-6">
-              <div className="inline-block rounded-full bg-secondary/90 px-3 py-1 text-xs font-bold uppercase tracking-wider text-black">
+            <div className="min-w-0">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-accent">
                 {member.role}
               </div>
-
-              <h3 className="mt-3 text-2xl font-extrabold">
+              <h3 className="mt-1 text-lg font-bold leading-tight truncate">
                 {member.name}
               </h3>
-
-              <p className="mt-2 text-sm text-white/85 leading-relaxed">
-                {member.quote}
+              <p className="text-xs text-muted-foreground">
+                {member.qualification}
               </p>
+              <a
+                href={`tel:+91${member.phone.replace(/\s/g, "")}`}
+                className="mt-1.5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground hover:text-accent transition"
+              >
+                📞 {member.phone}
+              </a>
             </div>
           </article>
         </Reveal>
