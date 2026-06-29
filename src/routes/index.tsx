@@ -36,6 +36,7 @@ import headmaster from "@/assets/teachers/HeadMaster.webp";
 import schoolbannerWebp from "../assets/schoolBanner.webp";
 import schoolbannerAvif from "../assets/schoolBanner.avif";
 import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.webp";
+import krishnasai from "../assets/teachers/KrishnaSai.webp";
 
 import buss from "../assets/school_buss.webp";
 import schoolviewWebp from "../assets/school_view.webp";
@@ -50,7 +51,7 @@ import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 import { AdmissionPopup } from "../components/AdmissionPopup";
-import { ResultsPopup } from "@/components/Resultspopup ";
+import { ResultsPopup } from "../components/Resultspopup";
 import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
 import { FacultyMasonryGallery } from "../components/FacultyMasonryGallery";
 
@@ -165,19 +166,18 @@ const upcomingEvents = [
 ];
 
 const teachers = [
-  { img: principalImg, name: "Dr. Ramesh Iyer", subject: "Principal", exp: "Ph.D · 25 yrs experience" },
+  { img: principalImgWebp, avif: principalImgAvif, alt: "Dr. Ramesh Iyer", name: "Dr. Ramesh Iyer", subject: "Principal", exp: "Ph.D · 25 yrs experience" },
   { img: topper1, name: "Mrs. Anjali Verma", subject: "Mathematics", exp: "M.Sc · 15 yrs experience" },
   { img: topper2, name: "Ms. Priya Nair", subject: "English Literature", exp: "M.A · 12 yrs experience" },
   { img: topper3, name: "Mr. Karthik Rao", subject: "Physics", exp: "M.Sc · 18 yrs experience" },
-  { img: principalImg, name: "Mrs. Lakshmi Devi", subject: "Biology", exp: "M.Sc · 14 yrs experience" },
+  { img: principalImgWebp, avif: principalImgAvif, alt: "Mrs. Lakshmi Devi", name: "Mrs. Lakshmi Devi", subject: "Biology", exp: "M.Sc · 14 yrs experience" },
   { img: topper1, name: "Mr. Suresh Kumar", subject: "Chemistry", exp: "M.Sc · 16 yrs experience" },
   { img: topper2, name: "Ms. Neha Sharma", subject: "Computer Science", exp: "M.Tech · 10 yrs experience" },
   { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
-    { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
-
-      { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
-        { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
-          { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+  { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+  { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+  { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
+  { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
 
 
 
@@ -213,7 +213,7 @@ function HomePage() {
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
       {/* School Banner — sits directly below the navbar */}
-<section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4">
+<section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4 mt-25">
   <div className="mx-auto max-w-4xl px-4">
     <ResponsivePicture
       src={schoolbannerWebp}
@@ -632,18 +632,18 @@ teachers, modern facilities, and excellent academic results.
     <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
       {[
         {
-          img: headmaster,
-          name: "K. Giridhar",
-          qualification: "M.Sc., M.A., B.Ed.",
-          role: "Headmaster",
-          phone: "94909 46911",
+          img: principalImgWebp,
+          name: "Dr.E.Jaya Chandra Reddy",
+          qualification: "M.Sc., M.Phil., B.Ed., Ph.D",
+          role: "Founder",
+          phone: "+91 9441595469",
         },
         {
-          img: AccadamicIncharge,
-          name: "Sri. C. Chennakesavulu",
-          qualification: "B.A., J.D.C.",
-          role: "Academic In-charge",
-          phone: "79754 44068",
+          img: krishnasai,
+          name: "E. krishnasai",
+          qualification: "B.E",
+          role: "Admin",
+          phone: "+91 9652425469",
         },
       ].map((member, i) => (
         <Reveal key={member.name} delay={i * 0.08}>
