@@ -222,6 +222,7 @@ function HomePage() {
         { type: "image/avif", srcSet: schoolbannerAvif },
         { type: "image/webp", srcSet: schoolbannerWebp },
       ]}
+       className="block w-full h-auto" 
     />
   </div>
 </section>
@@ -631,31 +632,35 @@ teachers, modern facilities, and excellent academic results.
 
     <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
       {[
-        {
-          img: principalImgWebp,
-          name: "Dr.E.Jaya Chandra Reddy",
-          qualification: "M.Sc., M.Phil., B.Ed., Ph.D",
-          role: "Founder",
-          phone: "+91 9441595469",
-        },
+
         {
           img: krishnasai,
           name: "E. krishnasai",
           qualification: "B.E",
           role: "Admin",
-          phone: "+91 9652425469",
+          phone: "9652425469",
         },
+        {
+          img: principalImgWebp,
+          name: "Dr.E.Jaya Chandra Reddy",
+          qualification: "M.Sc., M.Phil., B.Ed., Ph.D",
+          role: "Founder",
+          phone: "9441595469",
+        },
+        
       ].map((member, i) => (
         <Reveal key={member.name} delay={i * 0.08}>
           <article className="flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft hover:shadow-elevated hover:-translate-y-0.5 transition-all duration-300">
-            <img
-              src={member.img}
-              alt={member.name}
-              loading="lazy"
-              width={96}
-              height={96}
-              className="h-20 w-20 shrink-0 rounded-full object-cover ring-2 ring-accent/20"
-            />
+            <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full ring-2 ring-accent/40">
+              <img
+                src={member.img}
+                alt={member.name}
+                loading="lazy"
+                width={96}
+                height={96}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </div>
 
             <div className="min-w-0">
               <div className="text-[11px] font-bold uppercase tracking-wider text-accent">

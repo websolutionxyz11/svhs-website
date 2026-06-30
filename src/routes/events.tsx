@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Play } from "lucide-react";
+import { Calendar, ChevronDown, ChevronUp, Flag, MapPin, Play } from "lucide-react";
 import { PageHero } from "../components/PageHero";
 import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
@@ -10,8 +10,31 @@ import { EventCarousel, type CarouselSlide } from "../components/EventCarousel";
 import sportsImg from "../assets/sports.webp";
 import culturalImg from "../assets/cultural.webp";
 import scienceImg from "../assets/science-lab.webp";
-import eventAnnual from "../assets/event-annual.webp";
+import eventAnnual from "../assets/eventImg.webp";
+import eventImg from "../assets/eventImg.webp";
 import eventArt from "../assets/event-art.webp";
+
+import event1Img from "../assets/events/event1.webp";
+import event2Img from "../assets/events/event2.webp";
+import event3Img from "../assets/events/event3.webp";
+import event4Img from "../assets/events/event4.webp";
+
+import sciencedayImg from "../assets/events/scienceday.webp";
+import scienceday2Img from "../assets/events/scienceday2.webp";
+import scienceday3Img from "../assets/events/scienceday3.webp";
+import singingeventImg from "../assets/events/singingevent.webp";
+import studyHoursImg from "../assets/events/studyHours.webp";
+import tripImg from "../assets/events/trip.webp";
+import yogaGhImg from "../assets/events/yoga-gh.webp";
+import yogaImg from "../assets/events/yoga.webp";
+import yogaAtSchoolImg from "../assets/events/yogaAtSchool.webp";
+import yogameetImg from "../assets/events/yogameet.webp";
+import yogaPenumurImg from "../assets/events/YogaPenumur.webp";
+import studentAchivement from "../assets/events/student-achivment.webp";
+import CulturalImg from "../assets/events/Culturals.webp";
+import FlagImage from "../assets/events/flag-img.webp";
+
+
 import libraryImg from "../assets/library.webp";
 import classroomImg from "../assets/classroom.webp";
 import campusAerial from "../assets/campus-aerial.webp"
@@ -36,19 +59,143 @@ export const Route = createFileRoute("/events")({
 type Cat = "All" | "Sports" | "Cultural" | "Academic";
 
 const upcoming = [
-  { date: "Dec 18, 2025", title: "Annual Day Celebrations", img: eventAnnual, cat: "Cultural", place: "Open Auditorium" },
-  { date: "Jan 12, 2026", title: "Inter-School Sports Meet", img: sportsImg, cat: "Sports", place: "School Ground" },
-  { date: "Feb 04, 2026", title: "Science & Robotics Expo", img: scienceImg, cat: "Academic", place: "STEM Block" },
-  { date: "Feb 22, 2026", title: "Inter-House Art Festival", img: eventArt, cat: "Cultural", place: "Art Studio" },
+  { date: "Month  of March", title: "Annual Day Celebrations", img: eventAnnual, cat: "Cultural", place: "Open Auditorium" },
+  { date: "Month of January ", title: "Inter-School Sports Meet", img: sportsImg, cat: "Sports", place: "School Ground" },
+  { date: "Month of February", title: "Science & Robotics Expo", img: scienceImg, cat: "Academic", place: "STEM Block" },
+  { date: "Month of November", title: "Inter-House Art Festival", img: eventArt, cat: "Cultural", place: "Art Studio" },
 ] as const;
 
 const past = [
-  { date: "Sep 2025", title: "Hindi Diwas Recitation", img: libraryImg, cat: "Cultural" },
-  { date: "Aug 2025", title: "Independence Day Parade", img: sportsImg, cat: "Cultural" },
-  { date: "Jul 2025", title: "Maths Olympiad Finals", img: classroomImg, cat: "Academic" },
-  { date: "Jun 2025", title: "Swimming Championship", img: sportsImg, cat: "Sports" },
-  { date: "May 2025", title: "Summer Tech Camp", img: scienceImg, cat: "Academic" },
-  { date: "Apr 2025", title: "Earth Day Campus Walk", img: campusAerial, cat: "Cultural" },
+ 
+  {
+    date: "Jan 2025",
+    title: "Annual Day Celebration",
+    img: event1Img,
+    cat: "Cultural",
+  },
+ 
+  {
+    date: "August 29",
+    title: "Telugu Bhasha Dinotsavam",
+    img: event3Img,
+    cat: "Academic",
+  },
+  {
+    date: "Apr 2025",
+    title: "Ugadi Celebration",
+    img: event4Img,
+    cat: "Cultural",
+  },
+  {
+    date: "Jun 2025",
+    title: "Team Connect",
+    img: event2Img,
+    cat: "Cultural",
+  },
+  {
+    date: "Jul 2025",
+    title: "Van Mahotsav Tree Plantation",
+    img: campusAerial,
+    cat: "Environmental",
+  },
+  {
+    date: "Aug 2025",
+    title: "Independence Day Celebrations",
+    img: sportsImg,
+    cat: "National",
+  },
+  {
+    date: "Sep 2025",
+    title: "Teachers' Day Celebration",
+    img: libraryImg,
+    cat: "School Event",
+  },
+  
+  {
+    date: "Nov 2025",
+    title: "Children's Day Celebrations",
+    img: scienceImg,
+    cat: "School Event",
+  },
+  {
+  date: "Jan 2025",
+  title: "National Science Day Celebration",
+  img: sciencedayImg,
+  cat: "Academic",
+},
+ {
+  date: "Jan 2026",
+  title: "Certification",
+  img: studentAchivement,
+  cat: "Academic",
+},
+{
+  date: "Feb 2025",
+  title: "Science Experiment Workshop",
+  img: scienceday2Img,
+  cat: "Academic",
+},
+{
+  date: "Mar 2025",
+  title: "Science Exhibition",
+  img: scienceday3Img,
+  cat: "Academic",
+},
+{
+  date: "Apr 2025",
+  title: "Singing Competition",
+  img: singingeventImg,
+  cat: "Cultural",
+},
+{
+  date: "May 2025",
+  title: "Focused Study Hours",
+  img: studyHoursImg,
+  cat: "Academic",
+},
+{
+  date: "Jun 2025",
+  title: "Educational Trip",
+  img: tripImg,
+  cat: "Academic",
+},
+{
+  date: "Jun 2025",
+  title: "International Yoga Day",
+  img: yogaGhImg,
+  cat: "Health",
+},
+{
+  date: "Jul 2025",
+  title: "Morning Yoga Session",
+  img: yogaImg,
+  cat: "Health",
+},
+{
+  date: "Aug 2025",
+  title: "meditation at School",
+  img: yogaAtSchoolImg,
+  cat: "Sports",
+},
+{
+  date: "jan 2026",
+  title: "Culturals",
+  img: CulturalImg,
+  cat: "Cultural",
+},
+{
+  date: "Sep 2025",
+  title: "Inter-School Yoga Meet",
+  img: yogameetImg,
+  cat: "Sports",
+},
+{
+  date: "Oct 2025",
+  title: "Penumur Yoga Championship",
+  img: yogaPenumurImg,
+  cat: "Sports",
+},
+
 ] as const;
 
 const videos: LightboxItem[] = [
@@ -59,27 +206,48 @@ const videos: LightboxItem[] = [
 ];
 
 const carouselSlides: CarouselSlide[] = [
-  { id: "1", src: eventAnnual, alt: "Annual Day Celebrations", caption: "Annual Day 2025", category: "Cultural" },
-  { id: "2", src: sportsImg, alt: "Inter-School Sports Meet", caption: "Sports Championship", category: "Sports" },
-  { id: "3", src: scienceImg, alt: "Science & Robotics Expo", caption: "Innovation & Discovery", category: "Academic" },
-  { id: "4", src: culturalImg, alt: "Cultural Festival", caption: "Cultural Showcase", category: "Cultural" },
+  { id: "1", src: event1Img, alt: "Annual Day Celebrations", caption: "Annual Day 2025", category: "Cultural" },
+  { id: "2", src: yogaPenumurImg, alt: "Penumur Yoga Championship", caption: "Penumur Yoga Championship", category: "Sports" },
+  { id: "3", src: studyHoursImg, alt: "School Study Hours", caption: "School Study Hours", category: "Academic" },
+  { id: "4", src: event2Img, alt: "Cultural Festival", caption: "Cultural Showcase", category: "Cultural" },
   { id: "5", src: eventArt, alt: "Inter-House Art Festival", caption: "Artistic Excellence", category: "Cultural" },
   { id: "6", src: campusAerial, alt: "Campus Aerial View", caption: "Our Beautiful Campus", category: "Campus" },
 ];
 
 function EventsPage() {
   const [filter, setFilter] = useState<Cat>("All");
+  const [showAll, setShowAll] = useState(false);
   const [videoIdx, setVideoIdx] = useState<number | null>(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
 
   const filteredPast = useMemo(
     () => (filter === "All" ? past : past.filter((p) => p.cat === filter)),
     [filter]
   );
 
+  const visiblePast = useMemo(
+    () => (showAll ? filteredPast : filteredPast.slice(0, 6)),
+    [filteredPast, showAll]
+  );
+
+  const showToggle = filteredPast.length > 6;
+
+  const handleFilterChange = (category: Cat) => {
+    setFilter(category);
+    setShowAll(false);
+  };
+
+  const handleToggle = () => {
+    if (showAll) {
+      galleryRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+    setShowAll((prev) => !prev);
+  };
+
   return (
     <>
       <PageHero
-        bgImage={eventAnnual}
+        bgImage={eventImg}
         eyebrow="Events & Activities"
         title={<>A campus that never <span className="text-secondary">stops celebrating.</span></>}
         subtitle="From sports meets to science expos, there's always something happening at Sree Vidya."
@@ -167,7 +335,7 @@ function EventsPage() {
               {(["All", "Sports", "Cultural", "Academic"] as Cat[]).map((c) => (
                 <button
                   key={c}
-                  onClick={() => setFilter(c)}
+                  onClick={() => handleFilterChange(c)}
                   className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
                     filter === c ? "bg-primary text-primary-foreground shadow-soft" : "bg-card border border-border hover:border-primary text-foreground/70"
                   }`}
@@ -177,27 +345,58 @@ function EventsPage() {
               ))}
             </div>
           </div>
-          <motion.div layout className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filteredPast.map((p, i) => (
-              <motion.article
-                key={p.title}
-                layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: i * 0.04 }}
-                className="group relative overflow-hidden rounded-2xl shadow-soft hover:shadow-elevated"
-              >
-                <div className="aspect-[4/3] overflow-hidden">
-                  <img src={p.img} alt={p.title} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div className="text-xs uppercase tracking-wider text-secondary font-bold">{p.cat} · {p.date}</div>
-                  <h3 className="mt-1 text-lg font-bold text-white">{p.title}</h3>
-                </div>
-              </motion.article>
-            ))}
-          </motion.div>
+          <div ref={galleryRef}>
+            <motion.div
+              layout
+              className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
+            >
+              {visiblePast.map((p, i) => (
+                <motion.article
+                  key={p.title}
+                  layout
+                  initial={{ opacity: 0, y: 30, rotate: -2 }}
+                  animate={{ opacity: 1, y: 0, rotate: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ delay: i * 0.04, type: 'spring', stiffness: 300 }}
+                  className="break-inside-avoid group relative shadow-lg hover:shadow-2xl transition-shadow duration-500"
+                  style={{ transform: `rotate(${i % 2 === 0 ? 1 : -1}deg)` }}
+                >
+                  <div className="relative overflow-hidden bg-black/5">
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      loading="lazy"
+                      className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+                      style={{ aspectRatio: '1/0.5' }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                      <div className="text-xs uppercase tracking-wider text-secondary font-bold">
+                        {p.cat} · {p.date}
+                      </div>
+                      <h3 className="mt-1 text-lg font-bold leading-tight">{p.title}</h3>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </motion.div>
+            {showToggle && (
+              <div className="mt-10 flex justify-center">
+                <button
+                  type="button"
+                  onClick={handleToggle}
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 shadow-soft transition duration-300 hover:-translate-y-0.5 hover:shadow-elevated focus:outline-none focus:ring-2 focus:ring-primary/30"
+                >
+                  {showAll ? "Show Less" : "View More"}
+                  {showAll ? (
+                    <ChevronUp className="h-4 w-4" />
+                  ) : (
+                    <ChevronDown className="h-4 w-4" />
+                  )}
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </section>
 
@@ -205,38 +404,30 @@ function EventsPage() {
   
 
       {/* Videos */}
-      <section className="section-y bg-dark text-dark-foreground">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Event Videos</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold text-white">Press play. Feel the campus.</h2>
-          </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {videos.map((v, i) => (
-              <Reveal key={v.alt} delay={i * 0.06}>
-                <button
-                  onClick={() => setVideoIdx(i)}
-                  className="group relative block w-full overflow-hidden rounded-2xl shadow-soft hover:shadow-glow transition"
-                >
-                  <div className="aspect-video overflow-hidden">
-                    <img src={v.src} alt={v.alt} loading="lazy" className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition" />
-                  <div className="absolute inset-0 grid place-items-center">
-                    <span className="grid h-16 w-16 place-items-center rounded-full bg-secondary text-secondary-foreground shadow-glow group-hover:scale-110 transition">
-                      <Play className="h-6 w-6 fill-current ml-1" />
-                    </span>
-                  </div>
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                    <p className="text-sm font-bold text-white">{v.alt}</p>
-                  </div>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-        <Lightbox items={videos} index={videoIdx} onClose={() => setVideoIdx(null)} onIndex={setVideoIdx} />
-      </section>
+     <section className="relative h-screen overflow-hidden">
+  <img
+  src={FlagImage}
+  alt="Sree Vidya High School Event"
+  className="absolute inset-0 w-full h-full object-cover"
+/>
+
+  {/* Dark Overlay */}
+  <div className="absolute inset-0 bg-black/50" />
+
+  {/* Content */}
+  <div className="relative z-10 flex h-full flex-col items-center justify-center text-center px-6">
+    <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">
+      Event Videos
+    </span>
+
+    <h2 className="mt-4 text-4xl md:text-6xl font-extrabold text-white">
+     Visit Our YouTube Channel. Feel the campus.
+    </h2>
+
+    <p className="mt-4 max-w-2xl text-lg text-white/80">
+Explore the vibrant moments, celebrations, achievements, and unforgettable memories of Sree Vidya High School. Watch our latest event videos on YouTube.    </p>
+  </div>
+</section>
 
       {/* CTA */}
       <section className="section-y">

@@ -4,7 +4,7 @@ import logo from "../assets/logo.webp";
 export function Footer() {
   return (
     <footer className="bg-dark text-dark-foreground">
-      <div className="container-x py-16 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="container-x py-16 grid gap-1 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2">
             <div className="grid h-10 w-10 place-items-center rounded-xl  text-secondary-foreground">
@@ -22,11 +22,18 @@ export function Footer() {
             leaders through holistic, value-based education.
           </p>
           <div className="mt-5 flex gap-3">
-            {[Facebook, Instagram, Youtube, Twitter].map((Icon, i) => (
+            {[
+              { Icon: Facebook, href: "https://www.facebook.com/sreevidyahighschool", label: "Facebook" },
+              { Icon: Instagram, href: "https://www.instagram.com/svhs_penumur?igsh=MW1ndTU0cGR6ZG9nOQ==", label: "Instagram" },
+              { Icon: Youtube, href: "https://youtube.com/@sreevidyahighschool-z7y?si=bJqjdDe0IN5cbF4O", label: "YouTube" },
+              { Icon: Twitter, href: "https://twitter.com/", label: "Twitter" },
+            ].map(({ Icon, href, label }) => (
               <a
-                key={i}
-                href="#"
-                aria-label="Social"
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label={label}
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/5 hover:bg-secondary hover:text-secondary-foreground transition-colors"
               >
                 <Icon className="h-4 w-4" />
@@ -71,7 +78,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm text-white/70">
             <li className="flex gap-3"><MapPin className="h-4 w-4 mt-0.5 text-secondary shrink-0" />10-88 vidya nagar colony, pakala road, penumur, Chittoor, Andhra pradesh - 517126</li>
             <li className="flex gap-3"><Phone className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> +91 9441595469, 9652425469</li>
-            <li className="flex gap-3"><Mail className="h-4 w-4 mt-0.5 text-secondary shrink-0" /> hello@sreevidya.edu.in</li>
+            <li className="flex gap-3"><Mail className="h-4 w-4 mt-0.5 text-secondary shrink-0" />sreevidyahighschool2004@gmail.com</li>
           </ul>
         </div>
       </div>

@@ -4,6 +4,21 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

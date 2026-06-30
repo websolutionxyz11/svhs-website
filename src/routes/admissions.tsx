@@ -14,7 +14,7 @@ import campusAerial from "../assets/campus-aerial.webp";
 import student_2620106310 from "../assets/10th_Students/2620106310.webp";
 import student_2620106314 from "../assets/10th_Students/2620106314.webp";
 import student_2620106320 from "../assets/10th_Students/2620106320.webp";
-
+import admissionImg from "../assets/admissionImg.webp";
 
 export const Route = createFileRoute("/admissions")({
   head: () => ({
@@ -120,7 +120,7 @@ function AdmissionsPage() {
   return (
     <>
       <PageHero
-        bgImage={campusAerial}
+        bgImage={admissionImg}
         eyebrow="Admissions 2026–27"
         title={<>Begin your child's journey at <span className="text-secondary">Sree Vidya</span>.</>}
         subtitle="A simple, transparent 4-step admission process. We're here to help you every step of the way."
@@ -175,10 +175,10 @@ function AdmissionsPage() {
               <GraduationCap className="h-10 w-10 text-secondary" />
               <h3 className="mt-4 text-xl font-bold">Key Dates</h3>
               <ul className="mt-4 space-y-3 text-sm">
-                <li className="flex justify-between border-b border-white/15 pb-2"><span>Applications Open</span><span className="font-bold">Nov 1, 2025</span></li>
-                <li className="flex justify-between border-b border-white/15 pb-2"><span>Last Date</span><span className="font-bold">Mar 31, 2026</span></li>
-                <li className="flex justify-between border-b border-white/15 pb-2"><span>Interactions</span><span className="font-bold">Dec – Mar</span></li>
-                <li className="flex justify-between"><span>Session Begins</span><span className="font-bold">Jun 10, 2026</span></li>
+                <li className="flex justify-between border-b border-white/15 pb-2"><span>Applications Open</span><span className="font-bold">10th Jun</span></li>
+                <li className="flex justify-between border-b border-white/15 pb-2"><span>Last Date</span><span className="font-bold">20th Aug</span></li>
+                <li className="flex justify-between border-b border-white/15 pb-2"><span>Interactions</span><span className="font-bold">12th Jun</span></li>
+                <li className="flex justify-between"><span>Session Begins</span><span className="font-bold">12th Jun</span></li>
               </ul>
             </div>
           </Reveal>

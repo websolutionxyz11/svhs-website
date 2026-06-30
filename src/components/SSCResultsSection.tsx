@@ -505,13 +505,18 @@ export const SSCResultsSection: React.FC = () => {
           transform: scale(0.96);
         }
         @media (max-width: 640px) {
-          .student-card { width: 160px; padding: 0.75rem 0.5rem; }
+          .student-card { width: 130px; height: 190px; padding: 0.75rem 0.5rem; }
+          .student-name { font-size: 0.8rem; }
+          .student-percentage { font-size: 1.3rem; }
+          .card-badge { font-size: 9px; padding: 4px 8px; margin-bottom: 0.4rem; }
           .student-avatar { width: 44px; height: 44px; }
-          .marquee-track { gap: 1rem; animation-duration: 28s; }
+          .marquee-track { gap: 0.75rem; animation-duration: 24s; }
           .download-btn { padding: 0.75rem 1.8rem; font-size: 0.95rem; width: 100%; justify-content: center; }
         }
         @media (min-width: 641px) and (max-width: 1024px) {
-          .student-card { width: 180px; }
+          .student-card { width: 170px; height: 250px; }
+          .student-name { font-size: 0.95rem; }
+          .student-percentage { font-size: 1.7rem; }
           .marquee-track { gap: 1.25rem; animation-duration: 30s; }
         }
         .bg-shape-1 {

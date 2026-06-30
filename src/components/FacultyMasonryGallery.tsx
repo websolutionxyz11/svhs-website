@@ -214,14 +214,16 @@ export function FacultyMasonryGallery({
                   }}
                   className="group flex cursor-pointer items-center gap-4 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_10px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_22px_rgba(15,23,42,0.1)]"
                 >
-                  <img
-                    src={teacher.img}
-                    alt={teacher.name}
-                    loading="lazy"
-                    width={64}
-                    height={64}
-                    className="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-[#F59E0B]/20"
-                  />
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-[#F59E0B]/20">
+                    <img
+                      src={teacher.img}
+                      alt={teacher.name}
+                      loading="lazy"
+                      width={64}
+                      height={64}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+                  </div>
 
                   <div className="min-w-0">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B76E00]">
