@@ -6,6 +6,10 @@ import {
 } from "lucide-react";
 import { useEffect, useState } from "react";
 
+
+import { Users, GraduationCap, Award, TrendingUp } from "lucide-react";
+
+const STAT_ICONS = [Users, GraduationCap, Award, TrendingUp];
 import heroImgWebp from "../assets/campus-aerial.webp";
 import heroImgAvif from "../assets/campus-aerial.avif";
 import { useIsMobile } from "../hooks/use-mobile";
@@ -37,6 +41,7 @@ import schoolbannerWebp from "../assets/schoolBanner.webp";
 import schoolbannerAvif from "../assets/schoolBanner.avif";
 import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.webp";
 import krishnasai from "../assets/teachers/KrishnaSai.webp";
+import studentImg from "../assets/studentFlag.webp";
 
 import buss from "../assets/school_buss.webp";
 import schoolviewWebp from "../assets/school_view.webp";
@@ -50,6 +55,7 @@ import { ResponsivePicture } from "../components/ResponsivePicture";
 import { Counter } from "../components/Counter";
 import { Reveal } from "../components/Reveal";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
+import { Radar } from "../components/Radar";
 import { AdmissionPopup } from "../components/AdmissionPopup";
 import { ResultsPopup } from "../components/Resultspopup";
 import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
@@ -188,7 +194,9 @@ const heroSlides = [
     webp: heroImgWebp,
     avif: heroImgAvif,
     badge: "Admissions Open · 2026–27",
-    title: <>Where curious minds <span className="bg-gold-gradient bg-clip-text text-transparent">become tomorrow's</span> changemakers. </>,
+    title: <>Welcome to <span className="bg-gold-gradient bg-clip-text text-transparent">Sree Vidya High School</span> <span className="text-xm">
+  Inspiring Young Minds for a Brighter Tomorrow.
+</span></>,
     sub: "Sree Vidya High School blends rigorous academics, creative arts and competitive sports in a campus designed for joyful, lifelong learning."
   },
 ];
@@ -213,147 +221,64 @@ function HomePage() {
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
       {/* School Banner — sits directly below the navbar */}
-<section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4 mt-25">
-  <div className="mx-auto max-w-4xl px-4">
-    <ResponsivePicture
-      src={schoolbannerWebp}
-      alt="Sri Vidya High School — Right choice for Bright Future, 22nd Year, Vidyanagar, Penumuru"
-      sources={[
-        { type: "image/avif", srcSet: schoolbannerAvif },
-        { type: "image/webp", srcSet: schoolbannerWebp },
-      ]}
-       className="block w-full h-auto" 
-    />
+<section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4 mt-26">
+  <div className="w-full px-0">
+   <ResponsivePicture
+  src={schoolbannerWebp}
+  alt="Sri Vidya High School — Right choice for Bright Future, 22nd Year, Vidyanagar, Penumuru"
+  sources={[
+    { type: "image/avif", srcSet: schoolbannerAvif },
+    { type: "image/webp", srcSet: schoolbannerWebp },
+  ]}
+  className="block w-full h-[110px] md:h-[160px] lg:h-[200px] object-cover"
+/>
+  </div>
+</section>
+<section className="w-full h-[220px] md:h-[320px] lg:h-[420px] object-cover py-0">
+  <div className="items-center h-full">
+    <Reveal delay={0.15}>
+      <Radar />
+    </Reveal>
   </div>
 </section>
 
-      {/* HERO — FULL IMAGE CAROUSEL */}
-      <section className="relative overflow-hidden h-[100svh] min-h-[400px] max-h-[500px] mt-0">
-        {/* Full-bleed background image carousel */}
-        <AnimatePresence mode="wait">
-            {!isMobile ? (
-              <motion.div
-                key={slide}
-                initial={{ opacity: 0, scale: 1.08 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.02 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="absolute inset-0"
-              >
-                <ResponsivePicture
-                  src={current.webp}
-                  alt={current.badge}
-                  sources={[
-                    { type: "image/avif", srcSet: current.avif },
-                    { type: "image/webp", srcSet: current.webp },
-                  ]}
-                  width={1200}
-                  height={675}
-                  fetchPriority="high"
-                  className="h-full w-full object-cover"
-                />
-              </motion.div>
-            ) : (
-              <div key={slide} className="absolute inset-0">
-                <ResponsivePicture
-                  src={current.webp}
-                  alt={current.badge}
-                  sources={[
-                    { type: "image/avif", srcSet: current.avif },
-                    { type: "image/webp", srcSet: current.webp },
-                  ]}
-                  width={1200}
-                  height={675}
-                  fetchPriority="high"
-                  className="h-full w-full object-cover"
-                />
+{/* STATS — dark glass strip, floats over hero bottom edge */}
+<section className="relative -mt-10 sm:-mt-14 lg:-mt-20 z-20 px-4">
+  <div className="mx-auto max-w-5xl">
+    <div className="relative overflow-hidden rounded-[28px] bg-[#0B1A3D] px-4 py-7 shadow-[0_25px_60px_rgba(11,26,61,0.35)] sm:px-8 sm:py-8 md:px-10">
+      
+      {/* Decorative glow accents */}
+      <div className="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl" />
+      <div className="pointer-events-none absolute -bottom-16 -left-10 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl" />
+
+      <div className="relative grid grid-cols-2 gap-y-6 md:flex md:items-stretch md:divide-x md:divide-white/10">
+        {stats.map((s, i) => {
+          const icons = [Users, GraduationCap, Award, TrendingUp];
+          const Icon = icons[i % icons.length];
+          return (
+            <Reveal
+              key={s.label}
+              delay={i * 0.08}
+              className="group flex flex-col items-center justify-center px-3 text-center md:flex-1 md:px-6"
+            >
+              <div className="mb-2.5 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 transition-colors duration-300 group-hover:border-cyan-400/40 group-hover:bg-cyan-400/10 sm:h-12 sm:w-12">
+                <Icon className="h-4 w-4 text-cyan-400 sm:h-5 sm:w-5" strokeWidth={2.25} />
               </div>
-            )}
-        </AnimatePresence>
 
-        {/* Dark overlay for text readability */}
-       {/* <div className="absolute inset-0 bg-gradient-to-r from-primary/50 via-primary/30 to-primary/10" /> */}
-      <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent   to-primary/2" />
-        {/* Content */}
-        <div className="container-x relative h-full flex items-center text-primary-foreground pt-24 pb-20">
-          <div className="max-w-3xl">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={slide}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.7, ease: "easeOut" }}
-              >
-                <span className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 backdrop-blur px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-secondary">
-                  <Star className="h-3 w-3 fill-secondary" /> {current.badge}
-                </span>
-                <h1 className="mt-6 text-4xl sm:text-5xl md:text-7xl font-extrabold leading-[1.05] text-balance drop-shadow-lg">
-                  {current.title}
-                </h1>
-                <p className="mt-6 max-w-2xl text-base md:text-lg text-white/90 drop-shadow">
-                  {current.sub}
-                </p>
-              </motion.div>
-            </AnimatePresence>
+              <div className="text-2xl font-black tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+                <Counter to={s.value} suffix={s.suffix} />
+              </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              {/* <Link to="/admissions" className="group inline-flex items-center gap-2 rounded-full bg-gold-gradient px-7 py-3.5 text-sm font-bold text-secondary-foreground shadow-elevated hover:shadow-glow hover:-translate-y-0.5 transition-all">
-                Apply for 2026–27 <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link to="/gallery" className="inline-flex items-center gap-2 rounded-full border border-white/40 bg-white/10 backdrop-blur px-7 py-3.5 text-sm font-semibold text-white hover:bg-white/20 transition">
-                Explore Campus
-              </Link> */}
-            </div>
-
-            {/* Slide dots */}
-            {/* <div className="mt-10 flex items-center gap-2">
-              {heroSlides.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => setSlide(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  className={`h-1.5 rounded-full transition-all ${i === slide ? "w-12 bg-secondary" : "w-5 bg-white/30 hover:bg-white/60"}`}
-                />
-              ))}
-            </div> */}
-          </div>
-        </div>
-
-        {/* Carousel arrows */}
-        {/* <button
-          onClick={prev}
-          aria-label="Previous slide"
-          className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-primary-100 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
-        >
-         <ChevronRight className="h-5 w-5" />
-        </button> */}
-        {/* <button
-          onClick={next}
-          aria-label="Next slide"
-          className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-10 grid h-12 w-12 place-items-center rounded-full bg-white/15 backdrop-blur border border-white/30 text-white hover:bg-white/30 hover:scale-110 transition-all shadow-elevated"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button> */}
-      </section>
-
-
-      {/* STATS */}
-      <section className="relative -mt-12 md:mt-10 z-10">
-        <div className="container-x">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-6 rounded-3xl bg-card shadow-elevated p-6 md:p-10 border border-border">
-            {stats.map((s, i) => (
-              <Reveal key={s.label} delay={i * 0.08} className="text-center">
-                <div className="text-3xl md:text-5xl font-extrabold text-primary">
-                  <Counter to={s.value} suffix={s.suffix} />
-                </div>
-                <div className="mt-2 text-xs md:text-sm uppercase tracking-wider text-muted-foreground">{s.label}</div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
+              <div className="mt-1.5 max-w-[120px] text-[10px] font-bold uppercase tracking-widest text-white/50 transition-colors duration-300 group-hover:text-white/80 sm:max-w-none sm:text-xs">
+                {s.label}
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>
 {/* SSCResult section */}
 
 <SSCResults />
@@ -381,12 +306,9 @@ function HomePage() {
                 className="rounded-2xl shadow-soft aspect-[4/5] object-cover"
               />
               <ResponsivePicture
-                src={libraryImgWebp}
+                src={studentImg}
                 alt="Library"
-                sources={[
-                  { type: "image/avif", srcSet: libraryImgWebp.replace(/\.webp$/, '.avif') },
-                  { type: "image/webp", srcSet: libraryImgWebp },
-                ]}
+                
                 loading="lazy"
                 width={1280}
                 height={896}

@@ -142,7 +142,7 @@ function AdmissionsPage() {
                     Apply for Academic Year 2026–27
                   </h2>
                   <p className="mt-1 text-sm text-secondary-foreground/80">
-                    Open from <strong>Nov 1, 2025</strong> · Closes <strong>March 31, 2026</strong>
+                    Open from <strong>10th Jun 2026</strong> · Closes <strong>20th Aug 2026</strong>
                   </p>
                 </div>
                 <a href="#apply-form" className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-elevated hover:-translate-y-0.5 transition">

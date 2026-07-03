@@ -42,15 +42,11 @@ const STATISTICS: Statistic[] = [
   { id: 2, label: 'Total Students Appeared', value: '186', icon: '👨‍🎓' },
   { id: 3, label: 'Secured High Distinctions', value: '142', icon: '⭐' },
   { id: 4, label: 'Academic Excellence', value: '98.6', icon: '🏆', suffix: '%' },
-    { id: 5, label: 'Scored Above Five-Hundred', value: '4', icon: '🏅', suffix: '+' },
+  { id: 5, label: 'Scored Above Five-Hundred', value: '4', icon: '🏅', suffix: '+' },
 ];
 
-// Helper to generate avatar URLs (replace with real images in production)
-
-
 const STUDENTS: Student[] = [
-  
-    {
+  {
     id: 1,
     name: "G. Vekanth Reddy",
     rollNumber: "H.T. 2620106398",
@@ -118,7 +114,6 @@ const STUDENTS: Student[] = [
     percentage: "75.2%",
     photo: student_2620106314,
   },
-  
 ];
 
 // ─── Subcomponents ────────────────────────────────────────────────────────
@@ -142,7 +137,6 @@ const AnimatedCounter: React.FC<{ value: number; suffix?: string; duration?: num
       const step = (now: number) => {
         const elapsed = (now - start) / (duration * 1000);
         const progress = Math.min(elapsed, 1);
-        // Ease-out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
         const current = eased * target;
         setDisplay(current);
@@ -158,114 +152,84 @@ const AnimatedCounter: React.FC<{ value: number; suffix?: string; duration?: num
 
   const formatted = Number.isInteger(display) ? display : display.toFixed(1);
   return (
-    <span ref={ref} className="stat-number text-4xl md:text-5xl font-bold text-slate-800 tracking-tight">
+    <span ref={ref} className="stat-number">
       {formatted}
       {suffix}
     </span>
   );
 };
 
-/** A single statistic card with icon, label, and animated counter */
+/** A single statistic pill */
 const StatCard: React.FC<{ stat: Statistic; index: number }> = ({ stat, index }) => {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
-  const variants = {
-    hidden: { opacity: 0, y: 36 },
-    visible: { opacity: 1, y: 0 },
-  };
-
   return (
     <motion.div
       ref={ref}
-      variants={variants}
-      initial="hidden"
-      animate={inView ? 'visible' : 'hidden'}
-      transition={{ duration: 0.6, delay: 0.1 + index * 0.08, ease: "easeOut" as const }}
-      className="stat-card glass-card rounded-2xl p-6 md:p-7 text-center flex flex-col items-center"
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.55, delay: 0.1 + index * 0.08, ease: "easeOut" as const }}
+      className="stat-pill"
       role="article"
       aria-label={`${stat.label}: ${stat.value}${stat.suffix || ''}`}
     >
-      <div className="text-3xl md:text-4xl mb-2" aria-hidden="true">
-        {stat.icon}
-      </div>
-      <div className="mb-1">
+      <span className="stat-icon" aria-hidden="true">{stat.icon}</span>
+      <div className="stat-text">
         <AnimatedCounter value={Number(stat.value)} suffix={stat.suffix || ''} />
+        <p className="stat-label">{stat.label}</p>
       </div>
-      <p className="text-sm md:text-base font-medium text-slate-500 tracking-wide">{stat.label}</p>
     </motion.div>
   );
 };
 
-/** A single student card for the marquee */
-const StudentCard: React.FC<{ student: Student }> = ({ student }) => {
-  // Fallback badge text for top performers — adjust as needed
-  const badgeText = student.isTopper ? 'STATE TOPPER · SCIENCES' : '';
+/** A single topper photo card, styled like a certificate/banner headshot */
+const TopperCard: React.FC<{ student: Student; index: number }> = ({ student, index }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+
+  const medalEmoji =
+    student.medal === 'gold' ? '🥇' : student.medal === 'silver' ? '🥈' : student.medal === 'bronze' ? '🥉' : null;
 
   return (
-  <div
-  className="student-card"
-  style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.48)), url(${student.photo})` }}
->
-      <div className="student-card-content">
-        {badgeText && <div className="card-badge">{badgeText}</div>}
-        <div className="student-name" title={student.name}>{student.name}</div>
-        <div className="student-percentage">{student.percentage}</div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 26 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: 0.06 * index, ease: "easeOut" as const }}
+      className={`topper-card medal-${student.medal || 'none'}`}
+    >
+      <div className="topper-photo-frame">
+        <img src={student.photo} alt={student.name} loading="lazy" />
+        {medalEmoji && <span className="medal-badge" aria-hidden="true">{medalEmoji}</span>}
       </div>
-    </div>
-  );
-};
-
-/** Infinite marquee of student achievements */
-const StudentMarquee: React.FC<{ students: Student[] }> = ({ students }) => {
-  // Duplicate for seamless loop
-  const doubled = useMemo(() => [...students, ...students], [students]);
-
-  return (
-    <div className="marquee-wrapper w-full overflow-hidden relative py-2">
-      <div className="marquee-track" role="list" aria-label="Student achievements marquee">
-        {doubled.map((student, idx) => (
-          <StudentCard key={`${student.id}-${idx}`} student={student} />
-        ))}
-      </div>
-    </div>
+      <p className="topper-name">{student.name}</p>
+      <p className="topper-percentage">{student.percentage}</p>
+    </motion.div>
   );
 };
 
 /** Download PDF card with CTA button */
 const DownloadCard: React.FC = () => {
   const handleDownload = useCallback(() => {
-  const link = document.createElement('a');
-  link.href = '/public/SriVidyaSchool.pdf'; // must be in `public/assets/`, not `src/assets/`
-  link.download = 'SriVidyaSchool.pdf';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}, []);
-
+    const link = document.createElement('a');
+    link.href = '/public/SriVidyaSchool.pdf';
+    link.download = 'SriVidyaSchool.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }, []);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="glass-card rounded-3xl p-8 md:p-10 text-center max-w-2xl mx-auto"
-      role="region"
-      aria-label="Download results"
+      transition={{ duration: 0.55, ease: "easeOut" }}
+      className="download-card"
     >
-      <h3 className="text-xl md:text-2xl font-bold text-slate-800 mb-2">
-        📄 Download Complete SSC 2026 Results
-      </h3>
-      <p className="text-sm md:text-base text-slate-500 mb-6 max-w-md mx-auto">
-        Download the official SSC 2026 result sheet published by Sree Vidya High School.
-      </p>
-      <button
-        onClick={handleDownload}
-        className="download-btn"
-        aria-label="Download SSC 2026 results PDF"
-        type="button"
-      >
+      <p className="download-title">Download the complete SSC 2026 result sheet</p>
+      <button onClick={handleDownload} className="download-btn" type="button" aria-label="Download SSC 2026 results PDF">
         <span aria-hidden="true">📄</span>
         Download Result PDF
       </button>
@@ -280,279 +244,388 @@ export const SSCResultsSection: React.FC = () => {
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
   const headerVariants = {
-    hidden: { opacity: 0, y: 28 },
+    hidden: { opacity: 0, y: 22 },
     visible: { opacity: 1, y: 0 },
   };
 
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden"
-      style={{ background: 'linear-gradient(170deg, #fdfcfa 0%, #f8f4ee 100%)' }}
+      className="results-banner"
       aria-labelledby="results-heading"
     >
-      {/* Decorative shapes */}
-      <div className="bg-shape-1" aria-hidden="true" />
-      <div className="bg-shape-2" aria-hidden="true" />
-      <div className="bg-shape-3" aria-hidden="true" />
+      {/* Confetti / stars background */}
+      <div className="confetti" aria-hidden="true">
+        {['⭐','✦','⭐','✦','⭐','✦','⭐','✦','⭐','✦','⭐','✦'].map((s, i) => (
+          <span key={i} className={`confetti-star star-${i}`}>{s}</span>
+        ))}
+      </div>
 
-      <div className="relative max-w-7xl mx-auto">
-        {/* ── Header ── */}
-        <div className="text-center mb-12 md:mb-16">
-          {/* Badge */}
-          <motion.div
-            variants={headerVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 text-sm font-semibold px-4 py-1.5 rounded-full border border-amber-200/60 shadow-sm mb-4"
-          >
-            <span aria-hidden="true">🎉</span>
-            SSC 2026 Results Declared
-          </motion.div>
-
-          {/* Heading */}
-          <motion.h1
-            id="results-heading"
-            variants={headerVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            transition={{ delay: 0.06 }}
-            className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-800 tracking-tight leading-[1.1] mb-3"
-          >
-            Outstanding <span className="text-amber-500">SSC 2026</span> Results
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            variants={headerVariants}
-            initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
-            transition={{ delay: 0.1 }}
-            className="text-base md:text-lg text-slate-500 max-w-2xl mx-auto"
-          >
-            Congratulations to our students for their exceptional performance in the SSC 2026 examinations.
-          </motion.p>
+      <div className="banner-inner">
+        {/* ── Header: logo + school name ── */}
+        <div className="banner-header">
+          <div className="school-badge" aria-hidden="true">SV</div>
+          <div className="school-titles">
+            <h1 className="school-name">Sree Vidya High School</h1>
+            <p className="school-sub">Celebrating Academic Excellence</p>
+          </div>
         </div>
 
-        {/* ── Statistics Grid ── */}
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-6 mb-14 md:mb-18"
-          role="list"
-          aria-label="Results statistics"
+        {/* ── Ribbon ── */}
+        <motion.div
+          variants={headerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          className="ribbon-wrap"
         >
+          <span className="ribbon">SSC 2026 Results Declared</span>
+        </motion.div>
+
+        {/* ── Trophy heading ── */}
+        <motion.div
+          id="results-heading"
+          variants={headerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          transition={{ delay: 0.08 }}
+          className="trophy-heading"
+        >
+          <span className="trophy" aria-hidden="true">🏆</span>
+          <div className="trophy-heading-text">
+            <p className="eyebrow">SSC 2026 Board Result</p>
+            <h2 className="school-toppers">School Toppers</h2>
+          </div>
+          <span className="trophy" aria-hidden="true">🏆</span>
+        </motion.div>
+
+        {/* ── 100% badge ── */}
+        <motion.div
+          variants={headerVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          transition={{ delay: 0.12 }}
+          className="pass-badge"
+        >
+          <span>100%</span>
+          Results
+        </motion.div>
+
+        {/* ── Toppers row ── */}
+        <div className="toppers-row" role="list" aria-label="Top performing students">
+          {STUDENTS.map((student, idx) => (
+            <TopperCard key={student.id} student={student} index={idx} />
+          ))}
+        </div>
+
+        {/* ── Closing message ── */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-40px' }}
+          transition={{ duration: 0.6 }}
+          className="closing-message"
+        >
+          The Management, Principal &amp; Staff of Sree Vidya High School congratulate all
+          the students for their success.
+        </motion.p>
+
+        {/* ── Statistics strip ── */}
+        <div className="stats-strip" role="list" aria-label="Results statistics">
           {STATISTICS.map((stat, idx) => (
             <StatCard key={stat.id} stat={stat} index={idx} />
           ))}
         </div>
 
-        {/* ── Student Marquee ── */}
-        <div className="mb-14 md:mb-18">
-          <div className="flex items-center justify-between mb-4 px-1">
-            <h2 className="text-lg md:text-xl font-bold text-slate-700 flex items-center gap-2">
-              <span aria-hidden="true">🌟</span>
-              Top Achievers
-            </h2>
-            <span className="text-xs text-slate-400 hidden sm:inline">
-              <span aria-hidden="true">⏸</span> Hover to pause
-            </span>
-          </div>
-          <StudentMarquee students={STUDENTS} />
-          <p className="text-xs text-slate-400 text-center mt-3 sm:hidden">
-            <span aria-hidden="true">⏸</span> Tap or hover to pause
-          </p>
-        </div>
-
-        {/* ── Download Card ── */}
+        {/* ── Download card ── */}
         <DownloadCard />
       </div>
 
-      {/* ── Inline styles for glassmorphism & marquee ── */}
       <style>{`
-        .glass-card {
-          background: rgba(255, 255, 255, 0.72);
-          backdrop-filter: blur(12px) saturate(1.2);
-          -webkit-backdrop-filter: blur(12px) saturate(1.2);
-          border: 1px solid rgba(255, 255, 255, 0.5);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.02);
-          transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-        .glass-card:hover {
-          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10), 0 4px 16px rgba(0, 0, 0, 0.04);
-        }
-        .stat-card {
-          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-        }
-        .stat-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 24px 56px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.04);
-        }
-        .marquee-track {
-          display: flex;
-          gap: 1.5rem;
-          width: max-content;
-          animation: marqueeScroll 32s linear infinite;
-          will-change: transform;
-        }
-        .marquee-wrapper:hover .marquee-track {
-          animation-play-state: paused;
-        }
-        @keyframes marqueeScroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .student-card {
-          flex: 0 0 auto;
-          width: 220px;
-          height: 320px;
-          background-size: cover;
-          background-position: center;
-          border-radius: 1rem;
-          overflow: hidden;
-          box-shadow: 0 12px 40px rgba(2,6,23,0.18);
-          transition: transform 0.28s ease, box-shadow 0.28s ease;
-          display: flex;
-          align-items: flex-end;
-          color: white;
-          position: relative;
-        }
-        .student-card:hover { transform: translateY(-6px) scale(1.02); }
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Poppins:wght@400;500;600;700&family=Dancing+Script:wght@600&display=swap');
 
-        .student-card::after {
-          content: '';
+        .results-banner {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          padding: 3rem 1.25rem 4rem;
+          background: linear-gradient(180deg, #FFFCF5 0%, #FDF6E7 100%);
+          font-family: 'Poppins', sans-serif;
+        }
+
+        .confetti {
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.55) 100%);
           pointer-events: none;
+          overflow: hidden;
         }
+        .confetti-star {
+          position: absolute;
+          font-size: 1.4rem;
+          color: #F2C14E;
+          opacity: 0.35;
+        }
+        .star-0 { top: 6%; left: 4%; }
+        .star-1 { top: 14%; left: 92%; font-size: 1rem; }
+        .star-2 { top: 30%; left: 2%; font-size: 1rem; }
+        .star-3 { top: 42%; left: 96%; }
+        .star-4 { top: 60%; left: 3%; }
+        .star-5 { top: 70%; left: 94%; font-size: 1rem; }
+        .star-6 { top: 85%; left: 6%; font-size: 1rem; }
+        .star-7 { top: 90%; left: 90%; }
+        .star-8 { top: 4%; left: 45%; font-size: 0.9rem; }
+        .star-9 { top: 96%; left: 50%; font-size: 0.9rem; }
+        .star-10 { top: 20%; left: 60%; font-size: 0.8rem; }
+        .star-11 { top: 50%; left: 20%; font-size: 0.8rem; }
 
-        .student-card-content {
+        .banner-inner {
           position: relative;
-          padding: 1rem;
-          width: 100%;
-          z-index: 2;
+          max-width: 1100px;
+          margin: 0 auto;
+          text-align: center;
         }
 
-        .card-badge {
-          display: inline-block;
-          background: rgba(0,0,0,0.45);
-          color: #ffdca3;
-          font-size: 11px;
-          font-weight: 700;
-          padding: 6px 10px;
-          border-radius: 999px;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          margin-bottom: 0.6rem;
+        .banner-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.9rem;
+          margin-bottom: 1.5rem;
         }
-
-        .student-name {
-          font-size: 1.05rem;
-          font-weight: 800;
-          line-height: 1.05;
-          margin-bottom: 0.35rem;
-          text-shadow: 0 6px 20px rgba(0,0,0,0.45);
-        }
-
-        .student-percentage {
-          font-size: 2.1rem;
-          font-weight: 900;
-          color: #ffd166;
-          text-shadow: 0 6px 20px rgba(0,0,0,0.5);
-        }
-        .student-avatar {
+        .school-badge {
           width: 56px;
           height: 56px;
+          flex-shrink: 0;
           border-radius: 50%;
+          background: radial-gradient(circle at 30% 30%, #D4A017, #8B6508);
+          color: #FFFBF0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'Playfair Display', serif;
+          font-weight: 800;
+          font-size: 1.1rem;
+          border: 3px solid #FFF6DC;
+          box-shadow: 0 4px 14px rgba(139, 101, 8, 0.28);
+        }
+        .school-titles { text-align: left; }
+        .school-name {
+          font-family: 'Playfair Display', serif;
+          font-weight: 900;
+          font-size: clamp(1.4rem, 3vw, 2.1rem);
+          color: #2A2118;
+          margin: 0;
+          letter-spacing: -0.01em;
+        }
+        .school-sub {
+          font-size: 0.85rem;
+          color: #8A7A5C;
+          margin: 0.15rem 0 0;
+          font-weight: 500;
+        }
+
+        .ribbon-wrap {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.75rem;
+        }
+        .ribbon {
+          display: inline-block;
+          background: linear-gradient(135deg, #9F1D35, #7A1229);
+          color: #FDEFCE;
+          font-weight: 700;
+          font-size: 0.95rem;
+          letter-spacing: 0.04em;
+          padding: 0.7rem 3rem;
+          clip-path: polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%, 7% 50%);
+          box-shadow: 0 6px 18px rgba(122, 18, 41, 0.3);
+        }
+
+        .trophy-heading {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: clamp(0.75rem, 4vw, 2.5rem);
+          margin-bottom: 1.25rem;
+        }
+        .trophy {
+          font-size: clamp(2rem, 5vw, 3rem);
+          filter: drop-shadow(0 4px 8px rgba(180, 130, 20, 0.35));
+        }
+        .eyebrow {
+          font-weight: 600;
+          font-size: 0.85rem;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #9F1D35;
+          margin: 0 0 0.25rem;
+        }
+        .school-toppers {
+          font-family: 'Playfair Display', serif;
+          font-weight: 900;
+          font-size: clamp(2rem, 5vw, 3.2rem);
+          color: #2A2118;
+          margin: 0;
+          line-height: 1;
+        }
+
+        .pass-badge {
+          width: 96px;
+          height: 96px;
+          margin: 0 auto 2.5rem;
+          border-radius: 50%;
+          background: radial-gradient(circle at 32% 28%, #FFE49B, #D4A017 70%);
+          border: 3px dashed #9F1D35;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          font-weight: 700;
+          color: #5A2A0C;
+          transform: rotate(-8deg);
+          box-shadow: 0 8px 20px rgba(180, 130, 20, 0.28);
+        }
+        .pass-badge span {
+          font-size: 1.35rem;
+          font-weight: 900;
+          line-height: 1;
+        }
+
+        .toppers-row {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 1.25rem 1rem;
+          margin-bottom: 2.5rem;
+        }
+        .topper-card {
+          width: 148px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .topper-photo-frame {
+          position: relative;
+          width: 128px;
+          height: 128px;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 4px solid #E7DCC2;
+          background: #EFE7D2;
+          box-shadow: 0 6px 16px rgba(42, 33, 24, 0.14);
+        }
+        .medal-gold .topper-photo-frame { border-color: #D4A017; box-shadow: 0 8px 22px rgba(212, 160, 23, 0.4); }
+        .medal-silver .topper-photo-frame { border-color: #A8A8A8; box-shadow: 0 8px 22px rgba(140, 140, 140, 0.32); }
+        .medal-bronze .topper-photo-frame { border-color: #B0703A; box-shadow: 0 8px 22px rgba(176, 112, 58, 0.32); }
+        .topper-photo-frame img {
+          width: 100%;
+          height: 100%;
           object-fit: cover;
-          border: 2px solid #f59e0b;
-          padding: 2px;
-          background: white;
-          margin: 0 auto 0.5rem;
           display: block;
         }
-        .topper-badge {
-          background: linear-gradient(135deg, #f59e0b, #d97706);
-          color: white;
-          font-size: 0.6rem;
+        .medal-badge {
+          position: absolute;
+          top: -6px;
+          right: -6px;
+          font-size: 1.4rem;
+          filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+        }
+        .topper-name {
+          margin: 0.6rem 0 0.15rem;
           font-weight: 700;
-          padding: 0.15rem 0.7rem;
-          border-radius: 999px;
-          display: inline-block;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-          margin-top: 0.3rem;
+          font-size: 0.85rem;
+          color: #2A2118;
+          line-height: 1.2;
+        }
+        .topper-percentage {
+          margin: 0;
+          font-weight: 900;
+          font-size: 1.3rem;
+          color: #9F1D35;
+        }
+        .medal-gold .topper-percentage { color: #B8860B; }
+
+        .closing-message {
+          font-family: 'Dancing Script', cursive;
+          font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+          color: #5A4A30;
+          max-width: 640px;
+          margin: 0 auto 2.75rem;
+          line-height: 1.5;
+        }
+
+        .stats-strip {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+          gap: 0.85rem;
+          margin-bottom: 2.5rem;
+        }
+        .stat-pill {
+          background: #FFFFFF;
+          border: 1px solid #EDE1C4;
+          border-radius: 14px;
+          padding: 0.9rem 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.7rem;
+          text-align: left;
+          box-shadow: 0 3px 10px rgba(42, 33, 24, 0.05);
+        }
+        .stat-icon { font-size: 1.5rem; flex-shrink: 0; }
+        .stat-number {
+          font-weight: 800;
+          font-size: 1.25rem;
+          color: #2A2118;
+          font-variant-numeric: tabular-nums;
+        }
+        .stat-label {
+          margin: 0.1rem 0 0;
+          font-size: 0.72rem;
+          font-weight: 600;
+          color: #8A7A5C;
+          letter-spacing: 0.01em;
+        }
+
+        .download-card {
+          background: #FFFFFF;
+          border: 1px solid #EDE1C4;
+          border-radius: 20px;
+          padding: 1.75rem 1.5rem;
+          max-width: 460px;
+          margin: 0 auto;
+          box-shadow: 0 8px 26px rgba(42, 33, 24, 0.06);
+        }
+        .download-title {
+          font-weight: 600;
+          font-size: 0.95rem;
+          color: #4A3D28;
+          margin: 0 0 1rem;
         }
         .download-btn {
-          background: linear-gradient(135deg, #16a34a, #15803d);
-          color: white;
+          background: linear-gradient(135deg, #D4A017, #9F1D35);
+          color: #FFFBF0;
           border: none;
-          padding: 0.9rem 2.6rem;
+          padding: 0.8rem 2.2rem;
           border-radius: 999px;
-          font-weight: 600;
-          font-size: 1.05rem;
+          font-weight: 700;
+          font-size: 0.95rem;
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
-          box-shadow: 0 4px 20px rgba(22, 163, 74, 0.30);
-          transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+          gap: 0.55rem;
+          box-shadow: 0 6px 18px rgba(159, 29, 53, 0.28);
           cursor: pointer;
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
-        .download-btn:hover {
-          transform: scale(1.03);
-          box-shadow: 0 8px 36px rgba(22, 163, 74, 0.40);
-        }
-        .download-btn:active {
-          transform: scale(0.96);
-        }
+        .download-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(159, 29, 53, 0.36); }
+        .download-btn:active { transform: scale(0.97); }
+
         @media (max-width: 640px) {
-          .student-card { width: 130px; height: 190px; padding: 0.75rem 0.5rem; }
-          .student-name { font-size: 0.8rem; }
-          .student-percentage { font-size: 1.3rem; }
-          .card-badge { font-size: 9px; padding: 4px 8px; margin-bottom: 0.4rem; }
-          .student-avatar { width: 44px; height: 44px; }
-          .marquee-track { gap: 0.75rem; animation-duration: 24s; }
-          .download-btn { padding: 0.75rem 1.8rem; font-size: 0.95rem; width: 100%; justify-content: center; }
-        }
-        @media (min-width: 641px) and (max-width: 1024px) {
-          .student-card { width: 170px; height: 250px; }
-          .student-name { font-size: 0.95rem; }
-          .student-percentage { font-size: 1.7rem; }
-          .marquee-track { gap: 1.25rem; animation-duration: 30s; }
-        }
-        .bg-shape-1 {
-          position: absolute;
-          top: -12%;
-          right: -6%;
-          width: 380px;
-          height: 380px;
-          background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .bg-shape-2 {
-          position: absolute;
-          bottom: -10%;
-          left: -8%;
-          width: 420px;
-          height: 420px;
-          background: radial-gradient(circle, rgba(22, 163, 74, 0.06) 0%, transparent 70%);
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .bg-shape-3 {
-          position: absolute;
-          top: 40%;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 600px;
-          height: 600px;
-          background: radial-gradient(circle, rgba(245, 158, 11, 0.03) 0%, transparent 70%);
-          border-radius: 50%;
-          pointer-events: none;
-        }
-        .stat-number {
-          font-variant-numeric: tabular-nums;
-          letter-spacing: -0.02em;
+          .results-banner { padding: 2.25rem 1rem 3rem; }
+          .school-titles { text-align: center; }
+          .topper-card { width: 104px; }
+          .topper-photo-frame { width: 92px; height: 92px; border-width: 3px; }
+          .topper-percentage { font-size: 1.05rem; }
+          .toppers-row { gap: 1rem 0.65rem; }
+          .ribbon { padding: 0.6rem 2rem; font-size: 0.82rem; }
         }
       `}</style>
     </section>

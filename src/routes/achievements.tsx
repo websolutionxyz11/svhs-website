@@ -7,9 +7,9 @@ import { Reveal } from "../components/Reveal";
 import { Counter } from "../components/Counter";
 import { Lightbox, type LightboxItem } from "../components/Lightbox";
 
-import topper1 from "../assets/topper-1.webp";
-import topper2 from "../assets/topper-2.webp";
-import topper3 from "../assets/topper-3.webp";
+import topper1 from "../assets/10th_Students/2620106398.webp";
+import topper2 from "../assets/10th_Students/2620106330.webp";
+import topper3 from "../assets/10th_Students/2620106332.webp";
 import sportsImg from "../assets/sports.webp";
 import scienceImg from "../assets/science-lab.webp";
 import culturalImg from "../assets/cultural.webp";
@@ -54,9 +54,9 @@ const awards = [
 ];
 
 const toppers = [
-  { img: topper1, name: "Aarav Mehta", score: "98.6%", subj: "All India StateBoard Rank 27" },
-  { img: topper2, name: "Sara Iqbal", score: "97.8%", subj: "State Topper · Sciences" },
-  { img: topper3, name: "Vikram Rao", score: "Gold", subj: "National Robotics Champ" },
+  { img: topper1, name: "G. Vekanth Reddy", score: "93.2%", subj: "All India StateBoard Rank 27" },
+  { img: topper2, name: "G. Lakshmi Prasad", score: "92.0%", subj: "State Topper · Sciences" },
+  { img: topper3, name: "K. Pream Kumar", score: "Gold", subj: "National Robotics Champ" },
 ];
 
 const certificates: LightboxItem[] = [
@@ -272,30 +272,60 @@ function AchievementsPage() {
 
       {/* Toppers */}
       <section className="py-10 md:py-14">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Toppers</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Stars of 2024–25</h2>
-          </Reveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {toppers.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08}>
-                <article className="group relative overflow-hidden rounded-3xl bg-dark text-dark-foreground shadow-soft hover:shadow-elevated transition">
-                  <div className="aspect-[4/5] overflow-hidden">
-                    <img src={t.img} alt={t.name} loading="lazy" decoding="async" width={400} height={300} className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/40 to-transparent" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="text-xs uppercase tracking-[0.2em] text-secondary font-bold">{t.subj}</div>
-                    <div className="mt-1 text-2xl font-extrabold">{t.name}</div>
-                    <div className="mt-1 text-3xl font-extrabold bg-gold-gradient bg-clip-text text-transparent">{t.score}</div>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+  <div className="container-x">
+    <Reveal className="text-center max-w-2xl mx-auto mb-14">
+      <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Toppers</span>
+      <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Stars of 2025–26</h2>
+    </Reveal>
+
+    <div className="grid md:grid-cols-3 gap-6">
+      {toppers.map((t, i) => (
+        <Reveal key={t.name} delay={i * 0.08}>
+          <article className="group relative overflow-hidden rounded-3xl bg-dark text-dark-foreground shadow-soft ring-1 ring-white/5 hover:ring-secondary/40 hover:shadow-glow transition-all duration-500">
+            <div className="aspect-[4/5] overflow-hidden relative">
+              <img
+                src={t.img}
+                alt={t.name}
+                loading="lazy"
+                decoding="async"
+                width={400}
+                height={300}
+                className="h-full w-full object-cover grayscale-[15%] group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 mt-10"
+              />
+              {/* Blue duotone tint for a consistent photographic look */}
+              <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-transparent to-transparent mix-blend-multiply" />
+            </div>
+
+            {/* Rank / achievement badge */}
+            <div className="absolute top-4 left-4 flex h-9 w-9 items-center justify-center rounded-full bg-gold-gradient text-secondary-foreground font-extrabold text-sm shadow-elevated">
+              {i + 1}
+            </div>
+
+            {/* Bottom gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
+
+            <div className="absolute bottom-0 left-0 right-0 p-6">
+              <div className="flex items-center gap-2">
+                <span className="h-px w-4 bg-secondary/70" />
+                <span className="text-xs uppercase tracking-[0.2em] text-secondary font-bold">
+                  {t.subj}
+                </span>
+              </div>
+
+              <div className="mt-2 text-2xl font-extrabold leading-tight">{t.name}</div>
+
+              <div className="mt-1 flex items-baseline gap-1.5">
+                <span className="text-3xl font-extrabold bg-gold-gradient bg-clip-text text-transparent">
+                  {t.score}
+                </span>
+              </div>
+            </div>
+          </article>
+        </Reveal>
+      ))}
+    </div>
+  </div>
+</section>
 
 
       {/* YEAR-WISE RESULTS LINE GRAPH */}
