@@ -264,7 +264,7 @@ export const SSCResultsSection: React.FC = () => {
       <div className="banner-inner">
         {/* ── Header: logo + school name ── */}
         <div className="banner-header">
-          <div className="school-badge" aria-hidden="true">SV</div>
+         
           <div className="school-titles">
             <h1 className="school-name">Sree Vidya High School</h1>
             <p className="school-sub">Celebrating Academic Excellence</p>
