@@ -60,6 +60,9 @@ import { AdmissionPopup } from "../components/AdmissionPopup";
 import { ResultsPopup } from "../components/Resultspopup";
 import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
 import { FacultyMasonryGallery } from "../components/FacultyMasonryGallery";
+import CircularGallery from "@/components/CircularGallery.tsx";
+import { MobileGalleryCarousel } from "../components/MobileGalleryCarousel";
+import SplashCursor from "../components/SplashCursor";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -218,6 +221,7 @@ function HomePage() {
 
   return (
     <>
+      <SplashCursor />
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
       {/* School Banner — sits directly below the navbar */}
@@ -425,45 +429,32 @@ teachers, modern facilities, and excellent academic results.
 
       {/* GALLERY PREVIEW */}
       <section className="section-y bg-dark text-dark-foreground">
-        <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
-            <Reveal>
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Gallery</span>
-              <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white">Moments that define us.</h2>
-            </Reveal>
-            <Link to="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:gap-3 transition-all">
-              Open full gallery <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
+  <div className="container-x">
+    <div className="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <Reveal>
+        <span className="text-xs font-bold uppercase tracking-[0.2em] text-secondary">Gallery</span>
+        <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-white">Moments that define us.</h2>
+      </Reveal>
+      <Link to="/gallery" className="inline-flex items-center gap-2 text-sm font-semibold text-secondary hover:gap-3 transition-all">
+        Open full gallery <ArrowRight className="h-4 w-4" />
+      </Link>
+    </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-            {galleryPreview.map((g, i) => (
-              <Reveal key={g.alt} delay={i * 0.05}>
-                <button
-                  onClick={() => setLightbox(i)}
-                  className="relative block w-full aspect-square overflow-hidden rounded-xl group"
-                >
-                  <ResponsivePicture
-                    src={g.src}
-                    alt={g.alt}
-                    sources={g.avif ? [
-                      { type: "image/avif", srcSet: g.avif },
-                      { type: "image/webp", srcSet: g.src },
-                    ] : undefined}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-70 group-hover:opacity-90 transition" />
-                  <p className="absolute bottom-3 left-3 right-3 text-sm font-semibold text-white text-left">
-                    {g.alt}
-                  </p>
-                </button>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-        <Lightbox items={items} index={lightbox} onClose={() => setLightbox(null)} onIndex={setLightbox} />
-      </section>
+    {isMobile ? (
+      <MobileGalleryCarousel items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))} />
+    ) : (
+      <div style={{ height: "400px", position: "relative" }}>
+        <CircularGallery
+          items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))}
+          bend={3}
+          textColor="#ffffff"
+          borderRadius={0.05}
+          scrollEase={0.02}
+        />
+      </div>
+    )}
+  </div>
+</section>
 
       {/* PRINCIPAL MESSAGE */}
       <section className="section-y">
@@ -635,12 +626,7 @@ teachers, modern facilities, and excellent academic results.
         </div>
       </section>
 
-      <FacultyMasonryGallery
-        teachers={teachers.map((teacher, index) => ({
-          ...teacher,
-          heightClass: index % 2 === 0 ? "h-56 sm:h-64" : "h-72 sm:h-80",
-        }))}
-      />
+      <FacultyMasonryGallery />
 
     </>
   );

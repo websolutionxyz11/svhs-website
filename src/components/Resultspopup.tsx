@@ -41,7 +41,7 @@ export function ResultsPopup() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ type: "spring", damping: 22, stiffness: 260 }}
-            className="relative w-full max-w-lg overflow-hidden rounded-3xl bg-white shadow-elevated"
+            className="relative w-full max-w-lg overflow-hidden rounded-none bg-white shadow-elevated"
           >
             <button
               onClick={close}
