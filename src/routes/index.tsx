@@ -221,7 +221,7 @@ function HomePage() {
 
   return (
     <>
-      <SplashCursor />
+      {!isMobile && <SplashCursor />}
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
       {/* School Banner — sits directly below the navbar */}
