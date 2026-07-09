@@ -16,6 +16,7 @@ import student_2620106314 from "../assets/10th_Students/2620106314.webp";
 import student_2620106320 from "../assets/10th_Students/2620106320.webp";
 import admissionImg from "../assets/admissionImg.webp";
 
+
 export const Route = createFileRoute("/admissions")({
   head: () => ({
     meta: [
@@ -253,6 +254,7 @@ function AdmissionsPage() {
           </Reveal>
         </div>
       </section>
+
 
       {/* Process timeline — animated flow */}
       <section className="py-10 md:py-14">

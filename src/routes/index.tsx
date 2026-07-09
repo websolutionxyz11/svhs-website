@@ -18,19 +18,19 @@ import principalImgAvif from "../assets/principal.avif";
 import classroomImgWebp from "../assets/classroom.webp";
 import schoolEntrancWebp from "../assets/School_Entrance.webp";
 import schoolEntrancAvif from "../assets/School_Entrance.avif";
-import sportsImgWebp from "../assets/sports.webp";
-import sportsImgAvif from "../assets/sports.avif";
+import yogaClips from "../assets/events/yoga.webp";
+import yogaClipsAvif from "../assets/events/yoga.webp";
 import culturalImgWebp from "../assets/cultural.webp";
 import culturalImgAvif from "../assets/cultural.avif";
-import scienceImgWebp from "../assets/science-lab.webp";
-import scienceImgAvif from "../assets/science-lab.avif";
+import scienceImgWebp from "../assets/events/trip.webp";
+import scienceImgAvif from "../assets/events/trip.webp";
 import libraryImgWebp from "../assets/library.webp";
 import libraryImgAvif from "../assets/library.avif";
 import topper1 from "../assets/topper-1.webp";
 import topper2 from "../assets/topper-2.webp";
 import topper3 from "../assets/topper-3.webp";
-import eventAnnualWebp from "../assets/events/event1.webp";
-import eventAnnualAvif from "../assets/events/event1.webp";
+import eventAnnualWebp from "../assets/events/event4.webp";
+import eventAnnualAvif from "../assets/events/event4.webp";
 import eventArtWebp from "../assets/event-art.webp";
 import eventArtAvif from "../assets/event-art.avif";
 import resultCard from "../assets/resultcard.webp";
@@ -42,6 +42,9 @@ import schoolbannerAvif from "../assets/schoolBanner.avif";
 import AccadamicIncharge from "../assets/teachers/AccadamicIncharge.webp";
 import krishnasai from "../assets/teachers/KrishnaSai.webp";
 import studentImg from "../assets/studentFlag.webp";
+
+import poster1 from "../assets/10th_Students/Poster1.webp";
+import poster2 from "../assets/10th_Students/Poster2.webp";
 
 import buss from "../assets/school_buss.webp";
 import schoolviewWebp from "../assets/school_view.webp";
@@ -162,7 +165,7 @@ const features = [
 
 const galleryPreview = [
   { src: schoolviewWebp, avif: schoolviewAvif, alt: "school view" },
-  { src: sportsImgWebp, avif: sportsImgAvif, alt: "Sports day" },
+  { src: yogaClips, avif: yogaClipsAvif, alt: "Sports day" },
   { src: buss, avif: undefined, alt: "bus" },
   { src: culturalImgWebp, avif: culturalImgAvif, alt: "Cultural festival" },
   { src: libraryImgWebp, avif: libraryImgAvif, alt: "Reading hall" },
@@ -179,7 +182,7 @@ const testimonials = [
 
 const upcomingEvents = [
   { date: "Dec 18", title: "Annual Day Celebrations", img: eventAnnualWebp, avif: eventAnnualAvif, tag: "Cultural" },
-  { date: "Jan 12", title: "Inter-School Sports Meet", img: sportsImgWebp, avif: sportsImgAvif, tag: "Sports" },
+  { date: "Jan 12", title: "Inter-School Sports Meet", img: yogaClips, avif: yogaClipsAvif, tag: "Sports" },
   { date: "Feb 04", title: "Science & Robotics Expo", img: scienceImgWebp, avif: scienceImgAvif, tag: "Academic" },
 ];
 
@@ -216,6 +219,8 @@ const heroSlides = [
 function HomePage() {
   const [lightbox, setLightbox] = useState<number | null>(null);
   const [slide, setSlide] = useState(0);
+  const [testimonialSlide, setTestimonialSlide] = useState(0);
+  const [eventSlide, setEventSlide] = useState(0);
   const items: LightboxItem[] = galleryPreview.map((g) => ({ src: g.src, alt: g.alt }));
 
   useEffect(() => {
@@ -223,10 +228,22 @@ function HomePage() {
     return () => clearInterval(t);
   }, []);
 
+  // Auto-scroll events carousel
+  useEffect(() => {
+    const t = setInterval(() => setEventSlide((s) => (s + 1) % upcomingEvents.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
   const next = () => setSlide((s) => (s + 1) % heroSlides.length);
   const prev = () => setSlide((s) => (s - 1 + heroSlides.length) % heroSlides.length);
   const current = heroSlides[slide];
   const isMobile = useIsMobile();
+
+  const nextTestimonial = () => setTestimonialSlide((s) => (s + 1) % testimonials.length);
+  const prevTestimonial = () => setTestimonialSlide((s) => (s - 1 + testimonials.length) % testimonials.length);
+
+  const nextEvent = () => setEventSlide((s) => (s + 1) % upcomingEvents.length);
+  const prevEvent = () => setEventSlide((s) => (s - 1 + upcomingEvents.length) % upcomingEvents.length);
 
   return (
     <>
@@ -296,10 +313,103 @@ function HomePage() {
 </section>
 {/* SSCResult section */}
 
-<SSCResults />
+{/* <SSCResults /> */}  {/*This is some other feature to showcase the results */}
 
+        
+{/* POSTER PRESENTATION SECTION */}
+      <section className="py-10 md:py-14 bg-gradient-to-b from-muted/40 to-background">
+        <div className="container-x">
+          <Reveal className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Achievement Gallery</span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Our Success Stories</h2>
+            <p className="mt-4 text-muted-foreground">Celebrating excellence and achievements of our 10th class batch</p>
+          </Reveal>
 
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {/* Poster 1 */}
+            <Reveal delay={0.1}>
+              <div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5 }}
+                className="group relative overflow-hidden rounded-3xl shadow-elevated hover:shadow-glow transition-all"
+              >
+                <div className="relative overflow-hidden ">
+                  {/* Image */}
+                  <div className="relative aspect-[9/12] overflow-hidden">
+                    <img
+                      src={poster1}
+                      alt="Achievement Poster 1"
+                      loading="lazy"
+                      className="h-full w-full object-cover "
+                    />
+                  </div>
 
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div className="text-white">
+                      <h3 className="text-lg font-bold">Excellence in Academics</h3>
+                      <p className="text-sm text-white/80 mt-1">Celebrating our top performers</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Poster 2 */}
+            <Reveal delay={0.2}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="group relative overflow-hidden rounded-3xl shadow-elevated hover:shadow-glow transition-all"
+              >
+                <div className="relative overflow-hidden bg-card rounded-3xl">
+                  {/* Image */}
+                  <div className="relative aspect-[9/12] overflow-hidden">
+                    <img
+                      src={poster2}
+                      alt="Achievement Poster 2"
+                      loading="lazy"
+                      className="h-full w-full object-cover "
+                    />
+                  </div>
+
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                    <div className="text-white">
+                      <h3 className="text-lg font-bold">Class of 2026</h3>
+                      <p className="text-sm text-white/80 mt-1">Making us proud</p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </Reveal>
+          </div>
+
+          {/* Stats banner below posters */}
+          <Reveal delay={0.3} className="mt-12">
+            <div className="rounded-3xl bg-primary-gradient p-8 md:p-10 text-primary-foreground shadow-elevated">
+              <div className="grid sm:grid-cols-3 gap-6 text-center">
+                <div>
+                  <div className="text-4xl md:text-5xl font-extrabold text-secondary">100%</div>
+                  <p className="mt-2 text-sm font-semibold text-primary-foreground/80">Board Pass Rate</p>
+                </div>
+                <div>
+                  <div className="text-4xl md:text-5xl font-extrabold text-secondary">96%</div>
+                  <p className="mt-2 text-sm font-semibold text-primary-foreground/80">Avg. Marks</p>
+                </div>
+                <div>
+                  <div className="text-4xl md:text-5xl font-extrabold text-secondary">559</div>
+                  <p className="mt-2 text-sm font-semibold text-primary-foreground/80">State Top Score</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
 
 
@@ -394,45 +504,90 @@ teachers, modern facilities, and excellent academic results.
 
       {/* EVENTS PREVIEW */}
       <section className="section-y">
-        <div className="container-x">
-          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
-            <Reveal>
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Latest Events</span>
-              <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">What's happening on campus.</h2>
-            </Reveal>
-            <Link to="/events" className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:gap-3 transition-all">
-              View all events <ArrowRight className="h-4 w-4" />
-            </Link>
+        <div className="container-x mb-8">
+          <Reveal>
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Latest Events</span>
+            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">What's happening on campus.</h2>
+          </Reveal>
+        </div>
+
+        {/* Full-width carousel */}
+        <div className="relative w-screen left-1/2 right-1/2 -mx-[50vw]">
+          {/* Events Carousel Strip */}
+          <div className="overflow-hidden">
+            <div
+              className="flex transition-transform duration-700 ease-out"
+              style={{ transform: `translateX(-${eventSlide * 100}%)` }}
+            >
+              {upcomingEvents.map((e, i) => (
+                <div key={e.title} className="w-full flex-shrink-0 relative h-80 md:h-96">
+                  <ResponsivePicture
+                    src={e.img}
+                    alt={e.title}
+                    sources={e.avif ? [
+                      { type: "image/avif", srcSet: e.avif },
+                      { type: "image/webp", srcSet: e.img },
+                    ] : undefined}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
+                  
+                  {/* Gradient overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
+                  
+                  {/* Content overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-6 md:p-10">
+                    {/* Date Badge */}
+                    <div className="flex justify-between items-start">
+                      <div className="rounded-xl bg-white/95 backdrop-blur px-4 py-2 text-center shadow-soft">
+                        <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{e.date.split(" ")[0]}</div>
+                        <div className="text-xl font-extrabold text-primary leading-none">{e.date.split(" ")[1]}</div>
+                      </div>
+                      <span className="inline-block rounded-full bg-accent/90 px-4 py-2 text-[11px] font-bold uppercase tracking-wider text-white">{e.tag}</span>
+                    </div>
+
+                    {/* Title at bottom */}
+                    <div className="text-white">
+                      <h3 className="text-2xl md:text-3xl font-bold">{e.title}</h3>
+                      <Link to="/events" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-accent transition-all">
+                        View Details <ChevronRight className="h-4 w-4" />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {upcomingEvents.map((e, i) => (
-              <Reveal key={e.title} delay={i * 0.08}>
-                <article className="group relative overflow-hidden rounded-2xl bg-card border border-border shadow-soft hover:shadow-elevated transition-all">
-                  <div className="aspect-[5/3] overflow-hidden">
-                    <ResponsivePicture
-              src={e.img}
-              alt={e.title}
-              sources={e.avif ? [
-                { type: "image/avif", srcSet: e.avif },
-                { type: "image/webp", srcSet: e.img },
-              ] : undefined}
-              loading="lazy"
-              className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
-            />
-                  </div>
-                  <div className="absolute top-4 left-4 rounded-xl bg-white/95 backdrop-blur px-3 py-2 text-center shadow-soft">
-                    <div className="text-[10px] uppercase tracking-wider text-muted-foreground">{e.date.split(" ")[0]}</div>
-                    <div className="text-lg font-extrabold text-primary leading-none">{e.date.split(" ")[1]}</div>
-                  </div>
-                  <div className="p-6">
-                    <span className="inline-block rounded-full bg-accent/15 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent">{e.tag}</span>
-                    <h3 className="mt-3 text-lg font-bold">{e.title}</h3>
-                    <Link to="/events" className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:gap-2 transition-all">
-                      Details <ChevronRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
+
+          {/* Navigation Arrows */}
+          <button
+            onClick={prevEvent}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 hover:bg-white/40 transition backdrop-blur-sm"
+            aria-label="Previous event"
+          >
+            <ChevronLeft className="h-6 w-6 text-white" />
+          </button>
+          <button
+            onClick={nextEvent}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full bg-white/20 hover:bg-white/40 transition backdrop-blur-sm"
+            aria-label="Next event"
+          >
+            <ChevronRight className="h-6 w-6 text-white" />
+          </button>
+
+          {/* Dot Indicators */}
+          <div className="flex justify-center gap-2 mt-6 px-4">
+            {upcomingEvents.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setEventSlide(i)}
+                className={`h-2 rounded-full transition-all ${
+                  i === eventSlide
+                    ? "bg-primary w-8"
+                    : "bg-muted-foreground/30 w-2 hover:bg-muted-foreground/50"
+                }`}
+                aria-label={`Go to event ${i + 1}`}
+              />
             ))}
           </div>
         </div>
@@ -514,26 +669,70 @@ teachers, modern facilities, and excellent academic results.
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Voices of Vidya</span>
             <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Stories from our community.</h2>
           </Reveal>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <Reveal key={t.name} delay={i * 0.08}>
-                <div className="h-full rounded-2xl bg-card border border-border p-7 shadow-soft hover:shadow-elevated transition">
-                  <div className="flex gap-1 text-secondary">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 fill-current" />)}
+
+          {/* Carousel Container */}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Testimonials Carousel */}
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-out"
+                style={{ transform: `translateX(-${testimonialSlide * 100}%)` }}
+              >
+                {testimonials.map((t, i) => (
+                  <div key={t.name} className="w-full flex-shrink-0 px-4">
+                    <Reveal>
+                      <div className="h-full rounded-2xl bg-card border border-border p-7 shadow-soft hover:shadow-elevated transition">
+                        <div className="flex gap-1 text-secondary">
+                          {[...Array(5)].map((_, j) => <Star key={j} className="h-4 w-4 fill-current" />)}
+                        </div>
+                        <p className="mt-4 text-foreground/80 leading-relaxed">"{t.quote}"</p>
+                        <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
+                          <div className="grid h-11 w-11 place-items-center rounded-full bg-primary-gradient text-primary-foreground font-bold">
+                            {t.name.charAt(0)}
+                          </div>
+                          <div>
+                            <div className="font-bold text-sm">{t.name}</div>
+                            <div className="text-xs text-muted-foreground">{t.role}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </Reveal>
                   </div>
-                  <p className="mt-4 text-foreground/80 leading-relaxed">"{t.quote}"</p>
-                  <div className="mt-6 flex items-center gap-3 pt-5 border-t border-border">
-                    <div className="grid h-11 w-11 place-items-center rounded-full bg-primary-gradient text-primary-foreground font-bold">
-                      {t.name.charAt(0)}
-                    </div>
-                    <div>
-                      <div className="font-bold text-sm">{t.name}</div>
-                      <div className="text-xs text-muted-foreground">{t.role}</div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevTestimonial}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 md:-translate-x-20 z-10 p-2 rounded-full hover:bg-muted transition"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="h-6 w-6 text-primary" />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 md:translate-x-20 z-10 p-2 rounded-full hover:bg-muted transition"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="h-6 w-6 text-primary" />
+            </button>
+
+            {/* Dot Indicators */}
+            <div className="flex justify-center gap-2 mt-8">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setTestimonialSlide(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === testimonialSlide
+                      ? "bg-primary w-8"
+                      : "bg-muted-foreground/30 w-2 hover:bg-muted-foreground/50"
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
