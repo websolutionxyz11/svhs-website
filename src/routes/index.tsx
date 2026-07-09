@@ -4,7 +4,7 @@ import {
   ArrowRight, BookOpen, FlaskConical, Globe2, Heart,
   Quote, Sparkles, Star, Trophy, ChevronRight, ChevronLeft, Calendar,
 } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 
 
 import { Users, GraduationCap, Award, TrendingUp } from "lucide-react";
@@ -59,10 +59,12 @@ import { Radar } from "../components/Radar";
 import { AdmissionPopup } from "../components/AdmissionPopup";
 import { ResultsPopup } from "../components/Resultspopup";
 import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
-import { FacultyMasonryGallery } from "../components/FacultyMasonryGallery";
-import CircularGallery from "@/components/CircularGallery.tsx";
-import { MobileGalleryCarousel } from "../components/MobileGalleryCarousel";
-import SplashCursor from "../components/SplashCursor";
+
+// Lazy load heavy components
+const FacultyMasonryGallery = lazy(() => import("../components/FacultyMasonryGallery").then(m => ({ default: m.FacultyMasonryGallery })));
+const CircularGallery = lazy(() => import("@/components/CircularGallery.tsx"));
+const MobileGalleryCarousel = lazy(() => import("../components/MobileGalleryCarousel").then(m => ({ default: m.MobileGalleryCarousel })));
+const SplashCursor = lazy(() => import("../components/SplashCursor"));
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -228,7 +230,9 @@ function HomePage() {
 
   return (
     <>
-      {!isMobile && <SplashCursor />}
+      <Suspense fallback={null}>
+        {!isMobile && <SplashCursor />}
+      </Suspense>
       {/* <AdmissionPopup /> */}
       <ResultsPopup/>
       {/* School Banner — sits directly below the navbar */}
@@ -447,19 +451,21 @@ teachers, modern facilities, and excellent academic results.
       </Link>
     </div>
 
-    {isMobile ? (
-      <MobileGalleryCarousel items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))} />
-    ) : (
-      <div style={{ height: "400px", position: "relative" }}>
-        <CircularGallery
-          items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))}
-          bend={3}
-          textColor="#ffffff"
-          borderRadius={0.05}
-          scrollEase={0.02}
-        />
-      </div>
-    )}
+    <Suspense fallback={<div style={{ height: "400px", background: "rgba(0,0,0,0.1)", borderRadius: "8px" }} />}>
+      {isMobile ? (
+        <MobileGalleryCarousel items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))} />
+      ) : (
+        <div style={{ height: "400px", position: "relative" }}>
+          <CircularGallery
+            items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))}
+            bend={3}
+            textColor="#ffffff"
+            borderRadius={0.05}
+            scrollEase={0.02}
+          />
+        </div>
+      )}
+    </Suspense>
   </div>
 </section>
 
@@ -633,7 +639,9 @@ teachers, modern facilities, and excellent academic results.
         </div>
       </section>
 
-      <FacultyMasonryGallery />
+      <Suspense fallback={<div style={{ minHeight: "400px", background: "rgba(0,0,0,0.05)" }} />}>
+        <FacultyMasonryGallery />
+      </Suspense>
 
     </>
   );
