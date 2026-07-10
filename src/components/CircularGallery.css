@@ -1,8 +1,10 @@
 .circular-gallery {
   width: 100%;
+  min-height: 400px;
   height: 100%;
   overflow: hidden;
   cursor: grab;
+  background: #0b1a3d;
 }
 
 .circular-gallery:active {
