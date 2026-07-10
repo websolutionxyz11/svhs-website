@@ -134,14 +134,23 @@ export const Route = createFileRoute("/")({
     {
       rel: "canonical",
       href: "https://svhs-website.vercel.app/",
-      
-
     },
     {
-    rel: "icon",
-    type: "image/png",
-    href: "/favicon.png",
-  },
+      rel: "icon",
+      href: "/favicon.ico",
+      type: "image/x-icon",
+    },
+    {
+      rel: "shortcut icon",
+      href: "/favicon.ico",
+      type: "image/x-icon",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      sizes: "512x512",
+      href: "/favicon.png",
+    },
   ],
 }),
 component: HomePage,
