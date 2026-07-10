@@ -151,7 +151,7 @@ img {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-@utility animate-marquee { animation: marquee 35s linear infinite; }
+@utility animate-marquee { animation: marquee 35s linear infinite; will-change: transform; }
 
 @keyframes h-scroll {
   0% { transform: translateX(0); }

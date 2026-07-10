@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-const BASE_URL = "https://school-svhs.vercel.app";
+const BASE_URL = "https://svhs-website.vercel.app";
 
 const entries = [
   { path: "/", priority: "1.0", changefreq: "weekly" },

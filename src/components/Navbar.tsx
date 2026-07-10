@@ -38,7 +38,7 @@ export function Navbar() {
         <Link to="/" className="flex items-center gap-2 shrink-0 group">
           <div className="grid h-10 w-10 place-items-center rounded-xl  text-primary-foreground shadow-soft ">
             {/* <GraduationCap className="h-5 w-5" /> */}
-            <img src={logo} alt="school logo" width={40} height={40} fetchPriority="high" loading="eager" className="h-10 w-10" />
+            <img src={logo} alt="school logo" width={40} height={40} loading="eager" className="h-10 w-10" />
           </div>
           <div className="leading-tight">
             <div className="font-display font-extrabold text-primary text-base md:text-lg">

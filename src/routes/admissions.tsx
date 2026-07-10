@@ -267,11 +267,11 @@ function AdmissionsPage() {
             {/* Animated connecting line (desktop) */}
             <div className="hidden lg:block absolute top-12 left-[12.5%] right-[12.5%] h-1 rounded-full bg-muted overflow-hidden">
               <motion.div
-                initial={{ width: 0 }}
-                whileInView={{ width: "100%" }}
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 1.6, ease: "easeInOut" }}
-                className="h-full bg-white-100"
+                className="origin-left h-full bg-white-100"
               />
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -354,9 +354,9 @@ function AdmissionsPage() {
                     <AnimatePresence initial={false}>
                       {isOpen && (
                         <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.25 }}
                         >
                           <p className="px-6 pb-5 text-muted-foreground leading-relaxed">{f.a}</p>

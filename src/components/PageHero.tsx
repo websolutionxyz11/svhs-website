@@ -30,6 +30,7 @@ export function PageHero({ eyebrow, title, subtitle, crumb, bgImage, bgImageSour
               width={1600}
               height={700}
               fetchPriority="high"
+              loading="eager"
               decoding="async"
               className="absolute inset-0 h-full w-full object-cover"
             />
