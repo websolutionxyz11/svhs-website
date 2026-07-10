@@ -305,37 +305,7 @@ function AdmissionsPage() {
         </div>
       </section>
 
-      {/* Fees */}
-      <section className="py-10 md:py-14 bg-muted/40">
-        <div className="container-x">
-          <Reveal className="text-center max-w-2xl mx-auto mb-10">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">Fee Structure</span>
-            <h2 className="mt-3 text-3xl md:text-5xl font-extrabold">Transparent annual fees</h2>
-            <p className="mt-4 text-muted-foreground">All amounts in INR. Sibling and merit scholarships available.</p>
-          </Reveal>
-          <Reveal>
-            <div className="mx-auto max-w-2xl rounded-3xl bg-card border border-border p-8 md:p-10 text-center shadow-elevated">
-              <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-primary-gradient text-primary-foreground shadow-soft">
-                <Download className="h-7 w-7" />
-              </div>
-              <h3 className="mt-5 text-xl md:text-2xl font-extrabold">Complete Fee Structure 2026–27</h3>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Grade-wise admission fees, tuition, transport and optional add-ons — in a single downloadable PDF.
-              </p>
-              <a
-                href="/fee-structure.pdf"
-                download
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-elevated hover:-translate-y-0.5 transition"
-              >
-                <Download className="h-4 w-4" /> Download Fee Structure (PDF)
-              </a>
-              <p className="mt-3 text-xs text-muted-foreground">
-                Need a printed copy? <Link to="/contact" className="text-primary font-semibold underline-offset-2 hover:underline">Contact admissions</Link>.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+     
 
       {/* Documents */}
       <section className="py-10 md:py-14">
