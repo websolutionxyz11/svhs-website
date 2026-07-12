@@ -1,27 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Lightbox, type LightboxItem } from "../components/Lightbox";
+import DomeGallery from "../components/DomeGallery";
 
 import campusAerialWebp from "../assets/campus-aerial.webp";
-import campusAerialAvif from "../assets/campus-aerial.avif";
 import classroomImgWebp from "../assets/classroom.webp";
-import classroomImgAvif from "../assets/classroom.avif";
 import scienceImgWebp from "../assets/science-lab.webp";
-import scienceImgAvif from "../assets/science-lab.avif";
 import libraryImgWebp from "../assets/library.webp";
-import libraryImgAvif from "../assets/library.avif";
 import sportsImgWebp from "../assets/sports.webp";
-import sportsImgAvif from "../assets/sports.avif";
 import culturalImgWebp from "../assets/cultural.webp";
-import culturalImgAvif from "../assets/cultural.avif";
 import eventAnnualWebp from "../assets/event-annual.webp";
-import eventAnnualAvif from "../assets/event-annual.avif";
 import eventArtWebp from "../assets/event-art.webp";
-import eventArtAvif from "../assets/event-art.avif";
 import heroImgWebp from "../assets/hero-campus.webp";
-import heroImgAvif from "../assets/hero-campus.avif";
-import { ResponsivePicture } from "../components/ResponsivePicture";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -37,37 +25,25 @@ export const Route = createFileRoute("/gallery")({
   component: GalleryPage,
 });
 
-type Cat = "All" | "Campus" | "Events" | "Sports" | "Cultural";
-
-const items: (LightboxItem & { cat: Exclude<Cat, "All">; tall?: boolean; avif: string })[] = [
-  { src: heroImgWebp, avif: heroImgAvif, alt: "Front facade", cat: "Campus", tall: true },
-  { src: classroomImgWebp, avif: classroomImgAvif, alt: "Smart classroom", cat: "Campus" },
-  { src: scienceImgWebp, avif: scienceImgAvif, alt: "Science lab in action", cat: "Campus" },
-  { src: libraryImgWebp, avif: libraryImgAvif, alt: "Library reading hall", cat: "Campus" },
-  { src: campusAerialWebp, avif: campusAerialAvif, alt: "Aerial campus view", cat: "Campus", tall: true },
-  { src: sportsImgWebp, avif: sportsImgAvif, alt: "Sports day finals", cat: "Sports" },
-  { src: culturalImgWebp, avif: culturalImgAvif, alt: "Cultural dance", cat: "Cultural", tall: true },
-  { src: eventAnnualWebp, avif: eventAnnualAvif, alt: "Annual day stage", cat: "Events" },
-  { src: eventArtWebp, avif: eventArtAvif, alt: "Art exhibition", cat: "Cultural" },
+const domeImages = [
+  { src: heroImgWebp, alt: "Front facade" },
+  { src: classroomImgWebp, alt: "Smart classroom" },
+  { src: scienceImgWebp, alt: "Science lab in action" },
+  { src: libraryImgWebp, alt: "Library reading hall" },
+  { src: campusAerialWebp, alt: "Aerial campus view" },
+  { src: sportsImgWebp, alt: "Sports day finals" },
+  { src: culturalImgWebp, alt: "Cultural dance" },
+  { src: eventAnnualWebp, alt: "Annual day stage" },
+  { src: eventArtWebp, alt: "Art exhibition" },
 ];
 
 function GalleryPage() {
-  const [filter, setFilter] = useState<Cat>("All");
-  const [lbIndex, setLbIndex] = useState<number | null>(null);
-
-  const filtered = useMemo(
-    () => (filter === "All" ? items : items.filter((i) => i.cat === filter)),
-    [filter]
-  );
-
   return (
     <>
-      {/* FULL-WIDTH BACKGROUND CAMPUS VIDEO */}
       <section className="relative h-[70vh] md:h-[85vh] w-full overflow-hidden bg-dark">
         <video
           className="absolute inset-0 h-full w-full object-cover"
           src="https://www.pexels.com/download/video/12724037/"
-          
           autoPlay
           muted
           loop
@@ -90,58 +66,25 @@ function GalleryPage() {
 
       <section className="section-y bg-dark text-dark-foreground">
         <div className="container-x">
-          {/* Filter */}
-          <div className="flex flex-wrap gap-2 justify-center mb-10">
-            {(["All", "Campus", "Events", "Sports", "Cultural"] as Cat[]).map((c) => (
-              <button
-                key={c}
-                onClick={() => setFilter(c)}
-                className={`rounded-full px-5 py-2.5 text-xs font-bold uppercase tracking-wider transition ${
-                  filter === c ? "bg-secondary text-secondary-foreground shadow-glow" : "bg-white/5 text-white/70 hover:text-white border border-white/10"
-                }`}
-              >
-                {c}
-              </button>
-            ))}
+          <div className="mb-8 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
+              Immersive Gallery
+            </p>
+            <h3 className="mt-2 text-3xl font-bold text-white">Explore campus memories in motion</h3>
+            <p className="mx-auto mt-3 max-w-2xl text-white/70">
+              Drag the dome to rotate through school moments, then tap any tile to open it in full color.
+            </p>
           </div>
 
-          {/* Masonry grid — simple smooth fade */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={filter}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.35, ease: "easeOut" }}
-              className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"
-            >
-              {filtered.map((it) => (
-                <button
-                  key={it.alt}
-                  onClick={() => setLbIndex(filtered.indexOf(it))}
-                  className="group relative block w-full overflow-hidden rounded-2xl break-inside-avoid shadow-soft hover:shadow-glow transition"
-                >
-                  <ResponsivePicture
-                    src={it.src}
-                    alt={it.alt}
-                    sources={[
-                      { type: "image/avif", srcSet: it.avif },
-                      { type: "image/webp", srcSet: it.src },
-                    ]}
-                    loading="lazy"
-                    className={`w-full object-cover transition-transform duration-700 group-hover:scale-110 ${it.tall ? "aspect-[3/4]" : "aspect-[4/3]"}`}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-70 group-hover:opacity-100 transition" />
-                  <div className="absolute bottom-0 left-0 right-0 p-4 text-left">
-                    <div className="text-[10px] uppercase tracking-[0.2em] text-secondary font-bold">{it.cat}</div>
-                    <p className="mt-1 text-sm font-bold text-white">{it.alt}</p>
-                  </div>
-                </button>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-
-          <Lightbox items={filtered} index={lbIndex} onClose={() => setLbIndex(null)} onIndex={setLbIndex} />
+          <div className="relative w-full h-[70vh] min-h-[420px] overflow-hidden  bg-black/20 shadow-2xl">
+  <DomeGallery
+    images={domeImages}
+    grayscale={false}
+    fit={0.48}
+    minRadius={500}
+    maxRadius={760}
+  />
+</div>
         </div>
       </section>
     </>
