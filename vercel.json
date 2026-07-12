@@ -12,7 +12,6 @@
     }
   ],
   "rewrites": [
-    { "source": "/favicon.ico", "destination": "/favicon.png" },
     { "source": "/sitemap.xml", "destination": "/sitemap.xml" }
   ]
 }
