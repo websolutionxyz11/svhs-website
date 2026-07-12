@@ -1,14 +1,15 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useRef } from "react";
+import React, { useRef, useCallback } from "react";
+import { throttle } from "@/lib/throttle";
 
 interface MobileGalleryCarouselProps {
   items: Array<{ image: string; text: string }>;
 }
 
-export function MobileGalleryCarousel({ items }: MobileGalleryCarouselProps) {
+export const MobileGalleryCarousel = React.memo(function MobileGalleryCarousel({ items }: MobileGalleryCarouselProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  const scroll = (direction: "left" | "right") => {
+  const scrollInner = (direction: "left" | "right") => {
     if (scrollContainerRef.current) {
       const scrollAmount = 300;
       scrollContainerRef.current.scrollBy({
@@ -17,6 +18,8 @@ export function MobileGalleryCarousel({ items }: MobileGalleryCarouselProps) {
       });
     }
   };
+
+  const scroll = useCallback(throttle(scrollInner, 300), []);
 
   return (
     <div className="relative w-full">
@@ -72,3 +75,5 @@ export function MobileGalleryCarousel({ items }: MobileGalleryCarouselProps) {
     </div>
   );
 }
+
+export default MobileGalleryCarousel;

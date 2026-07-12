@@ -1,5 +1,5 @@
 import { Camera, Mesh, Plane, Program, Renderer, Texture, Transform } from 'ogl';
-import { useEffect, useRef, FC } from 'react';
+import React, { useEffect, useRef, FC } from 'react';
 
 import './CircularGallery.css';
 
@@ -709,4 +709,4 @@ const CircularGallery: FC<CircularGalleryProps> = ({
   );
 };
 
-export default CircularGallery;
+export default React.memo(CircularGallery);

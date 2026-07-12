@@ -4,7 +4,7 @@ import {
   ArrowRight, BookOpen, FlaskConical, Globe2, Heart,
   Quote, Sparkles, Star, Trophy, ChevronRight, ChevronLeft, Calendar,
 } from "lucide-react";
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, lazy, Suspense, useMemo } from "react";
 
 
 import { Users, GraduationCap, Award, TrendingUp } from "lucide-react";
@@ -64,9 +64,9 @@ import { ResultsPopup } from "../components/Resultspopup";
 import { SSCResultsSection as SSCResults } from "../components/SSCResultsSection";
 
 // Lazy load heavy components
-const FacultyMasonryGallery = lazy(() => import("../components/FacultyMasonryGallery").then(m => ({ default: m.FacultyMasonryGallery })));
+const FacultyMasonryGallery = lazy(() => import("../components/FacultyMasonryGallery").then(m => ({ default: m.default })));
 const CircularGallery = lazy(() => import("@/components/CircularGallery.tsx"));
-const MobileGalleryCarousel = lazy(() => import("../components/MobileGalleryCarousel").then(m => ({ default: m.MobileGalleryCarousel })));
+const MobileGalleryCarousel = lazy(() => import("../components/MobileGalleryCarousel").then(m => ({ default: m.default })));
 const SplashCursor = lazy(() => import("../components/SplashCursor"));
 
 export const Route = createFileRoute("/")({
@@ -231,6 +231,9 @@ function HomePage() {
   const [testimonialSlide, setTestimonialSlide] = useState(0);
   const [eventSlide, setEventSlide] = useState(0);
   const items: LightboxItem[] = galleryPreview.map((g) => ({ src: g.src, alt: g.alt }));
+
+  // Memoize gallery items to avoid re-creating arrays on each render
+  const galleryItems = useMemo(() => galleryPreview.map((g) => ({ image: g.src, text: g.alt })), []);
 
   useEffect(() => {
     const t = setInterval(() => setSlide((s) => (s + 1) % heroSlides.length), 5000);
@@ -617,11 +620,11 @@ teachers, modern facilities, and excellent academic results.
 
     <Suspense fallback={<div style={{ height: "400px", background: "rgba(0,0,0,0.1)", borderRadius: "8px" }} />}>
       {isMobile ? (
-        <MobileGalleryCarousel items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))} />
+        <MobileGalleryCarousel items={galleryItems} />
       ) : (
         <div style={{ height: "400px", position: "relative" }}>
           <CircularGallery
-            items={galleryPreview.map((g) => ({ image: g.src, text: g.alt }))}
+            items={galleryItems}
             bend={3}
             textColor="#ffffff"
             borderRadius={0.05}

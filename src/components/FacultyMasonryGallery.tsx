@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronDown, ChevronUp } from "lucide-react";
-import { useState } from "react";
+import React, { useState, useMemo, useCallback } from "react";
+import { FixedSizeList as List, ListChildComponentProps } from "react-window";
 
 // ─── 1. IMPORT YOUR TEACHER PHOTOS HERE ──────────────────────────────────
 import principalImg from "../assets/teachers/principal.webp";
@@ -145,6 +146,53 @@ function getTeacherProfile(subject: string) {
   return subjectProfiles[subject] ?? fallbackProfile;
 }
 
+type TeacherCardProps = { teacher: FacultyTeacher; onOpen: (t: FacultyTeacher) => void; index: number };
+
+const TeacherCard = React.memo(function TeacherCard({ teacher, onOpen, index }: TeacherCardProps) {
+  return (
+    <motion.article
+      key={`${teacher.name}-${index}`}
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -8 }}
+      transition={{ duration: 0.35, delay: index * 0.01, ease: "easeOut" }}
+      whileHover={{ y: -3 }}
+      onClick={() => onOpen(teacher)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          onOpen(teacher);
+        }
+      }}
+      className="group flex cursor-pointer items-center gap-4 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_10px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_22px_rgba(15,23,42,0.1)]"
+    >
+      <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-[#F59E0B]/20">
+        <img
+          src={teacher.img}
+          alt={teacher.name}
+          loading="lazy"
+          width={64}
+          height={64}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+
+      <div className="min-w-0">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B76E00]">
+          {teacher.subject}
+        </p>
+        <h3 className="mt-0.5 text-base font-bold leading-tight text-slate-900 truncate">
+          {teacher.name}
+        </h3>
+        <p className="text-xs text-slate-500">{teacher.exp}</p>
+      </div>
+    </motion.article>
+  );
+});
+
+
 type FacultyMasonryGalleryProps = {
   badge?: string;
   title?: string;
@@ -163,7 +211,9 @@ export function FacultyMasonryGallery({
   const [showAll, setShowAll] = useState(false);
 
   const hasMore = teachers.length > initialCount;
-  const visibleTeachers = showAll ? teachers : teachers.slice(0, initialCount);
+  const visibleTeachers = useMemo(() => (showAll ? teachers : teachers.slice(0, initialCount)), [showAll, teachers, initialCount]);
+
+  const openProfile = useCallback((teacher: FacultyTeacher) => setActiveTeacher(teacher), []);
 
   return (
     <section className="w-full bg-[#FAFAFA] py-16 sm:py-20 lg:py-24">
@@ -195,47 +245,28 @@ export function FacultyMasonryGallery({
         ) : (
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <AnimatePresence initial={false}>
-              {visibleTeachers.map((teacher, index) => (
-                <motion.article
-                  key={`${teacher.name}-${index}`}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35, delay: index * 0.03, ease: "easeOut" }}
-                  whileHover={{ y: -3 }}
-                  onClick={() => setActiveTeacher(teacher)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                      event.preventDefault();
-                      setActiveTeacher(teacher);
-                    }
-                  }}
-                  className="group flex cursor-pointer items-center gap-4 rounded-2xl border border-black/5 bg-white p-4 shadow-[0_2px_10px_rgba(15,23,42,0.05)] transition-shadow duration-300 hover:shadow-[0_8px_22px_rgba(15,23,42,0.1)]"
+              {visibleTeachers.length > 8 ? (
+                // Virtualize long lists
+                <List
+                  height={480}
+                  itemCount={visibleTeachers.length}
+                  itemSize={96}
+                  width={'100%'}
                 >
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full ring-2 ring-[#F59E0B]/20">
-                    <img
-                      src={teacher.img}
-                      alt={teacher.name}
-                      loading="lazy"
-                      width={64}
-                      height={64}
-                      className="absolute inset-0 h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#B76E00]">
-                      {teacher.subject}
-                    </p>
-                    <h3 className="mt-0.5 text-base font-bold leading-tight text-slate-900 truncate">
-                      {teacher.name}
-                    </h3>
-                    <p className="text-xs text-slate-500">{teacher.exp}</p>
-                  </div>
-                </motion.article>
-              ))}
+                  {({ index, style }: ListChildComponentProps) => {
+                    const teacher = visibleTeachers[index];
+                    return (
+                      <div style={style} key={`${teacher.name}-${index}`}>
+                        <TeacherCard teacher={teacher} onOpen={openProfile} index={index} />
+                      </div>
+                    );
+                  }}
+                </List>
+              ) : (
+                visibleTeachers.map((teacher, index) => (
+                  <TeacherCard key={`${teacher.name}-${index}`} teacher={teacher} onOpen={openProfile} index={index} />
+                ))
+              )}
             </AnimatePresence>
           </div>
         )}
