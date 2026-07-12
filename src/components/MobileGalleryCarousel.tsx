@@ -74,6 +74,6 @@ export const MobileGalleryCarousel = React.memo(function MobileGalleryCarousel({
       </button>
     </div>
   );
-}
+});
 
 export default MobileGalleryCarousel;
