@@ -76,15 +76,30 @@ function GalleryPage() {
             </p>
           </div>
 
-          <div className="relative w-full h-[70vh] min-h-[420px] overflow-hidden  bg-black/20 shadow-2xl">
-  <DomeGallery
-    images={domeImages}
-    grayscale={false}
-    fit={0.48}
-    minRadius={500}
-    maxRadius={760}
-  />
-</div>
+          <div className="relative w-full overflow-hidden bg-black/20 shadow-2xl">
+            <div className="hidden md:block h-[70vh] min-h-[420px]">
+              <DomeGallery
+                images={domeImages}
+                grayscale={false}
+                fit={0.48}
+                minRadius={500}
+                maxRadius={760}
+              />
+            </div>
+
+            <div className="space-y-4 p-3 md:hidden">
+              {domeImages.map((image) => (
+                <div key={image.alt} className="overflow-hidden rounded-[2rem] border border-white/10 bg-black">
+                  <img
+                    src={image.src}
+                    alt={image.alt}
+                    loading="lazy"
+                    className="block h-auto w-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
     </>
