@@ -14,7 +14,6 @@ import heroImgWebp from "../assets/campus-aerial.webp";
 import heroImgAvif from "../assets/campus-aerial.avif";
 import { useIsMobile } from "../hooks/use-mobile";
 import principalImgWebp from "../assets/principal.webp";
-import principalImgAvif from "../assets/principal.avif";
 import classroomImgWebp from "../assets/classroom.webp";
 import schoolEntrancWebp from "../assets/School_Entrance.webp";
 import schoolEntrancAvif from "../assets/School_Entrance.avif";
@@ -196,11 +195,11 @@ const upcomingEvents = [
 ];
 
 const teachers = [
-  { img: principalImgWebp, avif: principalImgAvif, alt: "Dr. Ramesh Iyer", name: "Dr. Ramesh Iyer", subject: "Principal", exp: "Ph.D · 25 yrs experience" },
+  { img: principalImgWebp, alt: "Dr. Ramesh Iyer", name: "Dr. Ramesh Iyer", subject: "Principal", exp: "Ph.D · 25 yrs experience" },
   { img: topper1, name: "Mrs. Anjali Verma", subject: "Mathematics", exp: "M.Sc · 15 yrs experience" },
   { img: topper2, name: "Ms. Priya Nair", subject: "English Literature", exp: "M.A · 12 yrs experience" },
   { img: topper3, name: "Mr. Karthik Rao", subject: "Physics", exp: "M.Sc · 18 yrs experience" },
-  { img: principalImgWebp, avif: principalImgAvif, alt: "Mrs. Lakshmi Devi", name: "Mrs. Lakshmi Devi", subject: "Biology", exp: "M.Sc · 14 yrs experience" },
+  { img: principalImgWebp, alt: "Mrs. Lakshmi Devi", name: "Mrs. Lakshmi Devi", subject: "Biology", exp: "M.Sc · 14 yrs experience" },
   { img: topper1, name: "Mr. Suresh Kumar", subject: "Chemistry", exp: "M.Sc · 16 yrs experience" },
   { img: topper2, name: "Ms. Neha Sharma", subject: "Computer Science", exp: "M.Tech · 10 yrs experience" },
   { img: topper3, name: "Mr. Arjun Reddy", subject: "Social Studies", exp: "M.A · 13 yrs experience" },
@@ -646,7 +645,6 @@ teachers, modern facilities, and excellent academic results.
                 src={principalImgWebp}
                 alt="Principal Dr. Ramesh Iyer"
                 sources={[
-                  { type: "image/avif", srcSet: principalImgAvif },
                   { type: "image/webp", srcSet: principalImgWebp },
                 ]}
                 loading="lazy"

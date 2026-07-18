@@ -11,6 +11,30 @@ import eventAnnualWebp from "../assets/event-annual.webp";
 import eventArtWebp from "../assets/event-art.webp";
 import heroImgWebp from "../assets/hero-campus.webp";
 
+// Events folder images
+import culturalsWebp from "../assets/events/Culturals.webp";
+import event1Webp from "../assets/events/event1.webp";
+import event2Webp from "../assets/events/event2.webp";
+import event3Webp from "../assets/events/event3.webp";
+import event4Webp from "../assets/events/event4.webp";
+import flagImgWebp from "../assets/events/flag-img.webp";
+import sciencedayWebp from "../assets/events/scienceday.webp";
+import scienceday2Webp from "../assets/events/scienceday2.webp";
+import scienceday3Webp from "../assets/events/scienceday3.webp";
+import singingeventWebp from "../assets/events/singingevent.webp";
+import studentachivmentWebp from "../assets/events/student-achivment.webp";
+import studyHoursWebp from "../assets/events/studyHours.webp";
+import tripWebp from "../assets/events/trip.webp";
+import yogaghWebp from "../assets/events/yoga-gh.webp";
+import yogaWebp from "../assets/events/yoga.webp";
+import yogaAtSchoolWebp from "../assets/events/yogaAtSchool.webp";
+import yogameetWebp from "../assets/events/yogameet.webp";
+import YogaPenumurWebp from "../assets/events/YogaPenumur.webp";
+
+
+
+
+
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
@@ -35,6 +59,30 @@ const domeImages = [
   { src: culturalImgWebp, alt: "Cultural dance" },
   { src: eventAnnualWebp, alt: "Annual day stage" },
   { src: eventArtWebp, alt: "Art exhibition" },
+  
+  // Events
+  { src: culturalsWebp, alt: "Cultural program" },
+  { src: event1Webp, alt: "School event 1" },
+  { src: event2Webp, alt: "School event 2" },
+  { src: event3Webp, alt: "School event 3" },
+  { src: event4Webp, alt: "School event 4" },
+  { src: flagImgWebp, alt: "Flag ceremony" },
+  { src: sciencedayWebp, alt: "Science day celebration" },
+  { src: scienceday2Webp, alt: "Science day event 2" },
+  { src: scienceday3Webp, alt: "Science day event 3" },
+  { src: singingeventWebp, alt: "Singing event" },
+  { src: studentachivmentWebp, alt: "Student achievement" },
+  { src: studyHoursWebp, alt: "Study hours" },
+  { src: tripWebp, alt: "School trip" },
+  { src: yogaghWebp, alt: "Yoga session" },
+  { src: yogaWebp, alt: "Yoga practice" },
+  { src: yogaAtSchoolWebp, alt: "Yoga at school" },
+  { src: yogameetWebp, alt: "Yoga meet" },
+  { src: YogaPenumurWebp, alt: "Yoga Penumur" },
+  
+
+  
+  
 ];
 
 function GalleryPage() {
