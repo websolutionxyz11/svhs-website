@@ -134,19 +134,21 @@ function GalleryPage() {
                 maxRadius={760}
               />
             </div>
-
-            <div className="space-y-4 p-3 md:hidden">
-              {domeImages.map((image) => (
-                <div key={image.alt} className="overflow-hidden rounded-[2rem] border border-white/10 bg-black">
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    loading="lazy"
-                    className="block h-auto w-full object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+<div className="space-y-4 p-3 md:hidden">
+  {domeImages.map((image) => (
+    <div
+      key={image.alt}
+      className="overflow-hidden rounded-md border border-white/10 bg-black"
+    >
+      <img
+        src={image.src}
+        alt={image.alt}
+        loading="lazy"
+        className="h-56 w-full object-cover"
+      />
+    </div>
+  ))}
+</div>
           </div>
         </div>
       </section>

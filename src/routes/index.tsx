@@ -258,11 +258,11 @@ function HomePage() {
 
   return (
     <>
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         {!isMobile && <SplashCursor />}
-      </Suspense>
-      {/* <AdmissionPopup /> */}
-      <ResultsPopup/>
+      </Suspense>     */}
+      <AdmissionPopup />
+      {/* <ResultsPopup/> */}
       {/* School Banner — sits directly below the navbar */}
 <section className="w-full bg-gradient-to-r from-[#0B1A3D] via-[#142a5c] to-[#0B1A3D] py-3 sm:py-4 mt-26">
   <div className="w-full px-0">
